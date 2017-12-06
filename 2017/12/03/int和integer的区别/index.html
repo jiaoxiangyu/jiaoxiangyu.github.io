@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="枫之木落">
 <meta property="og:description" content="Integer和int的区别 1、Integer是int提供的封装类，而int是Java的基本数据类型； 2、Integer默认值是null，而int默认值是0； 3、声明为Integer的变量需要实例化，而声明为int的变量不需要实例化；  4、Integer是对象，用一个引用指向这个对象，而int是基本类型，直接存储数值。 比较：123456int i1 = 127;Integer i2 =">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-06T07:24:15.490Z">
+<meta property="og:updated_time" content="2017-12-06T08:57:01.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="int和integer的区别">
 <meta name="twitter:description" content="Integer和int的区别 1、Integer是int提供的封装类，而int是Java的基本数据类型； 2、Integer默认值是null，而int默认值是0； 3、声明为Integer的变量需要实例化，而声明为int的变量不需要实例化；  4、Integer是对象，用一个引用指向这个对象，而int是基本类型，直接存储数值。 比较：123456int i1 = 127;Integer i2 =">
@@ -173,6 +173,37 @@
         
       </header>
     
+	
+	
+	<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+	
     <div class="article-entry" itemprop="articleBody">
       
         <p>Integer和int的区别</p>
@@ -309,6 +340,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>

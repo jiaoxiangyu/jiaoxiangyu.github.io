@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="枫之木落">
 <meta property="og:description" content="Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。  Git 与 SVN 区别 GIT不仅仅是个版本控制系统，它也是个内容管理系统(CMS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-06T07:24:18.110Z">
+<meta property="og:updated_time" content="2017-12-06T08:56:34.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git教程">
 <meta name="twitter:description" content="Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。  Git 与 SVN 区别 GIT不仅仅是个版本控制系统，它也是个内容管理系统(CMS">
@@ -173,6 +173,37 @@
         
       </header>
     
+	
+	
+	<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git工作流程"><span class="toc-number">2.</span> <span class="toc-text"><a href="#Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;" class="headerlink" title="Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;"></a>Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git命令"><span class="toc-number">3.</span> <span class="toc-text"><a href="#Git&#x547D;&#x4EE4;" class="headerlink" title="Git&#x547D;&#x4EE4;"></a>Git&#x547D;&#x4EE4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新和提交"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;" class="headerlink" title="&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;"></a>&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本回退"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x7248;&#x672C;&#x56DE;&#x9000;" class="headerlink" title="&#x7248;&#x672C;&#x56DE;&#x9000;"></a>&#x7248;&#x672C;&#x56DE;&#x9000;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤回提交"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x64A4;&#x56DE;&#x63D0;&#x4EA4;" class="headerlink" title="&#x64A4;&#x56DE;&#x63D0;&#x4EA4;"></a>&#x64A4;&#x56DE;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置忽略特殊文件"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;"></a>&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      
+<!-- 目录内容结束 -->
+	
+	
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
@@ -409,6 +440,19 @@ second
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git工作流程"><span class="toc-number">2.</span> <span class="toc-text"><a href="#Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;" class="headerlink" title="Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;"></a>Git&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git命令"><span class="toc-number">3.</span> <span class="toc-text"><a href="#Git&#x547D;&#x4EE4;" class="headerlink" title="Git&#x547D;&#x4EE4;"></a>Git&#x547D;&#x4EE4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新和提交"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;" class="headerlink" title="&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;"></a>&#x66F4;&#x65B0;&#x548C;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本回退"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x7248;&#x672C;&#x56DE;&#x9000;" class="headerlink" title="&#x7248;&#x672C;&#x56DE;&#x9000;"></a>&#x7248;&#x672C;&#x56DE;&#x9000;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤回提交"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x64A4;&#x56DE;&#x63D0;&#x4EA4;" class="headerlink" title="&#x64A4;&#x56DE;&#x63D0;&#x4EA4;"></a>&#x64A4;&#x56DE;&#x63D0;&#x4EA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置忽略特殊文件"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;"></a>&#x8BBE;&#x7F6E;&#x5FFD;&#x7565;&#x7279;&#x6B8A;&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
