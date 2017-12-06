@@ -17,7 +17,7 @@
 <meta property="og:description" content="电子邮件的应用非常广泛，例如在某网站注册了一个账户，自动发送一封欢迎邮件，通过邮件找回密码，自动批量发送活动信息等。但这些应用不可能和我们自己平时发邮件一样，先打开浏览器，登录邮箱，创建邮件再发送。本文将简单介绍如何通过 Java 代码来创建电子邮件，并连接邮件服务器发送邮件。 1. 电子邮件协议电子邮件的在网络中传输和网页一样需要遵从特定的协议，常用的电子邮件协议包括 SMTP，POP3，IMA">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20170828204852447?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-12-06T10:16:33.452Z">
+<meta property="og:updated_time" content="2017-12-06T11:35:10.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于JavaMail的java邮件发送">
 <meta name="twitter:description" content="电子邮件的应用非常广泛，例如在某网站注册了一个账户，自动发送一封欢迎邮件，通过邮件找回密码，自动批量发送活动信息等。但这些应用不可能和我们自己平时发邮件一样，先打开浏览器，登录邮箱，创建邮件再发送。本文将简单介绍如何通过 Java 代码来创建电子邮件，并连接邮件服务器发送邮件。 1. 电子邮件协议电子邮件的在网络中传输和网页一样需要遵从特定的协议，常用的电子邮件协议包括 SMTP，POP3，IMA">
@@ -188,6 +188,7 @@
 <p>本测试用例用的 JavaMail 版本是 1.6.0，如果下载到其他版本的 JavaMail 运行时出现问题，请使用 JavaMail</p>
 <p>1.6.0 版本再进行尝试。 使用 JavaMail 1.6.0 要求的 JDK 版本必须是 JDK 1.7 以上（建议使用最新版 JDK）。 </p>
 </blockquote>
+<a id="more"></a>
 <h2 id="3、发送电子邮件"><a href="#3、发送电子邮件" class="headerlink" title="3、发送电子邮件"></a>3、发送电子邮件</h2><p>发送邮件首先需要有一个邮箱账号和密码，本文以网易163邮箱为例，邮箱账号必须要开启 SMTP 服务，在浏览器网页登录邮箱后一般在邮箱的“设置”选项中可以开启，并记下邮箱的 SMTP 服务器地址，如下所示（其他邮箱大同小异）:</p>
 <p><img src="http://img.blog.csdn.net/20170828204852447?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>代码实现:</p>
@@ -438,19 +439,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,14 +463,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
               </li>
              
@@ -478,11 +471,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +491,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,7 +499,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">excel</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,11 +511,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">excel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,10 +527,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
               </li>
              
@@ -538,15 +535,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://jiaoxiangyu.github.io">
   <title>Java中堆和栈的区别 | 枫之木落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="栈-在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆- 堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组">
+  <meta name="description" content="栈在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组或对象">
 <meta name="keywords" content="堆栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中堆和栈的区别">
 <meta property="og:url" content="https://jiaoxiangyu.github.io/2017/12/03/Java中堆和栈的区别/index.html">
 <meta property="og:site_name" content="枫之木落">
-<meta property="og:description" content="栈-在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆- 堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组">
+<meta property="og:description" content="栈在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组或对象">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-06T10:12:05.424Z">
+<meta property="og:updated_time" content="2017-12-06T11:36:48.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中堆和栈的区别">
-<meta name="twitter:description" content="栈-在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆- 堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组">
+<meta name="twitter:description" content="栈在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。    当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。   堆堆内存用来存放由new创建的对象和数组。    在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。     在堆中产生了一个数组或对象">
   
     <link rel="alternative" href="/atom.xml" title="枫之木落" type="application/atom+xml">
   
@@ -177,10 +177,9 @@
 	
     <div class="article-entry" itemprop="articleBody">
       
-        <p>栈<br>-<br>在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。   </p>
+        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。   </p>
 <p>当在一段代码块定义一个变量时，Java就在栈中为这个变量分配内存空间，当超过变量的作用域后，Java会自动释放掉为该变量所分配的内存空间，该内存空间可以立即被另作他用。  </p>
-<p>堆<br>-</p>
-<p>堆内存用来存放由new创建的对象和数组。   </p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>堆内存用来存放由new创建的对象和数组。   </p>
 <p>在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。   </p>
 <p> 在堆中产生了一个数组或对象后，还可以在栈中定义一个特殊的变量，让栈中这个变量的取值等于数组或对象在堆内存中的首地址，栈中的这个变量就成了数组或对象的引用变量。   </p>
 <p>引用变量就相当于是为数组或对象起的一个名称，以后就可以在程序中使用栈中的引用变量来访问堆中的数组或对象。   </p>
@@ -188,6 +187,7 @@
 <p>1、类变量（static修饰的变量）：在程序加载时系统就为它在堆中开辟了内存，堆中的内存地址存放于栈以便于高速访问。静态变量的生命周期–一直持续到整个”系统”关闭</p>
 <p>2、实例变量：当你使用java关键字new的时候，系统在堆中开辟并不一定是连续的空间分配给变量（比如说类实例），然后根据零散的堆内存地址，通过哈希算法换算为一长串数字以表征这个变量在堆中的”物理位置”。 实例变量的生命周期–当实例变量的引用丢失后，将被GC（垃圾回收器）列入可回收“名单”中，但并不是马上就释放堆中内存</p>
 <p>3、局部变量：局部变量，由声明在某方法，或某代码段里（比如for循环），执行到它的时候在栈中开辟内存，当局部变量一但脱离作用域，内存立即释放</p>
+<a id="more"></a>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><strong>各司其职</strong></p>
 <p>最主要的区别就是栈内存用来存储局部变量和方法调用。<br>而堆内存用来存储Java中的对象。无论是成员变量，局部变量，还是类变量，它们指向的对象都存储在堆内存中。</p>
 <p><strong>独有还是共享</strong></p>
@@ -438,19 +438,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,14 +462,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
               </li>
              
@@ -478,11 +470,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +490,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,7 +498,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">excel</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,11 +510,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">excel</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,10 +526,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
               </li>
              
@@ -538,15 +534,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
