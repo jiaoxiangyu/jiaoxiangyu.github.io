@@ -183,21 +183,9 @@
 <p>jre : java运行环境（注意：这里的bin、lib文件夹和jre里的bin、lib是不同的）;</p>
 <p>db ：   一个纯Java实现，开源的数据库管理系统(DBMS)java的内嵌数据库。 </p>
 </blockquote>
-<p>　<br>作为JDK实用程序，工具库中有七种主要程序。</p>
-<blockquote>
-<p>Javac：Java编译器，将Java源代码转换成字节码。<br>　　<br>Java：Java解释器，直接从类文件执行Java应用程序字节代码    </p>
-<p>appletviewer：小程序浏览器，一种执行HTML文件上的Java小程序的Java浏览器。  　　   </p>
-<p>Jdb：Java调试器，可以逐行执行程序，设置断点和检查变量。 </p>
-<p>Javah：产生可以调用Java过程的C过程，或建立能被Java程序调用的C过程的头文件。  　　  </p>
-<p>Javap：Java反汇编器，显示编译类文件中的可访问功能和数据，同时显示字节代码含义。</p>
-</blockquote>
-<p><strong>JRE</strong>（java runtime environment），是指java运行环境。光有JVM还不能完成class的执行，因为在解释class的时候JVM需要调用解释所需要的类库lib。在JDK的安装目录里你可以找到jre目录，里面有两个文件夹bin和lib,在这里可以认为bin里的就是jvm，lib中则是jvm工作所需要的类库，而jvm和 lib和起来就称为jre。所以，在你写完java程序编译成.class之后，你可以把这个.class文件和jre一起打包发给朋友，这样你的朋友就可以运行你写程序了。（jre里有运行.class的java.exe）</p>
-<p>相信大家都知道jdk的bin下有各种java程序需要用到的命令，与jre的bin目录最明显的区别就是jdk下才有javac，这一点很好理解，因为 jre只是一个运行环境而已。与开发无关，正因为如此，具备开发功能的jdk自己的jre下才会同时有client性质的jvm和server性质的 jvm， 而仅仅作为运行环境的jre下只需要client性质的jvm.dll就够了。 </p>
-<p>JDK，开发java程序用的开发包，JDK里面有java的运行环境(JRE)，包括client和server端的。需要配置环境变量。</p>
-<p>JRE，运行java程序的环境，JVM，JRE里面只有client运行环境，安装过程中，会自动添加PATH。</p>
-<p>试想一下如果java为了提供给大多数人使用，他们是不需要jdk做开发的，只需要jre能让java程序跑起来就可以了，那么每个客户还需要手动去设置环境变量多麻烦啊？所以安装jre的时候安装程序自动帮你把jre的java.exe添加到了系统变量中，</p>
-<p>总的来说JDK是用于java程序的开发,而jre则是只能运行class而没有编译的功能。<br>而我们通常安装的eclipse、idea等其他IDE有自己的编译器而不是用JDK bin目录中自带的，所以在安装时你会发现他们只要求你选中jre路径就可以了。</p>
-
+        
+          <a class="article-more-a" href="/2017/12/03/jdk和jre的区别/#more">more >></a>
+        
       
 
       
@@ -949,11 +937,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
