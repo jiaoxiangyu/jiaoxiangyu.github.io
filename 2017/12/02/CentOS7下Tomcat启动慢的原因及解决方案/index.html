@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="枫之木落">
 <meta property="og:description" content="原因CentOS 7系统中安装Tomcat，启动过程很慢，需要几分钟，经过查看日志，发现耗时在这里：是session引起的随机数问题导致的。Tocmat的Session ID是通过SHA1算法计算得到的，计算Session ID的时候必须有一个密钥。为了提高安全性Tomcat在启动的时候回通过随机生成一个密钥。 分析结果主要原因是生成随机数的时候卡住了,导致tomcat启动不了。是否有足够的熵来用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-06T10:10:25.678Z">
+<meta property="og:updated_time" content="2017-12-07T08:03:26.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7下Tomcat启动慢的原因及解决方案">
 <meta name="twitter:description" content="原因CentOS 7系统中安装Tomcat，启动过程很慢，需要几分钟，经过查看日志，发现耗时在这里：是session引起的随机数问题导致的。Tocmat的Session ID是通过SHA1算法计算得到的，计算Session ID的时候必须有一个密钥。为了提高安全性Tomcat在启动的时候回通过随机生成一个密钥。 分析结果主要原因是生成随机数的时候卡住了,导致tomcat启动不了。是否有足够的熵来用">
