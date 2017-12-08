@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-08T13:52:23.621Z</updated>
+  <updated>2017-12-08T14:07:19.808Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo yilia主题的所有文章功能不能用</title>
+    <link href="http://www.lookk.cn/2017/12/08/hexo-yilia%E4%B8%BB%E9%A2%98%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8/"/>
+    <id>http://www.lookk.cn/2017/12/08/hexo-yilia主题的所有文章功能不能用/</id>
+    <published>2017-12-08T14:05:29.000Z</published>
+    <updated>2017-12-08T14:07:19.808Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、node.js版本必须6.2以上<br>2、在hexo根目录下执行命令：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="selector-tag">i</span> hexo-generator-json-<span class="attribute">content</span> --save</span><br></pre></td></tr></table></figure><p>3、在hexo的配置文件_config.yml最后添加</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jsonContent:</span></span><br><span class="line"><span class="attr">    meta:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    pages:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    posts:</span></span><br><span class="line"><span class="attr">      title:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      date:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      path:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      text:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      raw:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      content:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      slug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      updated:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      comments:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      permalink:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      excerpt:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      categories:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>添加后 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 就行了。</p><blockquote><p>这些在如果所有文件给你不能正常使用会显示，我在这写是提示大家添加位置和添加内容的排版不能动，这是hexo的语法。这个所以文章功能个人感觉写的挺不错，自带搜索功能</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、node.js版本必须6.2以上&lt;br&gt;2、在hexo根目录下执行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span
+      
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 配置yilia主题</title>
@@ -109,9 +135,9 @@
       <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
-    
       <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
     
   </entry>
   
@@ -507,31 +533,6 @@
       
       
         &lt;p&gt;tomcat是个服务程序，需要占用几个通讯端口，所以默认情况是不能启动多个tomcat,如果要启动多个tomcat,需要修改配置文件，通过在配置文件设置不同的通讯端口就可以做到.文件 %TOMCAT_HOME%/conf/server.xml 是tomcat服务配置文件，里
-      
-    
-    </summary>
-    
-      <category term="tomcat" scheme="http://www.lookk.cn/categories/tomcat/"/>
-    
-    
-      <category term="tomcat" scheme="http://www.lookk.cn/tags/tomcat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一个简单的静态web服务器实现</title>
-    <link href="http://www.lookk.cn/2017/12/02/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E9%9D%99%E6%80%81web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://www.lookk.cn/2017/12/02/一个简单的静态web服务器实现/</id>
-    <published>2017-12-02T14:35:31.000Z</published>
-    <updated>2017-12-07T08:46:00.884Z</updated>
-    
-    <content type="html"><![CDATA[<p>看完tomcat原理后，想自己用java仿一个简单的tomcat，先实现一个静态的web服务器。需要的技术有java网络编程（tcp/ip协议、http协议、socket等基础知识）<br>源码下载链接<a href="https://github.com/jiaoxiangyu/myWeb" target="_blank" rel="noopener">https://github.com/jiaoxiangyu/myWeb</a><br>自己下载源码看，我就不用再细介绍了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;看完tomcat原理后，想自己用java仿一个简单的tomcat，先实现一个静态的web服务器。需要的技术有java网络编程（tcp/ip协议、http协议、socket等基础知识）&lt;br&gt;源码下载链接&lt;a href=&quot;https://github.com/jiaoxian
       
     
     </summary>

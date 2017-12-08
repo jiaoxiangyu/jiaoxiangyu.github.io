@@ -152,6 +152,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-String、StringBuffer与StringBuilder之间区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/03/String、StringBuffer与StringBuilder之间区别/">String、StringBuffer与StringBuilder之间区别</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/03/String、StringBuffer与StringBuilder之间区别/" class="archive-article-date">
+  	<time datetime="2017-12-03T03:40:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+</a>
+        
+		
+		 
+			<span class="archive-article-date">
+				阅读量 <span id="busuanzi_value_page_pv"></span>
+			</span>
+		 
+		
+      </header>
+    
+	
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、三者在执行速度方面的比较</strong>：StringBuilder &gt;  StringBuffer  &gt;  String</p>
+<p><strong>2、String &lt;（StringBuffer，StringBuilder）的原因</strong></p>
+<p>String：字符串常量</p>
+<p>StringBuffer：字符串变量</p>
+<p>StringBuilder：字符串变量</p>
+<p>　   从上面的名字可以看到，String是“字符串常量”，也就是不可改变的对象。对于这句话的理解你可能会产生这样一个疑问  ，比如这段代码：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> s = <span class="string">"abcd"</span>;</span><br><span class="line">s = s+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">System</span>.out.<span class="keyword">print</span>(s);<span class="comment">// result : abcd1</span></span><br></pre></td></tr></table></figure>
+<p> 　　我们明明就是改变了String型的变量s的，为什么说是没有改变呢? 其实这是一种欺骗，JVM是这样解析这段代码的：首先创建对象s，赋予一个abcd，然后再创建一个新的对象s用来执行第二行代码，也就是说我们之前对象s并没有变化，所以我们说String类型是不可改变的对象了，由于这种机制，每当用String操作字符串时，实际上是在不断的创建新的对象，而原来的对象就会变为垃圾被GC回收掉，可想而知这样执行效率会有多底。</p>
+<p>　　而StringBuffer与StringBuilder就不一样了，他们是字符串变量，是可改变的对象，每当我们用它们对字符串做操作时，实际上是在一个对象上操作的，这样就不会像String一样创建一些而外的对象进行操作了，当然速度就快了。</p>
+<p><strong>3.一个特殊的例子：</strong></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String </span><span class="keyword">str </span>= “This is only a” + “ simple” + “ test”<span class="comment">;</span></span><br><span class="line"><span class="keyword">StringBuffer </span><span class="keyword">builder </span>= new <span class="keyword">StringBuilder(“This </span>is only a”).append(“simple”).append(“ test”)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>　　你会很惊讶的发现，生成str对象的速度简直太快了，而这个时候StringBuffer居然速度上根本一点都不占优势。其实这是JVM的一个把戏，实际上：</p>
+<p>　　　　String str = “This is only a” + “ simple” + “test”;</p>
+<p>　　　　其实就是：</p>
+<p>　　　　String str = “This is only a simple test”;</p>
+<p>　　　　所以不需要太多的时间了。但大家这里要注意的是，如果你的字符串是来自另外的String对象的话，速度就没那么快了，譬如：</p>
+<p>　　　　String str2 = “This is only a”;</p>
+<p>　　　　String str3 = “ simple”;</p>
+<p>　　　　String str4 = “ test”;</p>
+<p>　　　　String str1 = str2 +str3 + str4;</p>
+<p>　　　　这时候JVM会规规矩矩的按照原来的方式去做。</p>
+<p><strong>4.StringBuilder与 StringBuffer</strong></p>
+<p>　StringBuilder：线程非安全的</p>
+<p>　StringBuffer：线程安全的</p>
+<p>　   当我们在字符串缓冲去被多个线程使用是，JVM不能保证StringBuilder的操作是安全的，虽然他的速度最快，但是可以保证StringBuffer是可以正确操作的。当然大多数情况下就是我们是在单线程下进行的操作，所以大多数情况下是建议用StringBuilder而不用StringBuffer的，就是速度的原因。</p>
+<p><strong>对于三者使用的总结：</strong><br> 1.如果要操作少量的数据用 = String<br> 2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder<br>3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/03/String、StringBuffer与StringBuilder之间区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+  
+
+
+
+
+  
     <article id="post-int和integer的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -549,104 +670,6 @@
 
 
   
-    <article id="post-读取properties配置文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/读取properties配置文件/">读取properties配置文件</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/读取properties配置文件/" class="archive-article-date">
-  	<time datetime="2017-12-03T03:31:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
-		
-      </header>
-    
-	
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PropertiesUtil</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		Properties p=<span class="keyword">new</span> Properties();  <span class="comment">//创建Properties对象  </span></span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">        	InputStream <span class="keyword">in</span>=PropertiesUtil.class.getResourceAsStream(<span class="string">"status_code.properties"</span>);</span><br><span class="line">			<span class="comment">//放置到p中，即放properties文件中的key,value</span></span><br><span class="line">			p.load(<span class="keyword">in</span>);<span class="comment">//读取.preperties中的信息  </span></span><br><span class="line">            <span class="comment">/*          </span></span><br><span class="line"><span class="comment">             * p.load(new FileInputStream("db.properties")); 我们不能这样直接放如果这样放就会 </span></span><br><span class="line"><span class="comment">             * 出现一个错误java.io.FileNotFoundException: db.properties (系统找不到指定的文件。) </span></span><br><span class="line"><span class="comment">             */</span>  </span><br><span class="line">          </span><br><span class="line">            p.list(System.<span class="keyword">out</span>);<span class="comment">//System.out 是打印到控制台  </span></span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"****************************************"</span>);  </span><br><span class="line">            System.<span class="keyword">out</span>.println(p.getProperty(<span class="string">"100"</span>));<span class="comment">//p.getProperty(Key) 根据Key查询Value  </span></span><br><span class="line">            System.<span class="keyword">out</span>.println(p.getProperty(<span class="string">"200"</span>));  </span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;  </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.csdn.net/mhmyqn/article/details/7683909" target="_blank" rel="noopener">java读取.properties配置文件的几种方法</a><br>这篇博客总结了几种读取方法。</p>
-<p><a href="http://www.cnblogs.com/xudong-bupt/p/3758136.html" target="_blank" rel="noopener">Java 读写Properties配置文件</a><br>这篇博客总结了Properties这个类常用的几个方法</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">properties</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/读取properties配置文件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-  
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -750,11 +773,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,19 +801,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,11 +813,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -818,11 +845,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -838,23 +861,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -862,7 +873,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
             
             <div class="clearfix"></div>
