@@ -152,6 +152,155 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java-IO流（一）-字节流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/java-IO流（一）-字节流/">java IO流（一） --字节流</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/java-IO流（一）-字节流/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		 
+			<span class="archive-article-date">
+				阅读量 <span id="busuanzi_value_page_pv"></span>
+			</span>
+		 
+		
+      </header>
+    
+	
+	
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>Java语言的输入输出功能借助于输入输出包java.io，通过流（Stream）来实现，用统一的接口来表示，从而是程序设计简单明了。 </p>
+<p>流（Stream）是计算机各部件之间数据流动。按数据传输方向分为输入流（程序从外设读入数据流）和输出流（程序往外设写入数据流）。按内容划分为字节流和字符流 </p>
+<p>采用数据流来处理输入输出的目的是使程序的输入输出操作独立于相关设备。也就是说，对任何设备的输入输出，只要针对流做处理就可以了，从而增强了设备的可移植性。</p>
+</blockquote>
+<p>InputStream、OutStream、Reader和Writer是抽象类，用于数据流的输入输出；File是文件类，用于对磁盘文件于文件夹的管理；RandomAccessFile是随机访问文件类，用于实现对磁盘文件的随机读写操作：<br><img src="http://img.blog.csdn.net/20170804151032688?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><strong>下面我们先来介绍字节流</strong></p>
+<p>InputStream和OutStream用来处理以位（bit）为单位的流的抽象类，除了可以用来处理二进制文件，也可以处理文本文件。</p>
+<blockquote>
+<p><strong>注意：不提倡字节流处理文本文件，因为如果文件中有汉字，可能会出现乱码，建议用字符流处理文本文件</strong></p>
+</blockquote>
+<h2 id="1、-InputStream类"><a href="#1、-InputStream类" class="headerlink" title="1、 InputStream类"></a>1、 InputStream类</h2><p>InputStream抽象类中包含一套所有字节输入的方法，可以完成基本的从输入流读入数据的功能。</p>
+<p>常用方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">available</span>() <span class="comment">//返回此输入流下一个方法调用可以不受阻塞地从此输入流读取（或跳过）的估计字节数。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭此输入流并释放与该流关联的所有系统资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> mark(<span class="keyword">int</span> readlimit) <span class="comment">//在此输入流中标记当前的位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> markSupported() <span class="comment">//测试此输入流是否支持 mark 和 reset 方法。</span></span><br><span class="line"> </span><br><span class="line">abstract  <span class="keyword">int</span> <span class="built_in">read</span>() <span class="comment">//从输入流中读取数据的下一个字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b) <span class="comment">//从输入流中读取一定数量的字节，并将其存储在缓冲区数组 b 中。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将输入流中最多 len 个数据字节读入 byte 数组。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> reset() <span class="comment">//将此流重新定位到最后一次对此输入流调用 mark 方法时的位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> skip(<span class="keyword">long</span> n) <span class="comment">//跳过和丢弃此输入流中数据的 n 个字节。</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、-OutputStream类"><a href="#2、-OutputStream类" class="headerlink" title="2、 OutputStream类"></a>2、 OutputStream类</h2><p>OutputStream抽象类中包含一套所有字节输出的方法，可以完成基本的输出流写入数据的功能。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭此输出流并释放与此流有关的所有系统资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">flush</span>() <span class="comment">//刷新此输出流并强制写出所有缓冲的输出字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b) <span class="comment">//将 b.length 个字节从指定的 byte 数组写入此输出流。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将指定 byte 数组中从偏移量 off 开始的 len 个字节写入此输出流。</span></span><br><span class="line"></span><br><span class="line">abstract  <span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">int</span> b) <span class="comment">//将指定的字节写入此输出流。</span></span><br></pre></td></tr></table></figure>
+<p><strong>提示：以上已介绍了这两个抽象类的基本方法，其子类不再重复介绍这些方法</strong></p>
+<h2 id="3、文件字节流-FileInputStream和FileOutputStream类"><a href="#3、文件字节流-FileInputStream和FileOutputStream类" class="headerlink" title="3、文件字节流 FileInputStream和FileOutputStream类"></a>3、文件字节流 FileInputStream和FileOutputStream类</h2><p>这两个实现类主要负责完成对本地磁盘文件的顺序输入输出操作。在生成FileInputStream类的对象时，若指定文件找不到，这抛出FileNotFoundException异常，该异常必须捕捉或声明抛出；在输出FileOutputStream的对象时，若找不到指定的文件，则创建一个新文件，若已存在，则清空原文件的内容。在进行文件的读写操作时会产生IOException异常，该异常必须捕捉或声明抛出。</p>
+<p>FileInputStream的构造方法：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> FilterInputStream(<span class="keyword">String</span> <span class="keyword">name</span>) <span class="comment">//以名为name的文件为数据源建立输入流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterInputStream(<span class="keyword">File</span> <span class="keyword">file</span>) <span class="comment">//以指定名称的文件对象file为数据源建立文件输入流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterInputStream(FileDescriptor fdObj) <span class="comment">//根据文件描述符对象fdObj为输入端建立一个文件输入流</span></span><br></pre></td></tr></table></figure>
+<p>FileOutputStream的构造方法：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">String</span> <span class="keyword">name</span>) <span class="comment">//以指定名称的文件为接收端建立文件输出流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">String</span> <span class="keyword">name</span>，boolean append) <span class="comment">//以指定名称的文件为接收端建立文件输出流，并指定写入方式，append为true时输出字节被写到文件的末尾</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">File</span> <span class="keyword">file</span>) <span class="comment">//以指定名称的文件对象为接收端建立文件输出流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(FileDescriptor fdObj) <span class="comment">//根据文件描述符对象fdObj建立一个文件输出流</span></span><br></pre></td></tr></table></figure>
+<p>FileDescriptor是文件描述符类，不能实例化，文件描述符的主要实际用途是创建一个包含该结构的 FileInputStream 或 FileOutputStream。 该类有三个静态成员：</p>
+<blockquote>
+<p> in — 标准输入(键盘)的描述符<br> out — 标准输出(屏幕)的描述符<br> err  — 标准错误输出(屏幕)的描述符</p>
+</blockquote>
+<p>例1：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		FileInputStream fin;</span><br><span class="line">		FileOutputStream fout;</span><br><span class="line">		<span class="keyword">char</span> ch;</span><br><span class="line">		<span class="keyword">int</span> data;</span><br><span class="line">		<span class="built_in">try</span>&#123;</span><br><span class="line">			fin =<span class="keyword">new</span> FileInputStream(FileDescriptor.in);<span class="comment">//new一个输入流对象</span></span><br><span class="line">			fout = <span class="keyword">new</span> FileOutputStream(FileDescriptor.out);<span class="comment">//new一个输出流</span></span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"请输入一串字符，并以#结束："</span>);</span><br><span class="line">			<span class="built_in">while</span>((ch=(<span class="keyword">char</span>)fin.<span class="built_in">read</span>())!=<span class="string">'#'</span>)&#123;<span class="comment">//读取</span></span><br><span class="line">				fout.<span class="built_in">write</span>(ch);<span class="comment">//写入</span></span><br><span class="line">			&#125;</span><br><span class="line">			fin.<span class="built_in">close</span>();<span class="comment">//关闭输入输出流，释放资源</span></span><br><span class="line">			fout.<span class="built_in">close</span>();</span><br><span class="line">		&#125;<span class="built_in">catch</span> (Exception e) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"File not found"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例2</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws IOException&#123;</span><br><span class="line">		FileInputStream fin=<span class="keyword">new</span> FileInputStream(<span class="string">"f:\\2.png"</span>);</span><br><span class="line">		FileOutputStream fout=<span class="keyword">new</span> FileOutputStream(<span class="string">"f:\\2_1.jpg"</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件大小："</span>+fin.<span class="built_in">available</span>()+<span class="string">"字节"</span>);</span><br><span class="line">		<span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[fin.<span class="built_in">available</span>()];</span><br><span class="line">		fin.<span class="built_in">read</span>(b);</span><br><span class="line">		fout.<span class="built_in">write</span>(b);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件已被复制改名"</span>);</span><br><span class="line">		fin.<span class="built_in">close</span>();</span><br><span class="line">		fout.<span class="built_in">close</span>();		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、顺序输入流类SequenceInputStream"><a href="#4、顺序输入流类SequenceInputStream" class="headerlink" title="4、顺序输入流类SequenceInputStream"></a>4、顺序输入流类SequenceInputStream</h2><p>改实现类的功能是将多个输入流顺序的连接在一起，形成单一的数据流，没有对应的输出数据流存在。</p>
+<p>构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">SequenceInputStream</span><span class="params">(Enumeration&lt;? extends InputStream&gt; e)</span></span> <span class="comment">//创建一个串行输入流，链接枚举对象e中所有的输入流</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">SequenceInputStream</span><span class="params">(InputStream s1, InputStream s2)</span></span> <span class="comment">//创建一个串行输入流，链接输入流s1和s2</span></span><br></pre></td></tr></table></figure>
+<h2 id="5、管道输入输出流-PipedInputStream和-PipedOutputStream"><a href="#5、管道输入输出流-PipedInputStream和-PipedOutputStream" class="headerlink" title="5、管道输入输出流 PipedInputStream和 PipedOutputStream"></a>5、管道输入输出流 PipedInputStream和 PipedOutputStream</h2><p>这两个实现类提供了利用管道方式进行数据输入输出管理。管道流用来将一个程序或线程的输出连接到另一个程序或线程作为输入，使得相连线程能够交换数据，从而实现程序内部线程间的通信或不同程序间通信。这两个类必须结合使用。</p>
+<p>PipedInputStream构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(int pipeSize)</span></span> <span class="comment">//创建一个尚未连接的 PipedInputStream，并对管道缓冲区使用指定的管道大小。  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(PipedOutputStream src)</span></span> <span class="comment">//创建 PipedInputStream，使其连接到管道输出流 src。  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(PipedOutputStream src, int pipeSize)</span></span>  <span class="comment">//创建一个 PipedInputStream，使其连接到管道输出流 src，并对管道缓冲区使用指定的管道大小。</span></span><br></pre></td></tr></table></figure>
+<p>PipedInputStream方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">connect</span>(PipedOutputStream src) <span class="comment">//使此管道输入流连接到管道输出流 src。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> receive(<span class="keyword">int</span> b)  接收数据字节。</span><br></pre></td></tr></table></figure>
+<p>PipedOutputStream构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PipedOutputStream</span><span class="params">(PipedInputStream snk)</span></span> <span class="comment">//创建连接到指定管道输入流的管道输出流。</span></span><br></pre></td></tr></table></figure>
+<p>PipedOutputStream方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">connect</span>(PipedInputStream snk) <span class="comment">//将此管道输出流连接到接收者。</span></span><br></pre></td></tr></table></figure>
+<h2 id="6、过滤输入输出流-FilterInputStream和-FilterOutputStream"><a href="#6、过滤输入输出流-FilterInputStream和-FilterOutputStream" class="headerlink" title="6、过滤输入输出流 FilterInputStream和 FilterOutputStream"></a>6、过滤输入输出流 FilterInputStream和 FilterOutputStream</h2><p>这两个类分别实现了在数据的读、写操作的同时进行数据处理。这两个类也是抽象类，它们又分别派生数据输入流类DataInputStream和数据输出流类DateOutputStream等子类。过滤输入输出流的主要特点就是建立在基本输入输出流之上，并在输入输出数据的同时能对所传输的数据做指定类型或格式的转换，即可以对二进制字节数据的理解和编码转换。</p>
+<p>有时按字节为基本单位进行数据读写处理并不方便，而是希望按数据类型为基本单位进行读取。在java中，按照基本数据类型进行读写的就是DataInputStream和DataOutputStream，这两个类的对象是过滤流。将基本字节流自动转成按基本数据类型进行读写的过滤流。然后利用流串接的方式，以达到数据转换的目的。</p>
+<p>这两个数据过滤流类分别实现了DataInput和DataOutput两个接口中定义的独立于具体机器的带格式的读写操作，从而实现了对不同类型数据的读写。</p>
+<p>DataInputStream构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">DataInputStream</span><span class="params">(InputStream in)</span></span> <span class="comment">//建立一个新的数据输入流，从指定的输入流in读数据</span></span><br></pre></td></tr></table></figure></p>
+<p>DataInputStream方法：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> readBoolean() <span class="comment">//读取一个输入字节，如果该字节不是零，则返回 true，如果是零，则返回 false。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">byte</span> readByte() <span class="comment">//读取并返回一个字节。</span></span><br><span class="line">           </span><br><span class="line"><span class="keyword">char</span> readChar() <span class="comment">//读取两个字节并返回一个 char 值。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">double</span> readDouble() <span class="comment">//读取八个字节并返回一个 double 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">float</span> readFloat() <span class="comment">//读取四个字节并返回一个 float 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">int</span> readInt() <span class="comment">//读取四个字节并返回一个 int 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">long</span> readLong() <span class="comment">//读取八个字节并返回一个 long 值。</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">short</span> readShort() <span class="comment">//读取两个字节并返回一个 short 值。</span></span><br></pre></td></tr></table></figure></p>
+<p>DataOutputStream构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">DataOutputStream</span><span class="params">(OutputStream out)</span></span> <span class="comment">//创建一个新的数据输出流，将数据写入指定基础输出流。</span></span><br></pre></td></tr></table></figure></p>
+<p>DataOutputStream方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> writeBoolean(<span class="keyword">boolean</span> v) <span class="comment">//将一个 boolean 值以 1-byte值形式写入基础输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeByte(<span class="keyword">int</span> v) <span class="comment">//向流中写入一字节，写入v的最低一字节，其他字节舍弃。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeBytes(<span class="keyword">String</span> s) <span class="comment">//将字符串按字节顺序写出到基础输出流中。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeChar(<span class="keyword">int</span> v) <span class="comment">//向流写入v的最低2字节，其他字节舍弃</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeChars(<span class="keyword">String</span> s) <span class="comment">//将字符串按字符顺序写入基础输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeDouble(<span class="keyword">double</span> v)  <span class="comment">//向流中写入v的8字节</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeFloat(<span class="keyword">float</span> v) <span class="comment">//向流中写入v的4字节</span></span><br><span class="line">       </span><br><span class="line"><span class="keyword">void</span> writeInt(<span class="keyword">int</span> v) <span class="comment">//向流中写入v的4字节</span></span><br><span class="line">           </span><br><span class="line"><span class="keyword">void</span> writeLong(<span class="keyword">long</span> v) <span class="comment">//向流中写入v的8字节</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">void</span> writeShort(<span class="keyword">int</span> v) <span class="comment">//向流中写入v的最低2字节，其他字节舍弃</span></span><br></pre></td></tr></table></figure>
+<h2 id="7、标准输入输出流"><a href="#7、标准输入输出流" class="headerlink" title="7、标准输入输出流"></a>7、标准输入输出流</h2><p>对于一般计算机系统，标准输入输出指的是键盘和显示屏。java在System类中定义了静态流System.in、System.out、System.err。这三个流对象定义在java.lang.System包中，不用import导入，java源程序编译时自动装载。</p>
+<p>标准输入System.in是FilterInputStream的子类BufferedInputStream的对象，调用System.in.read()从键盘读入一字节数据，要捕捉异常。</p>
+<p>标准输出System.out是FilterOutputStream的子类打印输出流PrintStream的对象,调用print()和println()方法向屏幕输出。</p>
+<p>标准错误System.err也是PrintStream派生的错误流，调用print()和println()<br>err也使用与out同样的方法，但err会立即显示指定的错误信息让用户指定。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/java-IO流（一）-字节流/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+  
+
+
+
+
+  
     <article id="post-Java-IO流（二）-字符流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -592,117 +741,9 @@
 
 
   
-    <article id="post-Java序列化与反序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/Java序列化与反序列化/">Java序列化与反序列化</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/Java序列化与反序列化/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
-		
-      </header>
-    
-	
-	
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java序列化与反序列化是什么？为什么需要序列化与反序列化？如何实现Java序列化与反序列化？本文围绕这些问题进行了探讨。</p>
-<h2 id="1-Java序列化与反序列化"><a href="#1-Java序列化与反序列化" class="headerlink" title="1.Java序列化与反序列化"></a>1.Java序列化与反序列化</h2><p> Java序列化是指把Java对象转换为字节序列的过程；而Java反序列化是指把字节序列恢复为Java对象的过程。</p>
-<h2 id="2-为什么需要序列化与反序列化"><a href="#2-为什么需要序列化与反序列化" class="headerlink" title="2.为什么需要序列化与反序列化"></a>2.为什么需要序列化与反序列化</h2><p> 我们知道，当两个进程进行远程通信时，可以相互发送各种类型的数据，包括文本、图片、音频、视频等， 而这些数据都会以二进制序列的形式在网络上传送。那么当两个Java进程进行通信时，能否实现进程间的对象传送呢？答案是可以的。如何做到呢？这就需要Java序列化与反序列化了。换句话说，一方面，发送方需要把这个Java对象转换为字节序列，然后在网络上传送；另一方面，接收方需要从字节序列中恢复出Java对象。</p>
-<p> 当我们明晰了为什么需要Java序列化和反序列化后，我们很自然地会想Java序列化的好处。其<strong>好处一</strong>是实现了数据的持久化，通过序列化可以把数据永久地保存到硬盘上（通常存放在文件里），<strong>二</strong>是，利用序列化实现远程通信，即在网络上传送对象的字节序列。</p>
-<h2 id="3-如何实现Java序列化与反序列化"><a href="#3-如何实现Java序列化与反序列化" class="headerlink" title="3.如何实现Java序列化与反序列化"></a>3.如何实现Java序列化与反序列化</h2><p><strong>1）JDK类库中序列化API</strong><br> java.io.ObjectOutputStream：表示对象输出流<br>它的writeObject(Object obj)方法可以对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。<br>java.io.ObjectInputStream：表示对象输入流<br>它的readObject()方法源输入流中读取字节序列，再把它们反序列化成为一个对象，并将其返回。</p>
-<p><strong>2）实现序列化的要求</strong><br>只有实现了Serializable或Externalizable接口的类的对象才能被序列化，否则抛出异常。</p>
-<p><strong>3）实现Java对象序列化与反序列化的方法</strong><br>假定一个Student类，它的对象需要序列化，可以有如下三种方法：<br><strong>方法一：</strong>若Student类仅仅实现了Serializable接口，则可以按照以下方式进行序列化和反序列化<br>ObjectOutputStream采用默认的序列化方式，对Student对象的非transient的实例变量进行序列化。<br>ObjcetInputStream采用默认的反序列化方式，对对Student对象的非transient的实例变量进行反序列化。</p>
-<p><strong>方法二：</strong>若Student类仅仅实现了Serializable接口，并且还定义了readObject(ObjectInputStream in)和writeObject(ObjectOutputSteam out)，则采用以下方式进行序列化与反序列化。<br>ObjectOutputStream调用Student对象的writeObject(ObjectOutputStream out)的方法进行序列化。<br>ObjectInputStream会调用Student对象的readObject(ObjectInputStream in)的方法进行反序列化。</p>
-<p><strong>方法三：</strong>若Student类实现了Externalnalizable接口，且Student类必须实现readExternal(ObjectInput in)和writeExternal(ObjectOutput out)方法，则按照以下方式进行序列化与反序列化。<br>ObjectOutputStream调用Student对象的writeExternal(ObjectOutput out))的方法进行序列化。<br>ObjectInputStream会调用Student对象的readExternal(ObjectInput in)的方法进行反序列化。</p>
-<p><strong>4）JDK类库中序列化的步骤</strong><br>步骤一：创建一个对象输出流，它可以包装一个其它类型的目标输出流，如文件输出流：<br>ObjectOutputStream out = new ObjectOutputStream(new fileOutputStream(“D:\objectfile.obj”));<br>步骤二：通过对象输出流的writeObject()方法写对象：<br>out.writeObject(“Hello”);<br>out.writeObject(new Date());</p>
-<p><strong>5）JDK类库中反序列化的步骤</strong><br>步骤一：创建一个对象输入流，它可以包装一个其它类型输入流，如文件输入流：<br>ObjectInputStream in = new ObjectInputStream(new fileInputStream(“D:\objectfile.obj”));<br>步骤二：通过对象输出流的readObject()方法读取对象：<br>String obj1 = (String)in.readObject();<br>Date obj2 = (Date)in.readObject();</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> String sex;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age, String sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">", sex="</span> + sex + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializableTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		File file =<span class="keyword">new</span> File(<span class="string">"E:\\java\\file.txt"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!file.exists()) &#123;</span><br><span class="line">			file.createNewFile();</span><br><span class="line">		&#125;</span><br><span class="line">		FileOutputStream fileOut=<span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">		ObjectOutputStream objOut=<span class="keyword">new</span> ObjectOutputStream(fileOut);</span><br><span class="line">		objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇"</span>, <span class="number">22</span>, <span class="string">"男"</span>));</span><br><span class="line">		objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇2"</span>, <span class="number">22</span>, <span class="string">"男2"</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">			objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇"</span>+i, <span class="number">22</span>, <span class="string">"男"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		FileInputStream fileIn=<span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">		ObjectInputStream objIn=<span class="keyword">new</span> ObjectInputStream(fileIn);</span><br><span class="line">		</span><br><span class="line">		System.out.println(objIn.readObject());</span><br><span class="line">		System.out.println(objIn.readObject());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>总结：writeObject(Object obj)用把对象序列化以二进制形式存到文本文件会是乱码，但并不影响用readObject()反序化读写；还有一点是，用writeObject(Object obj)写入文本数据不会换行，这点不太好，序列化和反序列化是为了进程自己通信、网络上传送、存到磁盘持久化，但这个存到文本文件不是给用户用肉眼看的，这些数据只有计算机可读懂。如果想要用肉眼看懂文本文件内容就不建议用这种方式了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/Java序列化与反序列化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-  
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 
@@ -803,23 +844,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -831,7 +864,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,15 +888,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -863,11 +900,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -876,6 +913,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -895,11 +936,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -908,10 +953,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
