@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-08T14:07:19.808Z</updated>
+  <updated>2017-12-08T14:11:18.021Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -21,17 +21,15 @@
     <link href="http://www.lookk.cn/2017/12/08/hexo-yilia%E4%B8%BB%E9%A2%98%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD%E4%B8%8D%E8%83%BD%E7%94%A8/"/>
     <id>http://www.lookk.cn/2017/12/08/hexo-yilia主题的所有文章功能不能用/</id>
     <published>2017-12-08T14:05:29.000Z</published>
-    <updated>2017-12-08T14:07:19.808Z</updated>
+    <updated>2017-12-08T14:11:18.021Z</updated>
     
-    <content type="html"><![CDATA[<p>1、node.js版本必须6.2以上<br>2、在hexo根目录下执行命令：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="selector-tag">i</span> hexo-generator-json-<span class="attribute">content</span> --save</span><br></pre></td></tr></table></figure><p>3、在hexo的配置文件_config.yml最后添加</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jsonContent:</span></span><br><span class="line"><span class="attr">    meta:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    pages:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    posts:</span></span><br><span class="line"><span class="attr">      title:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      date:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      path:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      text:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      raw:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      content:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      slug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      updated:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      comments:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      permalink:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      excerpt:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      categories:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>添加后 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 就行了。</p><blockquote><p>这些在如果所有文件给你不能正常使用会显示，我在这写是提示大家添加位置和添加内容的排版不能动，这是hexo的语法。这个所以文章功能个人感觉写的挺不错，自带搜索功能</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>1、node.js版本必须6.2以上<br>2、在hexo根目录下执行命令：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="selector-tag">i</span> hexo-generator-json-<span class="attribute">content</span> --save</span><br></pre></td></tr></table></figure><p>3、在hexo的配置文件_config.yml最后添加<br><a id="more"></a><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jsonContent:</span></span><br><span class="line"><span class="attr">    meta:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    pages:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    posts:</span></span><br><span class="line"><span class="attr">      title:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      date:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      path:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      text:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      raw:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      content:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      slug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      updated:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      comments:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      link:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      permalink:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      excerpt:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      categories:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p><p>添加后 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 就行了。</p><blockquote><p>这些在如果所有文件给你不能正常使用会显示，我在这写是提示大家添加位置和添加内容的排版不能动，这是hexo的语法。这个所以文章功能个人感觉写的挺不错，自带搜索功能</p></blockquote>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;1、node.js版本必须6.2以上&lt;br&gt;2、在hexo根目录下执行命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span
-      
+      &lt;p&gt;1、node.js版本必须6.2以上&lt;br&gt;2、在hexo根目录下执行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm &lt;span class=&quot;selector-tag&quot;&gt;i&lt;/span&gt; hexo-generator-json-&lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt; --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3、在hexo的配置文件_config.yml最后添加&lt;br&gt;
     
     </summary>
     
@@ -135,9 +133,9 @@
       <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
     
     
-      <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
-    
       <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+      <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
     
   </entry>
   
