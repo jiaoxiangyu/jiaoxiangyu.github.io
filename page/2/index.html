@@ -169,12 +169,10 @@
 </a>
         
 		
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>JVM</strong>（java virtual machineJVM）java虚拟机，它是整个java实现跨平台的最核心的部分，所有的java程序会首先被编译为.class的类文件，这种类文件可以在虚拟机上执行，也就是说class并不直接与机器的操作系统相对应，而是经过虚拟机间接与操作系统交互，由虚拟机将程序解释给本地系统执行。</p>
@@ -248,9 +246,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -271,12 +266,10 @@
 </a>
         
 		
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <p>电子邮件的应用非常广泛，例如在某网站注册了一个账户，自动发送一封欢迎邮件，通过邮件找回密码，自动批量发送活动信息等。但这些应用不可能和我们自己平时发邮件一样，先打开浏览器，登录邮箱，创建邮件再发送。本文将简单介绍如何通过 Java 代码来创建电子邮件，并连接邮件服务器发送邮件。</p>
@@ -350,9 +343,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -373,12 +363,10 @@
 </a>
         
 		
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>在函数中定义的一些基本类型的变量和对象的引用变量都在函数的栈内存中分配。   </p>
@@ -453,9 +441,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -476,12 +461,10 @@
 </a>
         
 		
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、什么是ClassLoader"><a href="#一、什么是ClassLoader" class="headerlink" title="一、什么是ClassLoader?"></a>一、什么是ClassLoader?</h2><p>大家都知道，当我们写好一个Java程序之后，不是管是CS还是BS应用，都是由若干个.class文件组织而成的一个完整的Java应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的class文件当中，所以经常要从这个class文件中要调用另外一个class文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中的，从而只有class文件被载入到了内存之后，才能被其它class所引用。所以ClassLoader就是用来动态加载class文件到内存当中用的。</p>
@@ -558,9 +541,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -581,12 +561,10 @@
 </a>
         
 		
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-垃圾回收的意义"><a href="#1-垃圾回收的意义" class="headerlink" title="1. 垃圾回收的意义"></a>1. 垃圾回收的意义</h2><p>　　在C++中，对象所占的内存在程序结束运行之前一直被占用，在明确释放之前不能分配给其它对象；而在Java中，当没有对象引用指向原先分配给某个对象的内存时，该内存便成为垃圾。JVM的一个系统级线程会自动释放该内存块。垃圾回收意味着程序不再需要的对象是”无用信息”，这些信息将被丢弃。当一个对象不再被引用的时候，内存回收它占领的空间，以便空间被后来的新对象使用。事实上，除了释放没用的对象，垃圾回收也可以清除内存记录碎片。由于创建对象和垃圾回收器释放丢弃对象所占的内存空间，内存会出现碎片。碎片是分配给对象的内存块之间的空闲内存洞。碎片整理将所占用的堆内存移到堆的一端，JVM将整理出的内存分配给新的对象。<br>　　<br>　　垃圾回收的一个潜在的缺点是它的开销影响程序性能。Java虚拟机必须追踪运行程序中有用的对象，而且最终释放没用的对象。这一个过程需要花费处理器的时间。其次垃圾回收算法的不完备性，早先采用的某些垃圾回收算法就不能保证100%收集到所有的废弃内存。当然随着垃圾回收算法的不断改进以及软硬件运行效率的不断提升，这些问题都可以迎刃而解。</p>
@@ -652,9 +630,6 @@
         
     </div>
 </aside>
-
-  
-
 
 
 
@@ -762,15 +737,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,6 +757,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
@@ -790,19 +769,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -822,10 +797,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
@@ -838,15 +809,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -863,6 +834,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">

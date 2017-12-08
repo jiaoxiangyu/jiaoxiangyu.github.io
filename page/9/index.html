@@ -169,16 +169,10 @@
 </a>
         
 		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>CentOS 7系统中安装Tomcat，启动过程很慢，需要几分钟，经过查看日志，发现耗时在这里：是session引起的随机数问题导致的。Tocmat的Session ID是通过SHA1算法计算得到的，计算Session ID的时候必须有一个密钥。为了提高安全性Tomcat在启动的时候回通过随机生成一个密钥。</p>
@@ -259,9 +253,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -282,16 +273,10 @@
 </a>
         
 		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <p>java中split()特殊符号”.”、 “|”、 “*” 、”\” 、”]”</p>
@@ -355,9 +340,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -378,16 +360,10 @@
 </a>
         
 		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.<span class="built_in">text</span>.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.<span class="built_in">text</span>.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class DateUtil &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param date</span></span><br><span class="line"><span class="comment">     * @return String("yyyy-MM-dd HH:mm:ss")</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> timeToString(Date date)&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="keyword">return</span> simpleDateFormat.format(date);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param date</span></span><br><span class="line"><span class="comment">     * @return String("yyyy-MM-dd")</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> dateToString(Date date)&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        <span class="keyword">return</span> simpleDateFormat.format(date);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param String("yyyy-MM-dd HH:mm:ss")</span></span><br><span class="line"><span class="comment">     * @return Date</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Date strToTime(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        Date date= <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            date = sdf.parse(<span class="built_in">str</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param String("yyyy-MM-dd")</span></span><br><span class="line"><span class="comment">     * @return Date</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Date strToDate(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">        Date date= <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            date = sdf.parse(<span class="built_in">str</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @test</span></span><br><span class="line"><span class="comment">     * @param args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(timeToString(<span class="keyword">new</span> Date()));</span><br><span class="line">        System.out.<span class="built_in">println</span>(dateToString(<span class="keyword">new</span> Date()));</span><br><span class="line">        System.out.<span class="built_in">println</span>(strToTime(<span class="string">"2017-11-29 20:42:00"</span>));</span><br><span class="line">        System.out.<span class="built_in">println</span>(strToDate(<span class="string">"2017-11-29"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -454,9 +430,6 @@
     </div>
 </aside>
 
-  
-
-
 
 
   
@@ -477,16 +450,10 @@
 </a>
         
 		
-		 
-			<span class="archive-article-date">
-				阅读量 <span id="busuanzi_value_page_pv"></span>
-			</span>
-		 
 		
+
       </header>
     
-	
-	
     <div class="article-entry" itemprop="articleBody">
       
         <p>参考网上整理了一下excel的导入和导出，excel的2003版和2007版以后的读写方法不同，文件后缀名也不同，所以要注意这点。<br>我只是简单实现了excel的导入导出，还有好多对excel单元格的设置我没有试，如果要用，自己去查询。<br>源码下载地址：<a href="https://gitee.com/jxyfengzhimuluo/excel_poi_java" target="_blank" rel="noopener">https://gitee.com/jxyfengzhimuluo/excel_poi_java</a></p>
@@ -552,9 +519,6 @@
         
     </div>
 </aside>
-
-  
-
 
 
 
@@ -662,15 +626,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,6 +646,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
@@ -690,19 +658,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">堆栈</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,10 +686,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
@@ -738,15 +698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -763,6 +723,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
