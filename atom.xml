@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-09T08:34:15.630Z</updated>
+  <updated>2017-12-09T09:26:39.588Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo 设置网站小图表</title>
+    <link href="http://www.lookk.cn/2017/12/09/hexo-%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%B0%8F%E5%9B%BE%E8%A1%A8/"/>
+    <id>http://www.lookk.cn/2017/12/09/hexo-设置网站小图表/</id>
+    <published>2017-12-09T09:24:56.000Z</published>
+    <updated>2017-12-09T09:26:39.588Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20171209172004775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>如图，设置这样的网站小图片，有多种方法，我介绍一直简单的，到ico在线制作生产一个ioc图片，命名为favicon.ico，放在hexo/source下上传，然后设置yilia下的_config.yml的favicon: favicon.ico，然后更新github就行了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20171209172004775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize
+      
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>heox 添加音乐测试</title>
@@ -503,31 +528,6 @@
     
     
       <category term="java" scheme="http://www.lookk.cn/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读取properties配置文件</title>
-    <link href="http://www.lookk.cn/2017/12/03/%E8%AF%BB%E5%8F%96properties%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"/>
-    <id>http://www.lookk.cn/2017/12/03/读取properties配置文件/</id>
-    <published>2017-12-03T03:31:41.000Z</published>
-    <updated>2017-12-07T08:49:11.775Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PropertiesUtil</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">Properties p=<span class="keyword">new</span> Properties();  <span class="comment">//创建Properties对象  </span></span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">        InputStream <span class="keyword">in</span>=PropertiesUtil.class.getResourceAsStream(<span class="string">"status_code.properties"</span>);</span><br><span class="line"><span class="comment">//放置到p中，即放properties文件中的key,value</span></span><br><span class="line">p.load(<span class="keyword">in</span>);<span class="comment">//读取.preperties中的信息  </span></span><br><span class="line">            <span class="comment">/*          </span></span><br><span class="line"><span class="comment">             * p.load(new FileInputStream("db.properties")); 我们不能这样直接放如果这样放就会 </span></span><br><span class="line"><span class="comment">             * 出现一个错误java.io.FileNotFoundException: db.properties (系统找不到指定的文件。) </span></span><br><span class="line"><span class="comment">             */</span>  </span><br><span class="line">          </span><br><span class="line">            p.list(System.<span class="keyword">out</span>);<span class="comment">//System.out 是打印到控制台  </span></span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"****************************************"</span>);  </span><br><span class="line">            System.<span class="keyword">out</span>.println(p.getProperty(<span class="string">"100"</span>));<span class="comment">//p.getProperty(Key) 根据Key查询Value  </span></span><br><span class="line">            System.<span class="keyword">out</span>.println(p.getProperty(<span class="string">"200"</span>));  </span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block  </span></span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="http://blog.csdn.net/mhmyqn/article/details/7683909" target="_blank" rel="noopener">java读取.properties配置文件的几种方法</a><br>这篇博客总结了几种读取方法。</p><p><a href="http://www.cnblogs.com/xudong-bupt/p/3758136.html" target="_blank" rel="noopener">Java 读写Properties配置文件</a><br>这篇博客总结了Properties这个类常用的几个方法</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight cs&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lookk.cn/categories/java/"/>
-    
-    
-      <category term="properties" scheme="http://www.lookk.cn/tags/properties/"/>
     
   </entry>
   
