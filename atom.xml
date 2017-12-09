@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-09T09:26:39.588Z</updated>
+  <updated>2017-12-09T09:30:13.027Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.lookk.cn/2017/12/09/hexo-%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99%E5%B0%8F%E5%9B%BE%E8%A1%A8/"/>
     <id>http://www.lookk.cn/2017/12/09/hexo-设置网站小图表/</id>
     <published>2017-12-09T09:24:56.000Z</published>
-    <updated>2017-12-09T09:26:39.588Z</updated>
+    <updated>2017-12-09T09:30:13.027Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20171209172004775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>如图，设置这样的网站小图片，有多种方法，我介绍一直简单的，到ico在线制作生产一个ioc图片，命名为favicon.ico，放在hexo/source下上传，然后设置yilia下的_config.yml的favicon: favicon.ico，然后更新github就行了</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20171209172004775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>如图，设置这样的网站小图片，有多种方法，我介绍一直简单的，到ico在线制作生成一个ico图片，命名为favicon.ico，放在hexo/source下上传，然后设置yilia下的_config.yml的favicon: favicon.ico，然后更新github就行了</p>]]></content>
     
     <summary type="html">
     
