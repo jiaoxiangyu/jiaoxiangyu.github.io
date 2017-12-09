@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-09T08:19:54.379Z</updated>
+  <updated>2017-12-09T08:32:07.757Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo yilia 主题使用畅言评论系统</title>
+    <link href="http://www.lookk.cn/2017/12/09/Hexo-yilia-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E7%95%85%E8%A8%80%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://www.lookk.cn/2017/12/09/Hexo-yilia-主题使用畅言评论系统/</id>
+    <published>2017-12-09T08:31:10.000Z</published>
+    <updated>2017-12-09T08:32:07.757Z</updated>
+    
+    <content type="html"><![CDATA[<p>前言：你的有一个可以正常使用的域名，可以参考我的<a href="http://www.lookk.cn/2017/12/09/hexo-%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/">hexo 绑定自己的域名</a></p><h3 id="注册畅言"><a href="#注册畅言" class="headerlink" title="注册畅言"></a>注册畅言</h3><p>进入<a href="http://changyan.kuaizhan.com/" target="_blank" rel="noopener">畅言官网</a> 免费注册</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>注册完后，登录进入畅言官网，获取你的畅言 app id 和 app key。<br>把你的ip和key添加到hexo下的_config.yml的畅言配置里就行了，yilia主题把一切都封装好了，直接使用就行。<br>只要在发布篇文章添加上可评论：<code>comments: true</code> #就行了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前言：你的有一个可以正常使用的域名，可以参考我的&lt;a href=&quot;http://www.lookk.cn/2017/12/09/hexo-%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/&quot;&gt;he
+      
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 绑定自己的域名</title>
@@ -516,31 +541,6 @@
       <category term="equals" scheme="http://www.lookk.cn/tags/equals/"/>
     
       <category term="hashCode" scheme="http://www.lookk.cn/tags/hashCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java Comparable 和Comparator区别</title>
-    <link href="http://www.lookk.cn/2017/12/03/java-Comparable-%E5%92%8CComparator%E5%8C%BA%E5%88%AB/"/>
-    <id>http://www.lookk.cn/2017/12/03/java-Comparable-和Comparator区别/</id>
-    <published>2017-12-03T03:26:51.000Z</published>
-    <updated>2017-12-07T08:41:08.764Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/tolcf/article/details/52229068" target="_blank" rel="noopener">http://blog.csdn.net/tolcf/article/details/52229068</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/tolcf/article/details/52229068&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://blog.csdn.net/tolcf/article/details/5
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lookk.cn/categories/java/"/>
-    
-    
-      <category term="comparable" scheme="http://www.lookk.cn/tags/comparable/"/>
     
   </entry>
   
