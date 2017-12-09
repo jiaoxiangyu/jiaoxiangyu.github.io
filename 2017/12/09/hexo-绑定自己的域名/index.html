@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20171209155658980?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171209160451717?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-12-09T08:15:59.819Z">
+<meta property="og:updated_time" content="2017-12-09T08:19:54.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 绑定自己的域名">
 <meta name="twitter:description" content="前提，你得有一个域名，有些域名需要备案后才能用。 在域名解析添加记录如果你用你顶点域名（如：lookk.cn)，就添加一条主机记录为@的，如果你用www子域名（如：www.look.cn）,github绑定自己的域名只支持这两种，不支持其他子域名，你可以去github的help查看   记录类型一定要为 CNAME 这种类型，只有这样你的域名才能指向你的github  记录值填 yourname.">
@@ -190,10 +190,10 @@
 <p><img src="http://img.blog.csdn.net/20171209155658980?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <ul>
 <li>记录类型一定要为 CNAME 这种类型，只有这样你的域名才能指向你的github </li>
-<li>记录值填 yourname.github.io <a id="more"></a>
-<h3 id="在github添加自定义域名"><a href="#在github添加自定义域名" class="headerlink" title="在github添加自定义域名"></a>在github添加自定义域名</h3></li>
+<li>记录值填 yourname.github.io </li>
 </ul>
-<p><img src="http://img.blog.csdn.net/20171209160451717?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"> </p>
+<a id="more"></a>
+<h3 id="在github添加自定义域名"><a href="#在github添加自定义域名" class="headerlink" title="在github添加自定义域名"></a>在github添加自定义域名</h3><p><img src="http://img.blog.csdn.net/20171209160451717?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"> </p>
 <h3 id="配置hexo的-config-yml"><a href="#配置hexo的-config-yml" class="headerlink" title="配置hexo的_config.yml"></a>配置hexo的_config.yml</h3><p>找到url设置，添加你的域名<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># URL 链接设置</span><br><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">ur<span class="variable">l:</span> http://www.lookk.<span class="keyword">cn</span></span><br><span class="line">roo<span class="variable">t:</span> /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_default<span class="variable">s:</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="上传CNAME文件"><a href="#上传CNAME文件" class="headerlink" title="上传CNAME文件"></a>上传CNAME文件</h3><p>光执行上面三个步骤还是不够，每次你上传更新时，你在github设置的域名可能会丢失，所以要上传一个CNAME文件，让github记住你添加的域名：<br>先创建一个名为CNAME的文件，没有后缀，再在文件中写上你的域名（如：www.lookk.cn）,然后把这个文件放在/hexo/source目录下，上传就行了。</p>
 <p>摘自：<a href="http://www.flyfood.name/2017/07/23/%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B93/" target="_blank" rel="noopener">http://www.flyfood.name/2017/07/23/%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B93/</a></p>
