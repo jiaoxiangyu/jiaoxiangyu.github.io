@@ -8,14 +8,18 @@
   <link rel="dns-prefetch" href="http://www.lookk.cn">
   <title>heox 添加音乐 | 枫之木落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
 <meta property="og:title" content="heox 添加音乐">
 <meta property="og:url" content="http://www.lookk.cn/2017/12/09/heox-添加音乐测试/index.html">
 <meta property="og:site_name" content="枫之木落">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-09T13:58:32.221Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20171209220918225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171209220740063?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-12-09T14:18:49.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="heox 添加音乐">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171209220918225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternative" href="/atom.xml" title="枫之木落" type="application/atom+xml">
   
@@ -185,6 +189,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="86" src="//music.163.com/outchain/player?type=2&id=33035954&auto=1&height=66"></iframe>
+
+<a id="more"></a>
+<h3 id="1、生成网易云音乐外链播放器"><a href="#1、生成网易云音乐外链播放器" class="headerlink" title="1、生成网易云音乐外链播放器"></a>1、生成网易云音乐外链播放器</h3><p>登录网页版网易云音乐，打开一首歌，点击 ”生成外链播放器“</p>
+<p><img src="http://img.blog.csdn.net/20171209220918225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>生产外链播放器代码，把代码粘贴到你想放的位置。</p>
+<p><img src="http://img.blog.csdn.net/20171209220740063?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述">  </p>
+<h3 id="2、侧栏添加背景音乐"><a href="#2、侧栏添加背景音乐" class="headerlink" title="2、侧栏添加背景音乐"></a>2、侧栏添加背景音乐</h3><p>打开/hexo/themes/yilia/layout/_partial/left-col.ejs文件，把音乐HTML代码粘贴进去，可以添加样式，改变大小，这是我的代码：</p>
+<pre><code>&lt;nav class=&quot;header-nav&quot;&gt;
+    &lt;div class=&quot;social&quot;&gt;
+        &lt;% for (var i in theme.subnav){ %&gt;
+            &lt;a class=&quot;&lt;%= i %&gt;&quot; target=&quot;_blank&quot; href=&quot;&lt;%- url_for(theme.subnav[i]) %&gt;&quot; title=&quot;&lt;%= i %&gt;&quot;&gt;&lt;i class=&quot;icon-&lt;%= i %&gt;&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;%}%&gt;
+    &lt;/div&gt;
+
+    &lt;!--音乐播放插件--&gt;
+    &lt;div style=&quot;margin-top:30px;&quot;&gt;
+        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=240 height=52 src=&quot;//music.163.com/outchain/player?type=2&amp;id=33035954&amp;auto=1&amp;height=32&quot;&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre><h3 id="3、在文章中添加音乐"><a href="#3、在文章中添加音乐" class="headerlink" title="3、在文章中添加音乐"></a>3、在文章中添加音乐</h3><p>配置hexo下的_config.yml的<code>post_asset_folder: true</code> 设置为true。</p>
+<p>把音乐插件代码直接添加到文章中你想添加的位置就ok了。</p>
+
       
 
       
@@ -192,7 +218,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -286,6 +334,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、生成网易云音乐外链播放器"><span class="toc-number">1.</span> <span class="toc-text"><a href="#1&#x3001;&#x751F;&#x6210;&#x7F51;&#x6613;&#x4E91;&#x97F3;&#x4E50;&#x5916;&#x94FE;&#x64AD;&#x653E;&#x5668;" class="headerlink" title="1&#x3001;&#x751F;&#x6210;&#x7F51;&#x6613;&#x4E91;&#x97F3;&#x4E50;&#x5916;&#x94FE;&#x64AD;&#x653E;&#x5668;"></a>1&#x3001;&#x751F;&#x6210;&#x7F51;&#x6613;&#x4E91;&#x97F3;&#x4E50;&#x5916;&#x94FE;&#x64AD;&#x653E;&#x5668;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、侧栏添加背景音乐"><span class="toc-number">2.</span> <span class="toc-text"><a href="#2&#x3001;&#x4FA7;&#x680F;&#x6DFB;&#x52A0;&#x80CC;&#x666F;&#x97F3;&#x4E50;" class="headerlink" title="2&#x3001;&#x4FA7;&#x680F;&#x6DFB;&#x52A0;&#x80CC;&#x666F;&#x97F3;&#x4E50;"></a>2&#x3001;&#x4FA7;&#x680F;&#x6DFB;&#x52A0;&#x80CC;&#x666F;&#x97F3;&#x4E50;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、在文章中添加音乐"><span class="toc-number">3.</span> <span class="toc-text"><a href="#3&#x3001;&#x5728;&#x6587;&#x7AE0;&#x4E2D;&#x6DFB;&#x52A0;&#x97F3;&#x4E50;" class="headerlink" title="3&#x3001;&#x5728;&#x6587;&#x7AE0;&#x4E2D;&#x6DFB;&#x52A0;&#x97F3;&#x4E50;"></a>3&#x3001;&#x5728;&#x6587;&#x7AE0;&#x4E2D;&#x6DFB;&#x52A0;&#x97F3;&#x4E50;</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -408,14 +469,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
@@ -428,7 +481,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -437,6 +494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,6 +549,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -504,7 +569,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,15 +577,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>

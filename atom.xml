@@ -46,19 +46,20 @@
     <link href="http://www.lookk.cn/2017/12/09/heox-%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%B5%8B%E8%AF%95/"/>
     <id>http://www.lookk.cn/2017/12/09/heox-添加音乐测试/</id>
     <published>2017-12-09T08:34:15.000Z</published>
-    <updated>2017-12-09T13:58:32.221Z</updated>
+    <updated>2017-12-09T14:18:49.017Z</updated>
     
-    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="86" src="//music.163.com/outchain/player?type=2&id=33035954&auto=1&height=66"></iframe>]]></content>
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="86" src="//music.163.com/outchain/player?type=2&id=33035954&auto=1&height=66"></iframe><a id="more"></a><h3 id="1、生成网易云音乐外链播放器"><a href="#1、生成网易云音乐外链播放器" class="headerlink" title="1、生成网易云音乐外链播放器"></a>1、生成网易云音乐外链播放器</h3><p>登录网页版网易云音乐，打开一首歌，点击 ”生成外链播放器“</p><p><img src="http://img.blog.csdn.net/20171209220918225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p><p>生产外链播放器代码，把代码粘贴到你想放的位置。</p><p><img src="http://img.blog.csdn.net/20171209220740063?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述">  </p><h3 id="2、侧栏添加背景音乐"><a href="#2、侧栏添加背景音乐" class="headerlink" title="2、侧栏添加背景音乐"></a>2、侧栏添加背景音乐</h3><p>打开/hexo/themes/yilia/layout/_partial/left-col.ejs文件，把音乐HTML代码粘贴进去，可以添加样式，改变大小，这是我的代码：</p><pre><code>&lt;nav class=&quot;header-nav&quot;&gt;    &lt;div class=&quot;social&quot;&gt;        &lt;% for (var i in theme.subnav){ %&gt;            &lt;a class=&quot;&lt;%= i %&gt;&quot; target=&quot;_blank&quot; href=&quot;&lt;%- url_for(theme.subnav[i]) %&gt;&quot; title=&quot;&lt;%= i %&gt;&quot;&gt;&lt;i class=&quot;icon-&lt;%= i %&gt;&quot;&gt;&lt;/i&gt;&lt;/a&gt;        &lt;%}%&gt;    &lt;/div&gt;    &lt;!--音乐播放插件--&gt;    &lt;div style=&quot;margin-top:30px;&quot;&gt;        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=240 height=52 src=&quot;//music.163.com/outchain/player?type=2&amp;id=33035954&amp;auto=1&amp;height=32&quot;&gt;&lt;/iframe&gt;    &lt;/div&gt;&lt;/nav&gt;</code></pre><h3 id="3、在文章中添加音乐"><a href="#3、在文章中添加音乐" class="headerlink" title="3、在文章中添加音乐"></a>3、在文章中添加音乐</h3><p>配置hexo下的_config.yml的<code>post_asset_folder: true</code> 设置为true。</p><p>把音乐插件代码直接添加到文章中你想添加的位置就ok了。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;500&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
-      
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;500&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=33035954&amp;auto=1&amp;height=66&quot;&gt;&lt;/iframe&gt;
     
     </summary>
     
+      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
     
   </entry>
   
