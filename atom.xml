@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-09T08:32:07.757Z</updated>
+  <updated>2017-12-09T08:34:15.630Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>heox 添加音乐测试</title>
+    <link href="http://www.lookk.cn/2017/12/09/heox-%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%B5%8B%E8%AF%95/"/>
+    <id>http://www.lookk.cn/2017/12/09/heox-添加音乐测试/</id>
+    <published>2017-12-09T08:34:15.000Z</published>
+    <updated>2017-12-09T08:34:15.630Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hexo yilia 主题使用畅言评论系统</title>
@@ -210,9 +224,9 @@
       <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
     
     
-      <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
-    
       <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+      <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
     
   </entry>
   
@@ -514,33 +528,6 @@
     
     
       <category term="properties" scheme="http://www.lookk.cn/tags/properties/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hashCode和equals</title>
-    <link href="http://www.lookk.cn/2017/12/03/hashCode%E5%92%8Cequals/"/>
-    <id>http://www.lookk.cn/2017/12/03/hashCode和equals/</id>
-    <published>2017-12-03T03:30:03.000Z</published>
-    <updated>2017-12-07T08:40:23.297Z</updated>
-    
-    <content type="html"><![CDATA[<p>1 、首先理解什么是<a href="https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E7%A0%81" target="_blank" rel="noopener">哈希码</a><br>2、理解<a href="https://baike.baidu.com/item/hashcode/7482507?fr=aladdin" target="_blank" rel="noopener">hashCode方法</a><br>3、理解equals方法重写<br>4、equals方法和hashCode方法一般一起重写。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1 、首先理解什么是&lt;a href=&quot;https://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E7%A0%81&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;哈希码&lt;/a&gt;&lt;br&gt;2、理解&lt;a href=&quot;https
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lookk.cn/categories/java/"/>
-    
-    
-      <category term="equals" scheme="http://www.lookk.cn/tags/equals/"/>
-    
-      <category term="hashCode" scheme="http://www.lookk.cn/tags/hashCode/"/>
     
   </entry>
   

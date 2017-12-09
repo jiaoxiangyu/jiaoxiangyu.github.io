@@ -152,6 +152,202 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Git教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Git教程/">Git教程</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Git教程/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:21:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
+</blockquote>
+<p><strong>Git 与 SVN 区别</strong></p>
+<p>GIT不仅仅是个版本控制系统，它也是个内容管理系统(CMS),工作管理系统等。<br>   如果你是一个具有使用SVN背景的人，你需要做一定的思想转换，来适应GIT提供的一些概念和特征。 Git 与 SVN 区别点：</p>
+<ul>
+<li><p>1、GIT是分布式的，SVN不是：这是GIT和其它非分布式的版本控制系统，例如SVN，CVS等，最核心的区别。   </p>
+</li>
+<li><p>2、GIT把内容按元数据方式存储，而SVN是按文件：所有的资源控制系统都是把文件的元信息隐藏在一个类似.svn,.cvs等的文件夹里。 </p>
+</li>
+<li><p>3、GIT分支和SVN的分支不同：分支在SVN中一点不特别，就是版本库中的另外的一个目录。  </p>
+</li>
+<li><p>4、GIT没有一个全局的版本号，而SVN有：目前为止这是跟SVN相比GIT缺少的最大的一个特征。 </p>
+</li>
+<li><p>5、GIT的内容完整性要优于SVN：GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。</p>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>windows下安装</strong></p>
+<p>windows下安装很简单，下载安装就行了，<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">下载地址</a></p>
+<p><strong>linux下安装</strong></p>
+<p>1、Debian/Ubuntu Git 安装命令为：</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> install libcurl4-gnutls-<span class="built_in">dev</span> libexpat1-<span class="built_in">dev</span> gettext \</span><br><span class="line">  libz-<span class="built_in">dev</span> libssl-<span class="built_in">dev</span></span><br><span class="line"></span><br><span class="line">$ apt-<span class="built_in">get</span> install git-core</span><br><span class="line"></span><br><span class="line">$ git --version</span><br><span class="line">git version <span class="number">1.8</span><span class="number">.1</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
+<p>2、 Centos/RedHat 安装命令为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum install curl-devel expat-devel gettext-devel \</span></span><br><span class="line">  openssl-devel zlib-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> yum -y install git-core</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 1.7.1</span><br></pre></td></tr></table></figure>
+<h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p><strong>一般工作流程如下：</strong></p>
+<ul>
+<li><p>克隆 Git 资源作为工作目录。</p>
+</li>
+<li><p>如果其他人修改了，你可以更新资源。</p>
+</li>
+<li><p>修改后，更新资源，合并后， 提交修改。</p>
+</li>
+<li><p>提交修改后，如果发现错误，可以撤回提交并再次修改并提交。</p>
+</li>
+</ul>
+<h2 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h2><p>gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。你可以去注册一个github账号，然后创建一个项目，用本地git上传你的资源。</p>
+<p>随便找个目录，点击右键，然后单击 Git Bash Here 进入git命令行工具</p>
+<p><strong>常用命令(简单了解，好多命令一般用不着)</strong><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git <span class="builtin-name">add</span> xxx.txt 		添加该文件</span><br><span class="line">git <span class="builtin-name">add</span> . 				添加所有文件</span><br><span class="line">git commit -m <span class="string">"message"</span> 提交到本地git仓库</span><br><span class="line">git status 				查看状态</span><br><span class="line">git diff 				查看仓库提交前差异</span><br><span class="line">git log 				查看所有版本详情</span><br><span class="line">git log --graph 		查看分支图</span><br><span class="line">git log --oneline  		查看简洁版提交记录（只查看记录commitId）</span><br><span class="line">git reset --hard HEAD^ 	回到上一版本</span><br><span class="line">git reset -- 36<span class="built_in">..</span><span class="built_in">..</span> by commitId（即版本号，输入前几位即可）</span><br><span class="line">cat xxx.txt 			查看内容</span><br><span class="line">git reflog 				查看日志记录</span><br><span class="line">git checkout -- xxx.txt 清除所有修改</span><br><span class="line">rm xxx.txt 				删除</span><br><span class="line">git rm 					确认删除，并且git commit</span><br><span class="line">git clone url  			克隆资源</span><br><span class="line">git checkout -b dev 	创建并切换到dev分支</span><br><span class="line">git branch 				查看所有分支</span><br><span class="line">git merge dev 			把dev分支合并到master</span><br><span class="line">git pull 				把github最新提交抓下来</span><br><span class="line">git push 				把本地的修改推到github</span><br><span class="line">git rebase -i HEAD~2  	合并多次提交记录</span><br><span class="line">git stash changes  		隐藏本地的改变，pull完了一定不要忘记 git unstash changes，恢复你刚隐藏的改变。</span><br><span class="line"></span><br><span class="line">如果希望保留生产服务器上所做的改动,仅仅并入新配置项:</span><br><span class="line">git stash</span><br><span class="line">git pull</span><br><span class="line">git stash pop</span><br><span class="line"></span><br><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"用户名"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"邮箱"</span></span><br><span class="line">git<span class="built_in"> config </span>--global credential.helper store 保存</span><br><span class="line"></span><br><span class="line">Ctrl+c  	退出，进入下一命令行（大概就是这个意思，你试试效果就知道了）</span><br></pre></td></tr></table></figure></p>
+<p>这只是一部分git命令，如果想详细了解，可以自己去查资料</p>
+<h2 id="更新和提交"><a href="#更新和提交" class="headerlink" title="更新和提交"></a>更新和提交</h2><p><strong>1、配置全局的name和email，这里是的你github的name和email</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"你的用户名"</span></span><br><span class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"你的邮箱"</span></span><br><span class="line">$ git config --global credential<span class="selector-class">.helper</span> store <span class="comment">//保存</span></span><br></pre></td></tr></table></figure>
+<p><strong>2、从github克隆项目</strong><br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">url</span></span><br></pre></td></tr></table></figure></p>
+<p>克隆路径有两种，一种是HTTPS，git登录即可；另一种是SSH，需要git设置钥。<br>https 和 SSH 的区别：</p>
+<blockquote>
+<p>1、前者可以随意克隆github上的项目，而不管是谁的；而后者则是你必须是你要克隆的项目的拥有者或管理员，且需要先添加 SSH key，否则无法克隆。</p>
+<p>2、https url 在push的时候是需要验证用户名和密码的；而 SSH 在push的时候，是不需要输入用户名的，如果配置SSHkey的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。</p>
+</blockquote>
+<p>git设置密钥：</p>
+<p>输入指令，进入.ssh文件夹<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.ssh/</span></span><br></pre></td></tr></table></figure></p>
+<p>如果提示 “ No such file or directory”，你可以手动的创建一个 .ssh文件夹即可：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>生成key<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -<span class="built_in">t</span> rsa -C <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure></p>
+<p>连续按三次回车，这里设置的密码就为空了，并且创建了key。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /c/Users/Administrator/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /c/Users/Administrator/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:sEzgbZ3Lc9kslQ1LdMhkrUvQLsNiHOuZLRm8nTvzG4s 1062100557<span class="meta">@qq.com</span></span><br><span class="line">The key's randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">|<span class="string">    .      =*o.  </span>|</span><br><span class="line">|<span class="string">   . o ....o+*.  </span>|</span><br><span class="line">|<span class="string">    . =oo+ o+..  </span>|</span><br><span class="line">|<span class="string">     + +B.+=+    </span>|</span><br><span class="line">|<span class="string">      ooSX+=o.   </span>|</span><br><span class="line">|<span class="string">        Bo+..    </span>|</span><br><span class="line">|<span class="string">         . ..    </span>|</span><br><span class="line">|<span class="string">          +. o   </span>|</span><br><span class="line">|<span class="string">          E++.   </span>|</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
+<p>最后得到了两个文件：id_rsa和id_rsa.pub</p>
+<p>打开Admin目录进入.ssh文件夹，用记事本打开id_rsa.pub，复制里面的内容添加到你github 的ssh设置里即可（在你的setting的SSH and GPG keys里面添加ssh key）</p>
+<p>测试一下该SSH key<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com</span><br></pre></td></tr></table></figure></p>
+<p>当你输入以上代码时，会有一段警告代码，如：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity <span class="keyword">of</span> host 'github.com (<span class="number">207.97</span><span class="number">.227</span><span class="number">.239</span>)' can't be established.</span><br><span class="line"><span class="comment"># RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="comment"># Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
+<p>这是正常的，你输入 yes 回车即可。如果你创建 SSH key 的时候设置了密码，接下来就会提示你输入密码，如：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase <span class="keyword">for</span> <span class="built_in">key</span> <span class="string">'/c/Users/Administrator/.ssh/id_rsa'</span>:</span><br></pre></td></tr></table></figure></p>
+<p>当然如果你密码输错了，会再要求你输入，直到对了为止。</p>
+<p>密码正确后你会看到下面这段话，如：</p>
+<figure class="highlight irpf90"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username<span class="comment">! You've successfully authenticated, but GitHub does not</span></span><br><span class="line"><span class="keyword">provide</span> shell <span class="keyword">access</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>3、更新和提交</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> xxx.txt   添加xxx文件</span></span><br><span class="line"><span class="bash">git add .   提交所有文件（不包括忽略文件）</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"提交的描述信息(必写)"</span>     提交到本地git仓库</span></span><br><span class="line"><span class="bash">git push   把本地提交推到github上</span></span><br><span class="line"><span class="bash">git pull   更新本地资源（即把github资源拉下来）</span></span><br></pre></td></tr></table></figure>
+<p>更新和提交有两种方法</p>
+<p>方法1：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> stash  隐藏本地的修改</span><br><span class="line"><span class="symbol">git</span> pull   下拉资源</span><br><span class="line"><span class="symbol">git</span> stash <span class="keyword">pop </span>恢复本地隐藏和下拉资源合并</span><br><span class="line">如果合并后有冲突，修改冲突，然后提交</span><br><span class="line"><span class="symbol">git</span> <span class="keyword">add </span>.  添加所有文件</span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">"message"</span> 提交到本地</span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push </span>  推到github</span><br></pre></td></tr></table></figure>
+<p>方法2：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .  添加所有文件</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"message"</span> 提交到本地</span></span><br><span class="line"><span class="bash">git pull   下拉资源</span></span><br><span class="line"><span class="bash">如果合并后有冲突，修改冲突，然后提交</span></span><br><span class="line"><span class="bash">git add .  添加所有文件</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"message"</span> 提交到本地</span></span><br><span class="line"><span class="bash">git push   推到github</span></span><br></pre></td></tr></table></figure>
+<p>这种方法会出现两次提交记录（输入命令 git status 会看到两次本地有两次提交），如果不嫌麻烦可以把这两次提交记录合并为一条：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> HEAD~<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>进入文本编辑页面，将第二个pick改成squash或者s，然后保存退出。如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pick c6e4557 <span class="built_in">create</span> <span class="keyword">second</span>.txt</span><br><span class="line">s e1a7dfa <span class="built_in">add</span> <span class="keyword">text</span> <span class="keyword">in</span> <span class="keyword">second</span>.txt</span><br></pre></td></tr></table></figure>
+<p>这样这两次提交就合并为一次提交记录了<br>提示：个人感觉方法二有点麻烦或提交记录不简洁，建议用方法一。</p>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>有时修改的内容不想要了，修改的东西有点多，不好改回去，怎么办？回退上一版本即可</p>
+<p>先查看本地提交记录：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>commit 7f0adef13054ab36a6013944c185e2a62b2ca462 Author: username<br>&lt; email&gt; Date:   Thu Aug 3 10:22:25 2017 +0800</p>
+<pre><code>second
+</code></pre><p>commit cefb64b5eb3903c497b63c29424d6968b8838447 Author: username<br>&lt; email&gt; Date:   Thu Aug 3 10:09:30 2017 +0800</p>
+<pre><code>second
+
+second
+</code></pre><p>commit 66fe6b87f2474fe8c325f81901bc57d92376cb5c Author:<br>username<br>&lt; email&gt; Date:   Thu Aug 3 09:17:27 2017 +0800</p>
+<pre><code>frist
+</code></pre></blockquote>
+<p>以上是你的本地git提交记录，commit后面是版本号</p>
+<p>回退到上一版本：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD^   回到上一版本</span></span><br></pre></td></tr></table></figure>
+<p>回退到指定版本：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">-- 66fe6b8   回退到指定版本，版本号输入前几位即可</span></span><br></pre></td></tr></table></figure>
+<h2 id="撤回提交"><a href="#撤回提交" class="headerlink" title="撤回提交"></a>撤回提交</h2><p>有时提交到本地git后，发现机密信息被提交；或者把冲突提交，并且github有更新，这时即不能push也不能pull，出现这些情况时，我们不要强推，强推可能把别人的push覆盖，我们可以撤回提交，恢复修改代码。</p>
+<p>仅仅撤回commit操作，代码仍然保留：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--soft HEAD^</span></span><br></pre></td></tr></table></figure></p>
+<p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
+<p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
+<p>撤回有这几个参数：<br>–mixed<br>不删除工作空间改动代码，撤销commit，并且撤销git add . 操作，这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
+<p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p>
+<p>–hard<br>删除工作空间改动代码，撤销commit，撤销git add . 完成这个操作后，就恢复到了上一次的commit状态。</p>
+<h2 id="设置忽略特殊文件"><a href="#设置忽略特殊文件" class="headerlink" title="设置忽略特殊文件"></a>设置忽略特殊文件</h2><p>有些特殊文件我们不需要上传到远程仓库中，这个问题解决起来也很简单，在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。</p>
+<p>.gitignore文件对其所在的目录及所在目录的全部子目录均有效。通过将.gitignore文件添加到仓库，其他开发者更新该文件到本地仓库，以共享同一套忽略规则。</p>
+<p><strong>仓库目录下新建一个名为.gitignore的文件</strong></p>
+<p>因为是点开头，没有文件名，没办法直接在windows目录下直接创建，必须通过右键Git Bash，按照Linux的方式来新建.gitignore文件。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vim</span> <span class="selector-class">.gitignore</span></span><br></pre></td></tr></table></figure>
+<p>这样就可以在仓库目录下新建一个名为.gitignore的文件，并且进入编辑。不会用linux的vim，可以查看<a href="http://blog.csdn.net/qq_32337109/article/details/75675338" target="_blank" rel="noopener">我的一篇博客</a>这里面介绍了vi的简单用法（vim是vi的升级版）</p>
+<p><strong>.gitignore忽略规则</strong></p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*.a       <span class="comment"># 忽略所有 .a 结尾的文件</span></span><br><span class="line">!<span class="class"><span class="keyword">lib</span>.<span class="title">a</span>    <span class="comment"># 但 lib.a 除外</span></span></span><br><span class="line">/TODO     <span class="comment"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</span></span><br><span class="line">build/    <span class="comment"># 忽略 build/ 目录下的所有文件</span></span><br><span class="line">doc/*.txt <span class="comment"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span></span><br></pre></td></tr></table></figure>
+<p><strong>忽略失效</strong></p>
+<p>如果第一次提交，没有设置好忽略文件，后期再加，这时忽略会失效，解决办法是把本地的要忽略的文件删除，然后上传，就可以了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章只是简单介绍了平时常用的几个功能，还有git的分支什么的等等，没有介绍，如果你感兴趣，自己可以去查查资料，研究一下。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Git教程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-MarkDown语法入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -752,93 +948,6 @@
 
 
   
-    <article id="post-java中split-特殊符号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/java中split-特殊符号/">java中split()特殊符号</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/java中split-特殊符号/" class="archive-article-date">
-  	<time datetime="2017-12-02T06:09:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java中split()特殊符号”.”、 “|”、 “*” 、”\” 、”]”</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">关于点的问题是用<span class="type">string</span>.split(<span class="string">"[.]"</span>) 解决。</span><br><span class="line">关于竖线的问题用 <span class="type">string</span>.split(<span class="string">"<span class="subst">\\</span>|"</span>)解决。</span><br><span class="line">关于星号的问题用 <span class="type">string</span>.split(<span class="string">"<span class="subst">\\</span>*"</span>)解决。</span><br><span class="line">关于斜线的问题用 sring.split(<span class="string">"<span class="subst">\\</span><span class="subst">\\</span>"</span>)解决。</span><br><span class="line">关于中括号的问题用 sring.split(<span class="string">"<span class="subst">\\</span>[<span class="subst">\\</span>]"</span>)解决。</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/java中split-特殊符号/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -942,23 +1051,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -967,10 +1064,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -986,7 +1079,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1022,10 +1131,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -1042,6 +1147,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
              
@@ -1051,10 +1164,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
