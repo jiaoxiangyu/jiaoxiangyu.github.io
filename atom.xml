@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-08T14:29:12.970Z</updated>
+  <updated>2017-12-09T07:34:29.033Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo yilia主题添加文章访问量统计</title>
+    <link href="http://www.lookk.cn/2017/12/09/hexo-yilia%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/"/>
+    <id>http://www.lookk.cn/2017/12/09/hexo-yilia主题添加文章访问量统计/</id>
+    <published>2017-12-09T07:32:48.000Z</published>
+    <updated>2017-12-09T07:34:29.033Z</updated>
+    
+    <content type="html"><![CDATA[<p>hexo添加访问量统计功能可以用<strong>百度的站长统计</strong>、<strong>leancloud</strong>，还有<strong>不蒜子</strong>，这里我用的不蒜子，感觉挺简单的。</p><h3 id="引入不蒜子"><a href="#引入不蒜子" class="headerlink" title="引入不蒜子"></a>引入<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>这段代码可以写在footer.ejs里或者header.ejs里或者layout.ejs里，我用的yilia主题，放在/themes/yilia/layout/_partial/footer.ejs<br><a id="more"></a></p><h3 id="添加站点访问量"><a href="#添加站点访问量" class="headerlink" title="添加站点访问量"></a>添加站点访问量</h3><p>通常站点的总访问量会显示在footer的位置，所以我们可以在footer.ejs里加上如下标签：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span> </span><br><span class="line">  本站访客数<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure><p>计算访问量的方法有两种：<br>算法a：pv的方式，单个用户连续点击n篇文章，记录n次访问量。<br>算法b：uv的方式，单个用户连续点击n篇文章，只记录1次访客数。<br>我用的是uv的方式，大家自行选择即可。</p><h3 id="添加文章访问量"><a href="#添加文章访问量" class="headerlink" title="添加文章访问量"></a>添加文章访问量</h3><p>文章的访问量显示在文章里面，所以在article.ejs里加上文章访问量的标签：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_page_pv"</span>&gt;</span></span><br><span class="line">   本文总阅读量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure><p>我们直接就这样放在yilia主题中，首页也会显示该网页的访问量，没法正常使用，所以我加一个判断，如果是首页不显示该文章的访问量，下面这段代码添加在/themes/yilia/layout/_partial/article.ejs的header的日期后面：</p><figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span><span class="perl"> <span class="keyword">if</span> ( !<span class="keyword">index</span> )&#123; </span><span class="xml"><span class="tag">%&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"archive-article-date"</span>&gt;</span></span></span><br><span class="line"><span class="xml">阅读量 <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span><span class="perl"> &#125; </span><span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure><p>摘自：<a href="http://www.jianshu.com/p/8a8f880f40c0" target="_blank" rel="noopener">http://www.jianshu.com/p/8a8f880f40c0</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;hexo添加访问量统计功能可以用&lt;strong&gt;百度的站长统计&lt;/strong&gt;、&lt;strong&gt;leancloud&lt;/strong&gt;，还有&lt;strong&gt;不蒜子&lt;/strong&gt;，这里我用的不蒜子，感觉挺简单的。&lt;/p&gt;
+&lt;h3 id=&quot;引入不蒜子&quot;&gt;&lt;a href=&quot;#引入不蒜子&quot; class=&quot;headerlink&quot; title=&quot;引入不蒜子&quot;&gt;&lt;/a&gt;引入&lt;a href=&quot;http://busuanzi.ibruce.info/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;不蒜子&lt;/a&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这段代码可以写在footer.ejs里或者header.ejs里或者layout.ejs里，我用的yilia主题，放在/themes/yilia/layout/_partial/footer.ejs&lt;br&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo yilia主题的所有文章功能不能用</title>
@@ -133,9 +157,9 @@
       <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
-    
       <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
     
   </entry>
   
@@ -506,31 +530,6 @@
       
       
         &lt;h2 id=&quot;Apache和Tomcat的关系&quot;&gt;&lt;a href=&quot;#Apache和Tomcat的关系&quot; class=&quot;headerlink&quot; title=&quot;Apache和Tomcat的关系&quot;&gt;&lt;/a&gt;Apache和Tomcat的关系&lt;/h2&gt;&lt;p&gt;Apache(Apache 
-      
-    
-    </summary>
-    
-      <category term="tomcat" scheme="http://www.lookk.cn/categories/tomcat/"/>
-    
-    
-      <category term="tomcat" scheme="http://www.lookk.cn/tags/tomcat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>同时启动多个Tomcat</title>
-    <link href="http://www.lookk.cn/2017/12/02/%E5%90%8C%E6%97%B6%E5%90%AF%E5%8A%A8%E5%A4%9A%E4%B8%AATomcat/"/>
-    <id>http://www.lookk.cn/2017/12/02/同时启动多个Tomcat/</id>
-    <published>2017-12-02T14:36:59.000Z</published>
-    <updated>2017-12-07T08:46:47.778Z</updated>
-    
-    <content type="html"><![CDATA[<p>tomcat是个服务程序，需要占用几个通讯端口，所以默认情况是不能启动多个tomcat,如果要启动多个tomcat,需要修改配置文件，通过在配置文件设置不同的通讯端口就可以做到.文件 %TOMCAT_HOME%/conf/server.xml 是tomcat服务配置文件，里面有很多配置项，本文只关注怎么修改端口，其他配置项的含义不做说明。下面把该配置文件中各端口的含义说明下：</p><blockquote><p>注意：tomcat下载解压版的，不能都用安装版的</p></blockquote><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server <span class="attribute">port</span>=<span class="string">"8005"</span> <span class="attribute">shutdown</span>=<span class="string">"SHUTDOWN"</span>&gt;</span><br></pre></td></tr></table></figure><p>接受服务器关闭指令的端口号，我们叫关闭指令端口.</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8080"</span> <span class="attribute">protocol</span>=<span class="string">"HTTP/1.1"</span></span><br><span class="line"></span><br><span class="line">              <span class="attribute">connectionTimeout</span>=<span class="string">"20000"</span></span><br><span class="line"></span><br><span class="line">              <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span><br></pre></td></tr></table></figure><p>http请求处理端口，我们在网页上输入的普通url地址包含的端口就是他 .这个端口叫http端口.</p><p>https请求的处理8443端口</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8009"</span> <span class="attribute">protocol</span>=<span class="string">"AJP/1.3"</span> <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span><br></pre></td></tr></table></figure><p>接收AJP协议的处理端口.这个端口叫ajp端口.</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector  <span class="attribute">port</span>=<span class="string">"8009"</span> <span class="attribute">protocol</span>=<span class="string">"AJP/1.3"</span> <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span><br></pre></td></tr></table></figure><p>实际上就4个端口 。</p><p>下面我以一个系统里启动2个tomcat为例，说明下操作步骤</p><p>分配端口</p><p>Tomcat1端口分配表(tomcat1全部采用默认配置)</p><blockquote><p><strong>端口</strong>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>端口号</strong></p><p>关闭指令端口&emsp;&emsp;&emsp;&emsp;8005</p><p>http端口&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;8080</p><p>https端口&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;8443</p><p>ajp端口&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;8009</p></blockquote><p>Tomcat2端口分配表</p><blockquote><p>关闭指令端口&emsp;&emsp;&emsp;&emsp;8006</p><p>http端口&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;8081</p><p>https端口&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;8444</p><p>ajp端口&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;8010</p></blockquote><p>然后启动这两个tomcat即可…</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;tomcat是个服务程序，需要占用几个通讯端口，所以默认情况是不能启动多个tomcat,如果要启动多个tomcat,需要修改配置文件，通过在配置文件设置不同的通讯端口就可以做到.文件 %TOMCAT_HOME%/conf/server.xml 是tomcat服务配置文件，里
       
     
     </summary>

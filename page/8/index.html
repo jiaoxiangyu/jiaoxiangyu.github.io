@@ -152,6 +152,151 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/mysql常用命令/">mysql常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/mysql常用命令/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、登录</strong></p>
+<p>1、登录使用默认3306端口的MySQL</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -<span class="selector-tag">p</span>   <span class="comment">//回车，之后按提示输入密码。</span></span><br></pre></td></tr></table></figure>
+<p>2、退出登录</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span>; <span class="regexp">//</span>或 quit;</span><br></pre></td></tr></table></figure>
+<p><strong>二、用户管理</strong><br>mysql有一个默认用户root，拥有所有权限</p>
+<p>1、创建一个用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //新用户创建完成，但是此刻如果以此用户登陆的话，会报错，因为我们还没有为这个用户分配相应权限</span><br></pre></td></tr></table></figure>
+<p>2、grant方式创建带权限用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //赋予所有权限</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">update</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //用户只能执行 <span class="keyword">select</span> 和 <span class="keyword">update</span> 命令</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //刷新权限</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.csdn.net/sin90lzc/article/details/7648711" target="_blank" rel="noopener">各种权限说明表</a></p>
+<p>3、删除用户</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop<span class="built_in"> user </span>username@localhost;</span><br></pre></td></tr></table></figure>
+<p>4、进入名为mysql数据库查询所以用户（名为mysql的数据库的user表存储着所有用户信息）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql;//进入名为mysql数据库</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">User</span>,Host,<span class="keyword">Password</span>  <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+<p>5、修改密码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'新密码'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //立即生效</span><br></pre></td></tr></table></figure>
+<p><strong>三、数据库操作</strong></p>
+<p>1、显示所有数据库名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+<p>2、新建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
+<p>3、删除数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
+<p>4、选择（进入）数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>四、表格操作</strong></p>
+<p>1、显示当前数据库所有表名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
+<p>2、创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="string">'table_name'</span> (</span><br><span class="line">	 <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">     <span class="keyword">name</span> <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">     age <span class="built_in">int</span>(<span class="number">3</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>3、查看表结构</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decribe table_name<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>4、插入（添加）记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>),(<span class="number">2</span>,<span class="string">'bcd'</span>); //同时插入多条数据</span><br></pre></td></tr></table></figure>
+<p>5、查询记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name; //查询所有</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> table_name; //查询部分</span><br></pre></td></tr></table></figure>
+<p>6、修改记录</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name <span class="builtin-name">set</span> <span class="attribute">name</span>=<span class="string">'qwe'</span>,age=3 where <span class="attribute">id</span>=1;</span><br></pre></td></tr></table></figure>
+<p>7、删除记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>8、将字符串aaa批量替换为bbb的</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table_name <span class="keyword">set</span> 字段名 =<span class="built_in">replace</span>(字段名, aaa, bbb);</span><br></pre></td></tr></table></figure>
+<p>9、删除表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name;</span><br></pre></td></tr></table></figure>
+<p>10、更改表结构</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter <span class="keyword">table</span> table_name <span class="comment">change</span> 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
+<p><strong>五、导入导出数据库</strong></p>
+<p>1、将mysql.sql导入数据库（导入时需要先登录进mysql）</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">./mysql.sql</span>; <span class="string">//</span>当前目录下的mysql.sql</span><br><span class="line"></span><br><span class="line">source <span class="string">/home/user/mysql.sql</span>; <span class="string">//</span> <span class="string">/home/user</span>目录下的mysql.sql</span><br></pre></td></tr></table></figure>
+<p>2、导出数据库（导出数据库无需登进mysql，但导出时需输入数据库密码）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> 数据库名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> mysql &gt; /opt/mysql.sql</span><br></pre></td></tr></table></figure>
+<p>3.导出一个表</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -p 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -p mysql<span class="built_in"> users </span>&gt; /opt/mysql_users.sql</span><br></pre></td></tr></table></figure>
+<p>4.导出一个数据库结构</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> mysql &gt; /opt/mysql.sql</span><br><span class="line"></span><br><span class="line">-d 没有数据</span><br><span class="line">--add-drop-<span class="selector-tag">table</span> 在每个create语句之前增加一个drop table</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>linux下mysql修改字符集、链接时间问题等请参考我的其它文章。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/mysql常用命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-nginx反向代理多个tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -814,130 +959,6 @@ second
 
 
   
-    <article id="post-centOS-mysql-8小时后自动断开连接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/centOS-mysql-8小时后自动断开连接/">centOS mysql 8小时后自动断开连接</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/centOS-mysql-8小时后自动断开连接/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在弄腾讯云服务器，mysql老是自动断开连接，无法重启，还得重新服务器</p>
-<p>无法连接报错：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com<span class="selector-class">.mysql</span><span class="selector-class">.jdbc</span><span class="selector-class">.exceptions</span><span class="selector-class">.jdbc4</span><span class="selector-class">.CommunicationsException</span>: Communications link failure </span><br><span class="line">com<span class="selector-class">.mysql</span><span class="selector-class">.jdbc</span><span class="selector-class">.exceptions</span><span class="selector-class">.jdbc4</span><span class="selector-class">.CommunicationsException</span>: Communications link failure Last packet sent to the server was <span class="number">0</span> ms ago</span><br></pre></td></tr></table></figure>
-<p>网上查了一下，上述问题是由mysql5数据库的配置引起的。mysql5将其连接的等待时间(wait_timeout)缺省为8小时。在其客户程序中可以这样来查看其值： </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql﹥ <span class="keyword">show</span> <span class="keyword">global</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'wait_timeout'</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>+—————+———+ </p>
-<p>| Variable_name | Value | </p>
-<p>+—————+———+ </p>
-<p>| wait_timeout | 28800 | </p>
-<p>+—————+———+ </p>
-<p>1 row in set (0.00 sec)</p>
-</blockquote>
-<p>28800 seconds，也就是8小时。 </p>
-<p>如果在<code>wait_timeout</code>秒期间内，数据库连接(java.sql.Connection)一直处于等待状态，mysql5就将该连接关闭。这时，你的Java应用的连接池仍然合法地持有该连接的引用。当用该连接来进行数据库操作时，就碰到上述错误。</p>
-<p>在jdbc连接url的配置中，你可以附上<code>“autoReconnect=true”</code>，但这仅对mysql5以前的版本起作用。增加<code>“validation query”</code>似乎也无济于事。 </p>
-<p>最简单的办法，就是对症下药：既然问题是由mysql5的全局变量<code>wait_timeout</code>的缺省值太小引起的，我们将其改大就好了。 </p>
-<p>查看mysql5的手册，发现对<code>wait_timeout</code>的最大值分别是24天/365天(windows/linux)。以windows为 例，假设我们要将其设为21天，我们只要修改mysql5的配置文件“my.ini”(mysql5 installation dir)，增加一行：<code>wait_timeout=1814400</code> </p>
-<p>需要重新启动mysql5。 </p>
-<p>linux系统配置文件：/etc/my.cnf </p>
-<p>测试显示问题解决了。 </p>
-<p><br><br><strong>也可以直接设置</strong> </p>
-<p>mysql修改wait_timeout </p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global <span class="keyword">variables</span> like <span class="comment">'wait_timeout'</span>;</span><br></pre></td></tr></table></figure>
-<p>其默认值为8小时 </p>
-<p>mysql的一个connection空闲时间超过8小时，mysql会自动断开该连接。 </p>
-<p><br><br>1.修改配置 </p>
-<p>vi /etc/my.cnf </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[mysqld] <span class="attribute">wait_timeout</span>=10</span><br></pre></td></tr></table></figure>
-<p>重启mysql<br><br></p>
-<p>2.直接用sql命令行修改 </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="builtin-name">set</span> global <span class="attribute">wait_timeout</span>=604800;</span><br></pre></td></tr></table></figure>
-<p>除了wait_timeout，还有一个’interactive_timeout’ </p>
-<p>同样可以执行<code>show global variables like &#39;interactive_timeout&#39;;</code>来查询<br>执行<code>set global interactive_timeout=604800;</code>来设置 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/云服务器//" class="article-tag-list-link color5">云服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/centOS-mysql-8小时后自动断开连接/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -1041,11 +1062,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1069,7 +1094,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1077,11 +1102,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1109,14 +1138,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -1129,11 +1150,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1141,19 +1166,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
