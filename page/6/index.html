@@ -152,6 +152,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-使用MyBatis-Generator自动创建代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/使用MyBatis-Generator自动创建代码/">使用MyBatis Generator自动创建代码</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/使用MyBatis-Generator自动创建代码/" class="archive-article-date">
+  	<time datetime="2017-12-02T14:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;由于MyBatis属于一种半自动的ORM框架，所以主要的工作就是配置Mapping映射文件，但是由于手写映射文件很容易出错，所以可利用MyBatis生成器自动生成实体类、DAO接口和Mapping映射文件。这样可以省去很多的功夫，将生成的代码copy到项目工程中即可。</p>
+<p>&emsp;&emsp;使用自动生成有很多方式，可以在eclipse中安装插件，但是以下将要介绍的这种方式我认为很轻松，最简单，不需要装插件，只需要下几个jar包即可，把它们放在一个目录下面。</p>
+<p><img src="http://img.blog.csdn.net/20170725205226015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>&emsp;&emsp;在一个文件夹（如mybatis-generator）里建一个空的src文件夹，然后把xml配置文件和jar包也放在这个文件夹（mybatis-generator）中，如上图所示 <a href="https://github.com/jiaoxiangyu/mybatis-generator.git" target="_blank" rel="noopener">源码下载</a></p>
+<p>&emsp;&emsp;其中有mybatis框架的jar包，数据库驱动程序jar包以及MyBatis生成器jar包。其中的generatorConfig.xml是需要我们来配置的文件，配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span>    </span><br><span class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration    </span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"    </span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span>    </span><br><span class="line"><span class="comment">&lt;!-- 数据库驱动--&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">classPathEntry</span>  <span class="attr">location</span>=<span class="string">"mysql-connector-java-5.1.25-bin.jar"</span>/&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"DB2Tables"</span>  <span class="attr">targetRuntime</span>=<span class="string">"MyBatis3"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressDate"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">            <span class="comment">&lt;!-- 是否去除自动生成的注释 true：是 ： false:否 --&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span>    </span><br><span class="line">        <span class="comment">&lt;!--数据库链接URL，用户名、密码 --&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">"com.mysql.jdbc.Driver"</span> <span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql:///generator"</span> <span class="attr">userId</span>=<span class="string">"root"</span> <span class="attr">password</span>=<span class="string">"root"</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">javaTypeResolver</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"forceBigDecimals"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span>    </span><br><span class="line">        <span class="comment">&lt;!-- 生成实体类的包名和位置--&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"generator.entity"</span> <span class="attr">targetProject</span>=<span class="string">"src"</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"trimStrings"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span>    </span><br><span class="line">        <span class="comment">&lt;!-- 生成映射文件的包名和位置--&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"generator.mapping"</span> <span class="attr">targetProject</span>=<span class="string">"src"</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span>    </span><br><span class="line">        <span class="comment">&lt;!-- 生成DAO的包名和位置--&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">"XMLMAPPER"</span> <span class="attr">targetPackage</span>=<span class="string">"generator.IDao"</span> <span class="attr">targetProject</span>=<span class="string">"src"</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span>    </span><br><span class="line">        <span class="comment">&lt;!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名--&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"tb_user"</span> <span class="attr">domainObjectName</span>=<span class="string">"User"</span> <span class="attr">enableCountByExample</span>=<span class="string">"false"</span> <span class="attr">enableUpdateByExample</span>=<span class="string">"false"</span> <span class="attr">enableDeleteByExample</span>=<span class="string">"false"</span> <span class="attr">enableSelectByExample</span>=<span class="string">"false"</span> <span class="attr">selectByExampleQueryId</span>=<span class="string">"false"</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"tb_book"</span> <span class="attr">domainObjectName</span>=<span class="string">"Book"</span> <span class="attr">enableCountByExample</span>=<span class="string">"false"</span> <span class="attr">enableUpdateByExample</span>=<span class="string">"false"</span> <span class="attr">enableDeleteByExample</span>=<span class="string">"false"</span> <span class="attr">enableSelectByExample</span>=<span class="string">"false"</span> <span class="attr">selectByExampleQueryId</span>=<span class="string">"false"</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">context</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;完成配置后，打开控制台，进入mybatis-generator目录下，执行脚本：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">mybatis-generator-core-1</span><span class="selector-class">.3</span><span class="selector-class">.2</span><span class="selector-class">.jar</span> <span class="selector-tag">-configfile</span> <span class="selector-tag">generatorConfig</span><span class="selector-class">.xml</span> <span class="selector-tag">-overwrite</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20170725205540140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>&emsp;&emsp;执行成功后，就可以在src目录下找到相应的文件夹，每个表格都会对应三个文件（实体类、接口、配置文件）。</p>
+<p>&emsp;&emsp; 在运行如果遇到错误：<strong>XML Parser Error on line 1: 前言中不允许有内容。</strong>应该是编码格式问题。把XML文件的格式用记事本另存为ANSI就可以了。 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mybatis//" class="article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/使用MyBatis-Generator自动创建代码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-不同版本Hidernate获得SessionFactory对象的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -673,149 +770,9 @@
 
 
   
-    <article id="post-java-IO流（一）-字节流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/java-IO流（一）-字节流/">java IO流（一） --字节流</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/java-IO流（一）-字节流/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>Java语言的输入输出功能借助于输入输出包java.io，通过流（Stream）来实现，用统一的接口来表示，从而是程序设计简单明了。 </p>
-<p>流（Stream）是计算机各部件之间数据流动。按数据传输方向分为输入流（程序从外设读入数据流）和输出流（程序往外设写入数据流）。按内容划分为字节流和字符流 </p>
-<p>采用数据流来处理输入输出的目的是使程序的输入输出操作独立于相关设备。也就是说，对任何设备的输入输出，只要针对流做处理就可以了，从而增强了设备的可移植性。</p>
-</blockquote>
-<p>InputStream、OutStream、Reader和Writer是抽象类，用于数据流的输入输出；File是文件类，用于对磁盘文件于文件夹的管理；RandomAccessFile是随机访问文件类，用于实现对磁盘文件的随机读写操作：<br><img src="http://img.blog.csdn.net/20170804151032688?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p><strong>下面我们先来介绍字节流</strong></p>
-<p>InputStream和OutStream用来处理以位（bit）为单位的流的抽象类，除了可以用来处理二进制文件，也可以处理文本文件。</p>
-<blockquote>
-<p><strong>注意：不提倡字节流处理文本文件，因为如果文件中有汉字，可能会出现乱码，建议用字符流处理文本文件</strong></p>
-</blockquote>
-<h2 id="1、-InputStream类"><a href="#1、-InputStream类" class="headerlink" title="1、 InputStream类"></a>1、 InputStream类</h2><p>InputStream抽象类中包含一套所有字节输入的方法，可以完成基本的从输入流读入数据的功能。</p>
-<p>常用方法：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">available</span>() <span class="comment">//返回此输入流下一个方法调用可以不受阻塞地从此输入流读取（或跳过）的估计字节数。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭此输入流并释放与该流关联的所有系统资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> mark(<span class="keyword">int</span> readlimit) <span class="comment">//在此输入流中标记当前的位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> markSupported() <span class="comment">//测试此输入流是否支持 mark 和 reset 方法。</span></span><br><span class="line"> </span><br><span class="line">abstract  <span class="keyword">int</span> <span class="built_in">read</span>() <span class="comment">//从输入流中读取数据的下一个字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b) <span class="comment">//从输入流中读取一定数量的字节，并将其存储在缓冲区数组 b 中。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将输入流中最多 len 个数据字节读入 byte 数组。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> reset() <span class="comment">//将此流重新定位到最后一次对此输入流调用 mark 方法时的位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> skip(<span class="keyword">long</span> n) <span class="comment">//跳过和丢弃此输入流中数据的 n 个字节。</span></span><br></pre></td></tr></table></figure>
-<h2 id="2、-OutputStream类"><a href="#2、-OutputStream类" class="headerlink" title="2、 OutputStream类"></a>2、 OutputStream类</h2><p>OutputStream抽象类中包含一套所有字节输出的方法，可以完成基本的输出流写入数据的功能。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭此输出流并释放与此流有关的所有系统资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">flush</span>() <span class="comment">//刷新此输出流并强制写出所有缓冲的输出字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b) <span class="comment">//将 b.length 个字节从指定的 byte 数组写入此输出流。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将指定 byte 数组中从偏移量 off 开始的 len 个字节写入此输出流。</span></span><br><span class="line"></span><br><span class="line">abstract  <span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">int</span> b) <span class="comment">//将指定的字节写入此输出流。</span></span><br></pre></td></tr></table></figure>
-<p><strong>提示：以上已介绍了这两个抽象类的基本方法，其子类不再重复介绍这些方法</strong></p>
-<h2 id="3、文件字节流-FileInputStream和FileOutputStream类"><a href="#3、文件字节流-FileInputStream和FileOutputStream类" class="headerlink" title="3、文件字节流 FileInputStream和FileOutputStream类"></a>3、文件字节流 FileInputStream和FileOutputStream类</h2><p>这两个实现类主要负责完成对本地磁盘文件的顺序输入输出操作。在生成FileInputStream类的对象时，若指定文件找不到，这抛出FileNotFoundException异常，该异常必须捕捉或声明抛出；在输出FileOutputStream的对象时，若找不到指定的文件，则创建一个新文件，若已存在，则清空原文件的内容。在进行文件的读写操作时会产生IOException异常，该异常必须捕捉或声明抛出。</p>
-<p>FileInputStream的构造方法：</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> FilterInputStream(<span class="keyword">String</span> <span class="keyword">name</span>) <span class="comment">//以名为name的文件为数据源建立输入流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterInputStream(<span class="keyword">File</span> <span class="keyword">file</span>) <span class="comment">//以指定名称的文件对象file为数据源建立文件输入流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterInputStream(FileDescriptor fdObj) <span class="comment">//根据文件描述符对象fdObj为输入端建立一个文件输入流</span></span><br></pre></td></tr></table></figure>
-<p>FileOutputStream的构造方法：</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">String</span> <span class="keyword">name</span>) <span class="comment">//以指定名称的文件为接收端建立文件输出流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">String</span> <span class="keyword">name</span>，boolean append) <span class="comment">//以指定名称的文件为接收端建立文件输出流，并指定写入方式，append为true时输出字节被写到文件的末尾</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(<span class="keyword">File</span> <span class="keyword">file</span>) <span class="comment">//以指定名称的文件对象为接收端建立文件输出流</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> FilterOutputStream(FileDescriptor fdObj) <span class="comment">//根据文件描述符对象fdObj建立一个文件输出流</span></span><br></pre></td></tr></table></figure>
-<p>FileDescriptor是文件描述符类，不能实例化，文件描述符的主要实际用途是创建一个包含该结构的 FileInputStream 或 FileOutputStream。 该类有三个静态成员：</p>
-<blockquote>
-<p> in — 标准输入(键盘)的描述符<br> out — 标准输出(屏幕)的描述符<br> err  — 标准错误输出(屏幕)的描述符</p>
-</blockquote>
-<p>例1：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		FileInputStream fin;</span><br><span class="line">		FileOutputStream fout;</span><br><span class="line">		<span class="keyword">char</span> ch;</span><br><span class="line">		<span class="keyword">int</span> data;</span><br><span class="line">		<span class="built_in">try</span>&#123;</span><br><span class="line">			fin =<span class="keyword">new</span> FileInputStream(FileDescriptor.in);<span class="comment">//new一个输入流对象</span></span><br><span class="line">			fout = <span class="keyword">new</span> FileOutputStream(FileDescriptor.out);<span class="comment">//new一个输出流</span></span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"请输入一串字符，并以#结束："</span>);</span><br><span class="line">			<span class="built_in">while</span>((ch=(<span class="keyword">char</span>)fin.<span class="built_in">read</span>())!=<span class="string">'#'</span>)&#123;<span class="comment">//读取</span></span><br><span class="line">				fout.<span class="built_in">write</span>(ch);<span class="comment">//写入</span></span><br><span class="line">			&#125;</span><br><span class="line">			fin.<span class="built_in">close</span>();<span class="comment">//关闭输入输出流，释放资源</span></span><br><span class="line">			fout.<span class="built_in">close</span>();</span><br><span class="line">		&#125;<span class="built_in">catch</span> (Exception e) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">"File not found"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例2</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws IOException&#123;</span><br><span class="line">		FileInputStream fin=<span class="keyword">new</span> FileInputStream(<span class="string">"f:\\2.png"</span>);</span><br><span class="line">		FileOutputStream fout=<span class="keyword">new</span> FileOutputStream(<span class="string">"f:\\2_1.jpg"</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件大小："</span>+fin.<span class="built_in">available</span>()+<span class="string">"字节"</span>);</span><br><span class="line">		<span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[fin.<span class="built_in">available</span>()];</span><br><span class="line">		fin.<span class="built_in">read</span>(b);</span><br><span class="line">		fout.<span class="built_in">write</span>(b);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件已被复制改名"</span>);</span><br><span class="line">		fin.<span class="built_in">close</span>();</span><br><span class="line">		fout.<span class="built_in">close</span>();		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4、顺序输入流类SequenceInputStream"><a href="#4、顺序输入流类SequenceInputStream" class="headerlink" title="4、顺序输入流类SequenceInputStream"></a>4、顺序输入流类SequenceInputStream</h2><p>改实现类的功能是将多个输入流顺序的连接在一起，形成单一的数据流，没有对应的输出数据流存在。</p>
-<p>构造方法：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">SequenceInputStream</span><span class="params">(Enumeration&lt;? extends InputStream&gt; e)</span></span> <span class="comment">//创建一个串行输入流，链接枚举对象e中所有的输入流</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">SequenceInputStream</span><span class="params">(InputStream s1, InputStream s2)</span></span> <span class="comment">//创建一个串行输入流，链接输入流s1和s2</span></span><br></pre></td></tr></table></figure>
-<h2 id="5、管道输入输出流-PipedInputStream和-PipedOutputStream"><a href="#5、管道输入输出流-PipedInputStream和-PipedOutputStream" class="headerlink" title="5、管道输入输出流 PipedInputStream和 PipedOutputStream"></a>5、管道输入输出流 PipedInputStream和 PipedOutputStream</h2><p>这两个实现类提供了利用管道方式进行数据输入输出管理。管道流用来将一个程序或线程的输出连接到另一个程序或线程作为输入，使得相连线程能够交换数据，从而实现程序内部线程间的通信或不同程序间通信。这两个类必须结合使用。</p>
-<p>PipedInputStream构造方法：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(int pipeSize)</span></span> <span class="comment">//创建一个尚未连接的 PipedInputStream，并对管道缓冲区使用指定的管道大小。  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(PipedOutputStream src)</span></span> <span class="comment">//创建 PipedInputStream，使其连接到管道输出流 src。  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">PipedInputStream</span><span class="params">(PipedOutputStream src, int pipeSize)</span></span>  <span class="comment">//创建一个 PipedInputStream，使其连接到管道输出流 src，并对管道缓冲区使用指定的管道大小。</span></span><br></pre></td></tr></table></figure>
-<p>PipedInputStream方法：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">connect</span>(PipedOutputStream src) <span class="comment">//使此管道输入流连接到管道输出流 src。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> receive(<span class="keyword">int</span> b)  接收数据字节。</span><br></pre></td></tr></table></figure>
-<p>PipedOutputStream构造方法：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">PipedOutputStream</span><span class="params">(PipedInputStream snk)</span></span> <span class="comment">//创建连接到指定管道输入流的管道输出流。</span></span><br></pre></td></tr></table></figure>
-<p>PipedOutputStream方法：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">connect</span>(PipedInputStream snk) <span class="comment">//将此管道输出流连接到接收者。</span></span><br></pre></td></tr></table></figure>
-<h2 id="6、过滤输入输出流-FilterInputStream和-FilterOutputStream"><a href="#6、过滤输入输出流-FilterInputStream和-FilterOutputStream" class="headerlink" title="6、过滤输入输出流 FilterInputStream和 FilterOutputStream"></a>6、过滤输入输出流 FilterInputStream和 FilterOutputStream</h2><p>这两个类分别实现了在数据的读、写操作的同时进行数据处理。这两个类也是抽象类，它们又分别派生数据输入流类DataInputStream和数据输出流类DateOutputStream等子类。过滤输入输出流的主要特点就是建立在基本输入输出流之上，并在输入输出数据的同时能对所传输的数据做指定类型或格式的转换，即可以对二进制字节数据的理解和编码转换。</p>
-<p>有时按字节为基本单位进行数据读写处理并不方便，而是希望按数据类型为基本单位进行读取。在java中，按照基本数据类型进行读写的就是DataInputStream和DataOutputStream，这两个类的对象是过滤流。将基本字节流自动转成按基本数据类型进行读写的过滤流。然后利用流串接的方式，以达到数据转换的目的。</p>
-<p>这两个数据过滤流类分别实现了DataInput和DataOutput两个接口中定义的独立于具体机器的带格式的读写操作，从而实现了对不同类型数据的读写。</p>
-<p>DataInputStream构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">DataInputStream</span><span class="params">(InputStream in)</span></span> <span class="comment">//建立一个新的数据输入流，从指定的输入流in读数据</span></span><br></pre></td></tr></table></figure></p>
-<p>DataInputStream方法：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> readBoolean() <span class="comment">//读取一个输入字节，如果该字节不是零，则返回 true，如果是零，则返回 false。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">byte</span> readByte() <span class="comment">//读取并返回一个字节。</span></span><br><span class="line">           </span><br><span class="line"><span class="keyword">char</span> readChar() <span class="comment">//读取两个字节并返回一个 char 值。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">double</span> readDouble() <span class="comment">//读取八个字节并返回一个 double 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">float</span> readFloat() <span class="comment">//读取四个字节并返回一个 float 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">int</span> readInt() <span class="comment">//读取四个字节并返回一个 int 值。</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">long</span> readLong() <span class="comment">//读取八个字节并返回一个 long 值。</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">short</span> readShort() <span class="comment">//读取两个字节并返回一个 short 值。</span></span><br></pre></td></tr></table></figure></p>
-<p>DataOutputStream构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">DataOutputStream</span><span class="params">(OutputStream out)</span></span> <span class="comment">//创建一个新的数据输出流，将数据写入指定基础输出流。</span></span><br></pre></td></tr></table></figure></p>
-<p>DataOutputStream方法：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> writeBoolean(<span class="keyword">boolean</span> v) <span class="comment">//将一个 boolean 值以 1-byte值形式写入基础输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeByte(<span class="keyword">int</span> v) <span class="comment">//向流中写入一字节，写入v的最低一字节，其他字节舍弃。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeBytes(<span class="keyword">String</span> s) <span class="comment">//将字符串按字节顺序写出到基础输出流中。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeChar(<span class="keyword">int</span> v) <span class="comment">//向流写入v的最低2字节，其他字节舍弃</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeChars(<span class="keyword">String</span> s) <span class="comment">//将字符串按字符顺序写入基础输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeDouble(<span class="keyword">double</span> v)  <span class="comment">//向流中写入v的8字节</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeFloat(<span class="keyword">float</span> v) <span class="comment">//向流中写入v的4字节</span></span><br><span class="line">       </span><br><span class="line"><span class="keyword">void</span> writeInt(<span class="keyword">int</span> v) <span class="comment">//向流中写入v的4字节</span></span><br><span class="line">           </span><br><span class="line"><span class="keyword">void</span> writeLong(<span class="keyword">long</span> v) <span class="comment">//向流中写入v的8字节</span></span><br><span class="line">         </span><br><span class="line"><span class="keyword">void</span> writeShort(<span class="keyword">int</span> v) <span class="comment">//向流中写入v的最低2字节，其他字节舍弃</span></span><br></pre></td></tr></table></figure>
-<h2 id="7、标准输入输出流"><a href="#7、标准输入输出流" class="headerlink" title="7、标准输入输出流"></a>7、标准输入输出流</h2><p>对于一般计算机系统，标准输入输出指的是键盘和显示屏。java在System类中定义了静态流System.in、System.out、System.err。这三个流对象定义在java.lang.System包中，不用import导入，java源程序编译时自动装载。</p>
-<p>标准输入System.in是FilterInputStream的子类BufferedInputStream的对象，调用System.in.read()从键盘读入一字节数据，要捕捉异常。</p>
-<p>标准输出System.out是FilterOutputStream的子类打印输出流PrintStream的对象,调用print()和println()方法向屏幕输出。</p>
-<p>标准错误System.err也是PrintStream派生的错误流，调用print()和println()<br>err也使用与out同样的方法，但err会立即显示指定的错误信息让用户指定。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/java-IO流（一）-字节流/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 
@@ -928,11 +885,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -948,23 +917,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -992,6 +949,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -1004,23 +969,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1028,7 +977,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>

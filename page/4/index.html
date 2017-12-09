@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java的System-getProperty-方法可以获取的值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/03/java的System-getProperty-方法可以获取的值/">java的System.getProperty()方法可以获取的值</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/03/java的System-getProperty-方法可以获取的值/" class="archive-article-date">
+  	<time datetime="2017-12-03T03:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很多时候我们需要在项目中读取外部属性文件，用到了System.getProperty(“”)方法。这个方法需要配置JVM系统属性，用键值对存储。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">java<span class="selector-class">.version</span>					Java 运行时环境版本</span><br><span class="line">java<span class="selector-class">.vendor</span>						Java 运行时环境供应商</span><br><span class="line">java<span class="selector-class">.vendor</span><span class="selector-class">.url</span>					Java 供应商的 URL</span><br><span class="line">java<span class="selector-class">.home</span>						Java 安装目录</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.version</span>	Java 虚拟机规范版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.vendor</span>	Java 虚拟机规范供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.name</span>		Java 虚拟机规范名称</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.version</span>					Java 虚拟机实现版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.vendor</span>					Java 虚拟机实现供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.name</span>					Java 虚拟机实现名称</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.version</span>		Java 运行时环境规范版本</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.vendor</span>		Java 运行时环境规范供应商</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.name</span>			Java 运行时环境规范名称</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.version</span>				Java 类格式版本号</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.path</span>					Java 类路径</span><br><span class="line">java<span class="selector-class">.library</span><span class="selector-class">.path</span>				加载库时搜索的路径列表</span><br><span class="line">java<span class="selector-class">.io</span><span class="selector-class">.tmpdir</span>					默认的临时文件路径</span><br><span class="line">java<span class="selector-class">.compiler</span>					要使用的 JIT 编译器的名称</span><br><span class="line">java<span class="selector-class">.ext</span><span class="selector-class">.dirs</span>					一个或多个扩展目录的路径</span><br><span class="line">os<span class="selector-class">.name</span>							操作系统的名称</span><br><span class="line">os<span class="selector-class">.arch</span>							操作系统的架构</span><br><span class="line">os<span class="selector-class">.version</span>						操作系统的版本</span><br><span class="line">file<span class="selector-class">.separator</span>					文件分隔符（在 UNIX 系统中是“/”）</span><br><span class="line">path<span class="selector-class">.separator</span>					路径分隔符（在 UNIX 系统中是“:”）</span><br><span class="line">line<span class="selector-class">.separator</span>					行分隔符（在 UNIX 系统中是“/n”）</span><br><span class="line">user<span class="selector-class">.name</span>						用户的账户名称</span><br><span class="line">user<span class="selector-class">.home</span>						用户的主目录</span><br><span class="line">user<span class="selector-class">.dir</span>						用户的当前工作目录</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">System</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/03/java的System-getProperty-方法可以获取的值/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-java获得文件路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -510,175 +597,9 @@
 
 
   
-    <article id="post-Tomcat原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/Tomcat原理/">Tomcat原理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/Tomcat原理/" class="archive-article-date">
-  	<time datetime="2017-12-02T14:38:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Apache和Tomcat的关系"><a href="#Apache和Tomcat的关系" class="headerlink" title="Apache和Tomcat的关系"></a>Apache和Tomcat的关系</h2><p>Apache(Apache HTTP Server )与Tomcat都是Apache开源组织开发的用于处理HTTP服务的项目，两者都是免费的，都可以做为独立的Web服务器运行。Apache是Web服务器，而Tomcat是Java应用服务器。</p>
-<p>Apache服务器  只处理 静态HTML<br>tomcat服务器  静态HTML 动态 JSP/Servlet 都能处理。</p>
-<p>一般是把Apache服务器与tomcat服务器搭配在一起用<br>Apache服务器负责处理所有静态的页面/图片等信息。<br>Tomcat 只处理动态的 部分。</p>
-<p> 实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。</p>
-<p>开始学习Javaweb时用的独立的tomcat；后期当项目越来越复杂，越来越大，用Apache+Ttomcat，分别处理静态和动态页面。也可以用Nginx+Tomcat</p>
-<h2 id="Tomcat是Servlet容器"><a href="#Tomcat是Servlet容器" class="headerlink" title="Tomcat是Servlet容器"></a>Tomcat是Servlet容器</h2><p>大家都知道Tomcat是JSP/Servlet运行环境（容器）。其作为Servlet容器，有三种工作模式：独立的Servlet容器、进程内的Servlet容器和进程外的Servlet容器。</p>
-<blockquote>
-<p>1、独立的Servlet容器 Tomcat作为独立的Web服务器来单独运行。</p>
-<p>2、其他Web服务器进程内的Servlet容器<br>这种模式下，Tomcat与Web服务器插件和Servlet容器组件两部分。Web服务器插件在其他Web服务器进程的内部地址空间启动一个Java虚拟机，Servlet容器组件在此Java虚拟机中运行。如有Servlet请求，Web服务器插件获得此请求并转发给Servlet容器（JNI通信，Java本地调用接口）。</p>
-<p>3、 其他Web服务器进程外的Servlet容器<br>与上面类似，只是在Web服务器外部地址，启动一个Java虚拟机进程，转发用IPC通信机制，两个进程之间通信的一种机制。</p>
-</blockquote>
-<h2 id="Tomcat是用什么语言写的"><a href="#Tomcat是用什么语言写的" class="headerlink" title="Tomcat是用什么语言写的"></a>Tomcat是用什么语言写的</h2><p>上面已经介绍了Apache和tomcat的关系<br>Apache http server 是由c语言开发；<br>Tomcat则是由java开发，这也就是为什么，部署Apache Tomcat的时候需要你安装jre的原因。</p>
-<h2 id="Tomcat目录和配置文件"><a href="#Tomcat目录和配置文件" class="headerlink" title="Tomcat目录和配置文件"></a>Tomcat目录和配置文件</h2><p><strong>1、目录</strong><br>tomcat<br>　　|—bin：存放启动和关闭tomcat脚本（windows(startup.bat、shutdown.bat)、linux(startup.sh、shutdown.sh)）<br>　　|—conf：存放不同的配置文件（server.xml和web.xml）；<br>　　|—doc：存放Tomcat文档；<br>　　|—lib/japser/common：存放Tomcat运行需要的库文件（JARS）；<br>　　|—logs：存放Tomcat执行时的LOG文件；<br>　　|—webapps：Tomcat的主要Web发布目录（包括应用程序示例）；<br>　　|—work：存放jsp编译后产生的class文件；<br>　　<br><strong>2、Tomcat配置文件</strong></p>
-<p>我们打开con文件夹可以看到Tomcat的配置文件：</p>
-<p>　server.xml: Tomcat的主配置文件，包含Service, Connector, Engine, Realm, Valve, Hosts主组件的相关配置信息；</p>
-<p>　web.xml：遵循Servlet规范标准的配置文件，用于配置servlet，并为所有的Web应用程序提供包括MIME映射等默认配置信息；</p>
-<p>　tomcat-user.xml：Realm认证时用到的相关角色、用户和密码等信息；Tomcat自带的manager默认情况下会用到此文件；在Tomcat中添加/删除用户，为用户　　指定角色等将通过编辑此文件实现；</p>
-<p>　catalina.policy：Java相关的安全策略配置文件，在系统资源级别上提供访问控制的能力；</p>
-<p>　catalina.properties：Tomcat内部package的定义及访问相关控制，也包括对通过类装载器装载的内容的控制；Tomcat在启动时会事先读取此文件的相关设置；</p>
-<p>　logging.properties: Tomcat6通过自己内部实现的JAVA日志记录器来记录操作相关的日志，此文件即为日志记录器相关的配置信息，可以用来定义日志记录的组　　件级别以及日志文件的存在位置等；</p>
-<p>　context.xml：所有host的默认配置信息；　</p>
-<h2 id="Tomcat启动过程"><a href="#Tomcat启动过程" class="headerlink" title="Tomcat启动过程"></a>Tomcat启动过程</h2><p>1、开启Tomcat：可以在IDE中启动Tomcat的服务器，也可以手动在<catalina_home>/bin/目录下找到startup.bat并双击，然后程序就会依次执行以下步骤：</catalina_home></p>
-<p>（1）引导（Bootstrap）启动：调用了org.apache.catalina.startup.Bootstrap.class中的main方法，开始启动Tomcat容器;</p>
-<p>( 2）调用Bootstrap中的init（），创建了Catalina对象（核心容器）：主要进行了以下三步：<br>① 设置此Tomcat实例所需的环境变量<br>② 实例化将用于运行Tomcat实例的一般类装入器。<br>③初始化这个Tomcat实例</p>
-<p>（3）调用Bootstrap中的load（）：实际上是通过反射调用了catalina的load方法。<br>解析一个Tomcat实例，主要配置server.xml文件，将每个配置元素到合适的Tomcat组件。（找到config file（server.xml）；然后创建digester，解析server.xml，生成各组件对象（Server、Service、Container、Connector等）以及建立相互之间的关系。 ）</p>
-<p>( 4）启动我们最外层的顶层元素服务器实例。（最后start()，同样是在Bootstrap中通过反射调用catalina对象的start方法。接着启动server.start()方法：((Lifecycle) getServer()).start(); 接着调用service.start()方法。接下来是一系列的container的start，后续在分析（会部署所有的项目）</p>
-<p>（5）设置关闭钩子<br>关闭挂钩是一个标准的线程封装的清理行动，应该是java运行时退出之前。当JVM关闭时，运行时调用所有关闭钩子。<br>因此，我们进行最后一个任务是安装一个关闭钩子，实现由catalinashutdownhook。这个钩子是注册的java运行时通过调用其addshutdownhook()方法：<br>Runtime.getRuntime().addShutdownHook()，<br>catalinashutdownhook是Catalina内部类等访问所有数据成员的时候。其run()方法很简单。它只是确保调用Catalina实例的stop()。此方法调用stop()在standardserver实例，从而进行级联调用stop()它所有的子组件。每个孩子对其孩子都做同样的事情，直到整个服务器被完全停止为止。</p>
-<h2 id="Tomcat-Server的组成部分"><a href="#Tomcat-Server的组成部分" class="headerlink" title="Tomcat Server的组成部分"></a>Tomcat Server的组成部分</h2><p>Tomcat Server的结构图<br><img src="http://img.blog.csdn.net/20171014214607902?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p><strong>端口</strong></p>
-<p>1、8005端口<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server <span class="attribute">port</span>=<span class="string">"8005"</span> <span class="attribute">shutdown</span>=<span class="string">"SHUTDOWN"</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>接受服务器关闭指令的端口号，我们叫关闭指令端口.</p>
-<p>2、8080端口</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8080"</span> <span class="attribute">protocol</span>=<span class="string">"HTTP/1.1"</span></span><br><span class="line"></span><br><span class="line">              <span class="attribute">connectionTimeout</span>=<span class="string">"20000"</span></span><br><span class="line"></span><br><span class="line">              <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>http请求处理端口，我们在网页上输入的普通url地址包含的端口就是他 .这个端口叫http端口.</p>
-<p> 3、8009端口</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">"8009"</span> <span class="attribute">protocol</span>=<span class="string">"AJP/1.3"</span> <span class="attribute">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>接收AJP协议的处理端口.这个端口叫ajp端口.</p>
- <connector port="8009" protocol="AJP/1.3" redirectport="8443">
-
-<p><strong>Tomcat Server的组成部分</strong></p>
-<p><strong>Server</strong><br>服务器元素代表整个catalina servlet容器。(Singleton)</p>
-<p><strong>Service</strong><br>服务元素表示共享一个引擎（Engine）的一个或多个连接器组件（Connector）的组合。<br>Service是这样一个集合：它由一个或者多个Connector组成，以及一个Engine，负责处理所有Connector所获得的客户请求</p>
-<p><strong>Connector</strong><br>一个Connector将在某个指定端口上侦听客户请求，并将获得的请求交给Engine来处理，从Engine处获得回应并返回客户</p>
-<p>tomcat有两个典型的Connector，一个直接侦听来自browser（浏览器）的http请求，一个侦听来自其它WebServer的请求<br>Coyote Http/1.1 Connector 在端口8080处侦听来自客户browser的http请求<br>Coyote JK2 Connector 在端口8009处侦听来自其它WebServer(Apache)的servlet/jsp代理请求</p>
-<p> <strong>Engine</strong><br>Engine表示与特定服务相关联的整个请求处理机制。<br>它接收并处理来自一个或多个连接器(Connector)的所有请求。<br>并将完成的响应返回给最终传输到客户机的连接器。</p>
-<p>Engine下可以配置多个虚拟主机Virtual Host，每个虚拟主机都有一个域名<br>当Engine获得一个请求时，它把该请求匹配到某个Host上，然后把该请求交给该Host来处理<br>Engine有一个默认虚拟主机，当请求无法匹配到任何一个Host上的时候，将交给该默认Host来处理</p>
-<p><strong>Host</strong><br>代表一个Virtual Host，虚拟主机，每个虚拟主机和某个网络域名Domain Name相匹配<br>每个虚拟主机下都可以部署(deploy)一个或者多个Web App，每个Web App对应于一个Context，有一个Context path<br>当Host获得一个请求时，将把该请求匹配到某个Context上，然后把该请求交给该Context来处理<br>匹配的方法是“最长匹配”，所以一个path==””的Context将成为该Host的默认Context<br>所有无法和其它Context的路径名匹配的请求都将最终和该默认Context匹配</p>
-<p><strong>Context</strong><br>一个Context对应于一个Web Application，一个Web Application由一个或者多个Servlet组成<br>Context在创建的时候将根据配置文CATALINA_HOME/conf/web.xml和WEBAPP_HOME/WEB-INF/web.xml载入Servlet类<br>当Context获得请求时，将在自己的映射表(mapping table)中寻找相匹配的Servlet类<br>如果找到，则执行该类，获得请求的回应，并返回</p>
-<p>【Tomcat的启动过程】Tomcat 先根据/conf/server.xml 下的配置启动Server，再加载Service，对于与Engine相匹配的Host，每个Host 下面都有一个或多个Context。</p>
-<blockquote>
-<p>注意：Context 既可配置在server.xml 下，也可配置成一单独的文件，放在conf\Catalina\localhost下，简称应用配置文件。</p>
-</blockquote>
-<p>　　Web Application 对应一个Context，每个Web Application 由一个或多个Servlet 组成。当一个Web Application 被初始化的时候，它将用自己的ClassLoader 对象载入部署配置文件web.xml 中定义的每个Servlet 类：它首先载入在$CATALINA_HOME/conf/web.xml中部署的Servlet 类，然后载入在自己的Web Application 根目录下WEB-INF/web.xml 中部署的Servlet 类。</p>
-<p>web.xml 文件有两部分：Servlet 类定义和Servlet 映射定义。</p>
-<p>　　每个被载入的Servlet 类都有一个名字，且被填入该Context 的映射表(mapping table)中，和某种URL 路径对应。当该Context 获得请求时，将查询mapping table，找到被请求的Servlet，并执行以获得请求响应。</p>
-<p>　　所以，对于Tomcat 来说，主要就是以下这几个文件：conf 下的server.xml、web.xml，以及项目下的web.xml，加载就是读取这些配置文件。</p>
-<h2 id="Tomcat处理一个http请求的过程"><a href="#Tomcat处理一个http请求的过程" class="headerlink" title="Tomcat处理一个http请求的过程"></a>Tomcat处理一个http请求的过程</h2><p>假设来自客户的请求为：<a href="http://localhost:8080/wsota/wsota_index.jsp" target="_blank" rel="noopener">http://localhost:8080/wsota/wsota_index.jsp</a></p>
-<p>1) 请求被发送到本机端口8080，被在那里侦听的Coyote HTTP/1.1 Connector获得<br>Connector的主要任务是负责接收浏览器的发过来的 tcp 连接请求，创建一个 Request 和 Response 对象分别用于和请求端交换数据，然后会产生一个线程来处理这个请求并把产生的 Request 和 Response 对象传给处理这个请求的线程</p>
-<p>2) Connector把该请求交给它所在的Service的Engine来处理，并等待来自Engine的回应</p>
-<p>3) Engine获得请求localhost/wsota/wsota_index.jsp，匹配它所拥有的所有虚拟主机Host</p>
-<p>4) Engine匹配到名为localhost的Host（即使匹配不到也把请求交给该Host处理，因为该Host被定义为该Engine的默认主机）</p>
-<p>5) localhost Host获得请求/wsota/wsota_index.jsp，匹配它所拥有的所有Context</p>
-<p>6) Host匹配到路径为/wsota的Context（如果匹配不到就把该请求交给路径名为””的Context去处理）</p>
-<p>7) path=”/wsota”的Context获得请求/wsota_index.jsp，在它的mapping table中寻找对应的servlet</p>
-<p>8) Context匹配到URL PATTERN为*.jsp的servlet，对应于JspServlet类</p>
-<p>9) 构造HttpServletRequest对象和HttpServletResponse对象，作为参数调用JspServlet的doGet或doPost方法</p>
-<p>10)Context把执行完了之后的HttpServletResponse对象返回给Host</p>
-<p>11)Host把HttpServletResponse对象返回给Engine</p>
-<p>12)Engine把HttpServletResponse对象返回给Connector</p>
-<p>13)Connector把HttpServletResponse对象返回给客户browser</p>
-<h2 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、默认(欢迎)文件的设置  </span><br><span class="line"><span class="params">&lt;welcome-file-list&gt;</span> </span><br><span class="line"><span class="params">&lt;welcome-file&gt;</span>index.html<span class="params">&lt;/welcome-file&gt;</span> </span><br><span class="line"><span class="params">&lt;welcome-file&gt;</span>index.htm<span class="params">&lt;/welcome-file&gt;</span> </span><br><span class="line"><span class="params">&lt;welcome-file&gt;</span>index.jsp<span class="params">&lt;/welcome-file&gt;</span> </span><br><span class="line"><span class="params">&lt;/welcome-file-list&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、报错文件的设置 </span><br><span class="line"><span class="params">&lt;error-page&gt;</span> </span><br><span class="line"><span class="params">&lt;error-code&gt;</span><span class="number">404</span><span class="params">&lt;/error-code&gt;</span> </span><br><span class="line"><span class="params">&lt;location&gt;</span>/notFileFound.jsp<span class="params">&lt;/location&gt;</span> </span><br><span class="line"><span class="params">&lt;/error-page&gt;</span> </span><br><span class="line"><span class="params">&lt;error-page&gt;</span> </span><br><span class="line"><span class="params">&lt;exception-type&gt;</span>java.lang.NullPointerException<span class="params">&lt;/exception-type&gt;</span> </span><br><span class="line"><span class="params">&lt;location&gt;</span>/null.jsp<span class="params">&lt;/location&gt;</span> </span><br><span class="line"><span class="params">&lt;/error-page&gt;</span> </span><br><span class="line">如果某文件资源没有找到，服务器要报<span class="number">404</span>错误，按上述配置则会调用\webapps\ROOT\notFileFound.jsp。 </span><br><span class="line">如果执行的某个JSP文件产生NullPointException ，则会调用\webapps\ROOT\null.jsp </span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、会话超时的设置 </span><br><span class="line">设置session 的过期时间，单位是分钟； </span><br><span class="line"><span class="params">&lt;session-config&gt;</span> </span><br><span class="line"><span class="params">&lt;session-timeout&gt;</span><span class="number">30</span><span class="params">&lt;/session-timeout&gt;</span> </span><br><span class="line"><span class="params">&lt;/session-config&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、过滤器的设置 </span><br><span class="line"><span class="params">&lt;filter&gt;</span> </span><br><span class="line"><span class="params">&lt;filter-name&gt;</span>FilterSource<span class="params">&lt;/filter-name&gt;</span> </span><br><span class="line"><span class="params">&lt;filter-class&gt;</span>project4. FilterSource <span class="params">&lt;/filter-class&gt;</span> </span><br><span class="line"><span class="params">&lt;/filter&gt;</span> </span><br><span class="line"><span class="params">&lt;filter-mapping&gt;</span> </span><br><span class="line"><span class="params">&lt;filter-name&gt;</span>FilterSource<span class="params">&lt;/filter-name&gt;</span> </span><br><span class="line"><span class="params">&lt;url-pattern&gt;</span>/WwwServlet<span class="params">&lt;/url-pattern&gt;</span> </span><br><span class="line">(<span class="params">&lt;url-pattern&gt;</span><span class="meta-keyword">/haha/</span>*<span class="params">&lt;/url-pattern&gt;</span>) </span><br><span class="line"><span class="params">&lt;/filter-mapping&gt;</span></span><br></pre></td></tr></table></figure>
-<p> 启动一个web项目的时候，web容器去读取它的配置文件web.xml，读取web.xml文件的时候和他们配置的位置没有关系。读取节点的顺序是：listener&gt;filter&gt;servlet。上述配置中还存在一个<context-param>标签，这个标签用来提供应用程序上下文信息，<context-param>可以写在任意位置上，此时加载web.xml标签的顺序为：context-param&gt;listener&gt;filter&gt;servlet。</context-param></context-param></p>
-<p>上面说的是不用标签的加载顺序，对于同类标签而言，在配置filter的时候，web.xml中可以定义多个filter，与filter相关的节点有filter-name、filter-class，filter-mapping必须出现在filter-name标签后，启动容器初始化每个filter的时候，初始化顺序是依照filter-mapping配置节点出现的顺序来调用的doFilter（）方法的。servlet的加载顺序和filter一样。由此可知，web.xml系统会如何加载各个项。</p>
-<h2 id="tomcat管理"><a href="#tomcat管理" class="headerlink" title="tomcat管理"></a>tomcat管理</h2><p>1、用户配置<br>      在进行具体Tomcat管理之前，先给tomcat添加一个用户，使这个用户有权限来进行管理。<br>      打开conf目录下的tomcat-users.xml文件，在相应的位置添加下面一行：<br>    <user name="user" password="user" roles="standard,manager"><br>    然后重起tomcat，在浏览器中输入<a href="http://localhost:8080/manager/，会弹出对话框，输入上面的用户" target="_blank" rel="noopener">http://localhost:8080/manager/，会弹出对话框，输入上面的用户</a><br>名和密码即可。 </user></p>
-<p> 2、应用程序列表<br>      在浏览器中输入<a href="http://localhost:8080/manager/list，浏览器将会显示如下的信息：" target="_blank" rel="noopener">http://localhost:8080/manager/list，浏览器将会显示如下的信息：</a><br>    OK - Listed applications for virtual host localhost<br>    /ex:running:1<br>    /examples:running:1<br>    /webdav:running:0<br>    /tomcat-docs:running:0<br>    /manager:running:0<br>    /:running:0<br>     上面显示的信息分别为：应用程序的路径、当前状态、连接这个程序的session数 </p>
-<p>3、重新装载应用程序<br>      在浏览器中输入 <a href="http://localhost:8080/manager/reload?path=/examples，浏览器显示如下：" target="_blank" rel="noopener">http://localhost:8080/manager/reload?path=/examples，浏览器显示如下：</a><br>    OK - Reloaded application at context path /examples<br>这表示example应用程序装载成功，如果我们将server.xml的Context元素的reloadable属性设为true，则没必要利用这种方式重新装载应用程序，因为tomcat会自动装载。 </p>
-<p>4、显示session信息<br>    在浏览器中输入<a href="http://localhost:8080/manager/sessions?path=/examples，浏览器显示如下：" target="_blank" rel="noopener">http://localhost:8080/manager/sessions?path=/examples，浏览器显示如下：</a><br>    OK - Session information for application at context path /examples Default maximum session inactive<br>interval 30 minutes </p>
-<p>5、启动和关闭应用程序<br>   在浏览器中输入<a href="http://localhost:8080/manager/start?path=/examples和" target="_blank" rel="noopener">http://localhost:8080/manager/start?path=/examples和</a><br><a href="http://localhost:8080/manager/stop?path=/examples分别启动和关闭examples应用程序。" target="_blank" rel="noopener">http://localhost:8080/manager/stop?path=/examples分别启动和关闭examples应用程序。</a></p>
-<p><strong>摘自：</strong></p>
-<p><a href="http://blog.csdn.net/uniquewonderq/article/details/46428999" target="_blank" rel="noopener"> Apache服务器和tomcat服务器有什么区别？</a><br><a href="https://zhidao.baidu.com/question/336322255.html" target="_blank" rel="noopener">Tomcat是用什么语言开发的</a><br><a href="http://www.cnblogs.com/crazylqy/p/4706223.html" target="_blank" rel="noopener">Tomcat服务器原理详解</a></p>
-</connector>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tomcat//" class="article-tag-list-link color2">tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/Tomcat原理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -791,11 +712,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,23 +744,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -855,6 +776,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -867,23 +796,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -891,7 +804,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
