@@ -158,6 +158,410 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java-IO流（二）-字符流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Java-IO流（二）-字符流/">Java IO流（二）--字符流</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Java-IO流（二）-字符流/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:52:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>InputStream和OutputStream类通常是用来处理“字节流”即“位流”的，也就是二进制文件，而Reader和Writer类则是用来处理“字符流”的，也就是文本文件。</p>
+<h2 id="Reader和Writer流类"><a href="#Reader和Writer流类" class="headerlink" title="Reader和Writer流类"></a>Reader和Writer流类</h2><p>Reader和Writer都是抽象类，定义的方法都是给所派生的子类使用</p>
+<p>Reader类方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">abstract  <span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭该流并释放与之关联的所有资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> mark(<span class="keyword">int</span> readAheadLimit) <span class="comment">//标记流中的当前位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> markSupported() <span class="comment">//判断此流是否支持 mark() 操作。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>() <span class="comment">//读取单个字符。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">char</span>[] cbuf) <span class="comment">//将字符读入数组。</span></span><br><span class="line"> </span><br><span class="line">abstract  <span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将字符读入数组的某一部分。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(CharBuffer target) <span class="comment">//试图将字符读入指定的字符缓冲区。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> <span class="built_in">ready</span>() <span class="comment">//判断是否准备读取此流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> reset() <span class="comment">//重置该流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> skip(<span class="keyword">long</span> n) <span class="comment">//跳过字符。</span></span><br></pre></td></tr></table></figure>
+<p>Writer类的方法：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> Writer <span class="keyword">append</span>(<span class="keyword">char</span> c) <span class="comment">//将指定字符添加到此 writer。 </span></span><br><span class="line"> </span><br><span class="line"> Writer <span class="keyword">append</span>(CharSequence csq) <span class="comment">//将指定字符序列添加到此 writer。  </span></span><br><span class="line"> </span><br><span class="line"> Writer <span class="keyword">append</span>(CharSequence csq, <span class="keyword">int</span> start, <span class="keyword">int</span> end) <span class="comment">//将指定字符序列的子序列添加到此 writer.Appendable。  </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> close() <span class="comment">//关闭此流，但要先刷新它。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> flush() <span class="comment">//刷新该流的缓冲。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">char</span>[] cbuf) <span class="comment">//写入字符数组。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//写入字符数组的某一部分。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">int</span> c) <span class="comment">//写入单个字符。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(String str) <span class="comment">//写入字符串。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//写入字符串的某一部分。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：Java把每个汉字和英文字母均作为一个字符对待，但回车换行符“\r\n”作为两个字符。</strong></p>
+</blockquote>
+<h2 id="使用FileReader类读取文件"><a href="#使用FileReader类读取文件" class="headerlink" title="使用FileReader类读取文件"></a>使用FileReader类读取文件</h2><p>文件字符输入流类FileReader是继承自InputStreamReader类，而InputStreamReader类又继承自Reader类。</p>
+<p>FileReader构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(File file)</span></span> <span class="comment">//在给定从中读取数据的 File 的情况下创建一个新 FileReader。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(FileDescriptor fd)</span></span> <span class="comment">//在给定从中读取数据的 FileDescriptor 的情况下创建一个新 FileReader。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(String fileName)</span></span> <span class="comment">//在给定从中读取数据的文件名的情况下创建一个新 FileReader。</span></span><br></pre></td></tr></table></figure>
+<p>例1：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">		<span class="built_in">char</span>[] c=<span class="keyword">new</span> <span class="built_in">char</span>[<span class="number">500</span>];</span><br><span class="line">		FileReader fr=<span class="keyword">new</span> FileReader(<span class="string">"f:\\test.txt"</span>);<span class="comment">//创建字符输入流对象</span></span><br><span class="line">		<span class="built_in">int</span> num=fr.read(c);<span class="comment">//把数据读入字符数组c中，并返回读取的字符数</span></span><br><span class="line">		<span class="keyword">String</span> <span class="built_in">str</span>=<span class="keyword">new</span> <span class="keyword">String</span>(c,<span class="number">0</span>,num);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件大小（字符）："</span>+num);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"内容："</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">str</span>);</span><br><span class="line">		fr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用FileWriter类写入文件"><a href="#使用FileWriter类写入文件" class="headerlink" title="使用FileWriter类写入文件"></a>使用FileWriter类写入文件</h1><p>文件字符输出流类FileWriter继承自OutputStreamWriter类，而OutputStreamWriter类又继承自Writer。</p>
+<p>FileWriter构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(File file)</span></span> <span class="comment">//根据给定的 File 对象构造一个 FileWriter 对象。</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(File file, boolean append)</span></span> <span class="comment">//根据给定的 File 对象构造一个 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(FileDescriptor fd)</span></span> <span class="comment">//构造与某个文件描述符相关联的 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(String fileName)</span></span> <span class="comment">//根据给定的文件名构造一个 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(String fileName, boolean append)</span></span> <span class="comment">//根据给定的文件名以及指示是否附加写入数据的 boolean 值来构造 FileWriter 对象。</span></span><br></pre></td></tr></table></figure></p>
+<p>例2：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws IOException&#123;</span><br><span class="line">		FileWriter fw=<span class="keyword">new</span> FileWriter(<span class="string">"f:\\test.txt"</span>);</span><br><span class="line">		<span class="keyword">char</span>[] c=&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\r'</span>,<span class="string">'\n'</span>&#125;;</span><br><span class="line">		<span class="keyword">String</span> str=<span class="string">"java语言"</span>;</span><br><span class="line">		fw.<span class="built_in">write</span>(c);</span><br><span class="line">		fw.<span class="built_in">write</span>(str);</span><br><span class="line">		fw.<span class="built_in">close</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用BufferedReader类读取文件"><a href="#使用BufferedReader类读取文件" class="headerlink" title="使用BufferedReader类读取文件"></a>使用BufferedReader类读取文件</h2><p>缓冲字符输入流类BufferedReader继承自Reader类，用来读取缓冲区中的数据。使用该类之前，必须先创建FileReader类的对象。</p>
+<p>BufferedReader构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">BufferedReader</span><span class="params">(Reader in)</span></span> <span class="comment">//创建一个使用默认大小输入缓冲区的缓冲字符输入流。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">BufferedReader</span><span class="params">(Reader in, int sz)</span></span> <span class="comment">//创建一个使用指定大小输入缓冲区的缓冲字符输入流。</span></span><br></pre></td></tr></table></figure></p>
+<p>BufferedReader方法：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> readLine() <span class="comment">//读取一个文本行。无时返回null</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用BufferedWriter"><a href="#使用BufferedWriter" class="headerlink" title="使用BufferedWriter"></a>使用BufferedWriter</h2><p>缓冲字符输出流类BufferedWriter继承自Writer类，用来将数据写入缓冲区中，调用之前要创建FileWriter类对象。缓冲区内的数据最后必须要用flush()方法将缓冲区清空，也就是将缓冲区的数据全部写到文件内。</p>
+<p>BufferedWriter的构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">BufferedWriter</span><span class="params">(Writer out)</span></span> <span class="comment">//创建一个使用默认大小输出缓冲区的缓冲字符输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">BufferedWriter</span><span class="params">(Writer out, int sz)</span></span> <span class="comment">//创建一个使用给定大小输出缓冲区的新缓冲字符输出流。</span></span><br></pre></td></tr></table></figure></p>
+<p>BufferedWriter的方法：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">new</span><span class="type">Line</span>() <span class="comment">//写入一个行分隔符。</span></span><br></pre></td></tr></table></figure>
+<p>例3：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws IOException</span>&#123;</span><br><span class="line">		String str;</span><br><span class="line">		BufferedReader <span class="keyword">in</span> =<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"f:\\test.txt"</span>));</span><br><span class="line">		BufferedWriter <span class="keyword">out</span> =<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"f:\\test2.txt"</span>));</span><br><span class="line">		<span class="keyword">while</span>((str=<span class="keyword">in</span>.readLine())!=<span class="literal">null</span>)&#123;</span><br><span class="line">			System.<span class="keyword">out</span>.println(str);<span class="comment">//在控制台输出</span></span><br><span class="line">			<span class="keyword">out</span>.write(str);<span class="comment">//将读取的一行数据写入缓冲区</span></span><br><span class="line">			<span class="keyword">out</span>.newLine();<span class="comment">//写入换行符</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">out</span>.flush();<span class="comment">//将缓冲区的数据写入文件中</span></span><br><span class="line">		<span class="keyword">in</span>.close();</span><br><span class="line">		<span class="keyword">out</span>.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Java-IO流（二）-字符流/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-Java-IO流（三）-文件的处理与随机访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Java-IO流（三）-文件的处理与随机访问/">Java IO流（三）-- 文件的处理与随机访问</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Java-IO流（三）-文件的处理与随机访问/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:50:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>计算机程序运行时，数据都是保存在系统的内存中，由于关机时内存中的数据全部丢失，所以必须把那些需要长期保存的数据存放在磁盘文件中，需要时再从文件中读取。</p>
+<h2 id="文件的处理"><a href="#文件的处理" class="headerlink" title="文件的处理"></a>文件的处理</h2><p>文件夹是管理文件的特殊机制，同类文件保存在一个同一个文件夹下不仅可以简化文件管理，而且可以提高工作效率。Java语言不仅支持文件管理，还支持文件夹管理。在java.io包中定义一个File类，专门用来管理磁盘文件和文件夹，而不负责数据的输入输出。</p>
+<p>File类的构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">File</span><span class="params">(File parent, String child)</span></span> <span class="comment">//根据 parent 抽象路径名和 child 路径名字符串创建一个新 File 实例。</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">File</span><span class="params">(String pathname)</span></span> <span class="comment">//通过将给定路径名字符串转换为抽象路径名来创建一个新 File 实例。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">File</span><span class="params">(String parent, String child)</span></span> <span class="comment">//根据 parent 路径名字符串和 child 路径名字符串创建一个新 File 实例。</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">File</span><span class="params">(URI uri)</span></span> <span class="comment">//通过将给定的 file: URI 转换为一个抽象路径名来创建一个新的 File 实例。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong> </p>
+<p>（1）pathname参数可以是绝对路径，如“d:\java\test.java”，也可以是相对路径，如“java\test.java”，pathname参数还可以是磁盘上的某个文件夹。</p>
+<p>（2）由于不同的操作系统使用的文件夹分隔符不同，如Windows用反斜线“\”，Unix用正斜线“/”。为了使Java程序能够在不同的平台运行，可以用File类的一个静态变量File.separator，该属性中保存了当前系统规定的文件夹分隔符。</p>
+</blockquote>
+<p>File类的常用方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> canRead() <span class="comment">//测试应用程序是否可以读取此抽象路径名表示的文件。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> canWrite() <span class="comment">//测试应用程序是否可以修改此抽象路径名表示的文件。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> compareTo(<span class="built_in">File</span> pathname) <span class="comment">//按字母顺序比较两个抽象路径名。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">boolean</span> <span class="keyword">delete</span>() <span class="comment">//删除此抽象路径名表示的文件或目录。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> equals(<span class="built_in">File</span> file) <span class="comment">//比较两个文件或文件夹是否是同一文件，而不是比较内容相同</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">boolean</span> <span class="built_in">exists</span>() <span class="comment">//测试此抽象路径名表示的文件或目录是否存在。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> getName() <span class="comment">//返回由此抽象路径名表示的文件或目录的名称。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> getParent() <span class="comment">//返回此抽象路径名父目录的路径名字符串；如果此路径名没有指定父目录，则返回 null。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">String</span> getPath() <span class="comment">//将此抽象路径名转换为一个路径名字符串。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> isAbsolute() <span class="comment">//测试此抽象路径名是否为绝对路径名。 </span></span><br><span class="line">          </span><br><span class="line"><span class="keyword">boolean</span> <span class="built_in">isDirectory</span>() <span class="comment">//测试此抽象路径名表示的文件是否是一个目录。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> isFile() <span class="comment">//测试此抽象路径名表示的文件是否是一个标准文件。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">long</span> lastModified() <span class="comment">//返回此抽象路径名表示的文件最后一次被修改的时间。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> length() <span class="comment">//返回由此抽象路径名表示的文件的长度。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">String</span>[] list() <span class="comment">//返回一个字符串数组，这些字符串指定此抽象路径名表示的目录中的文件和目录。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">boolean</span> <span class="built_in">mkdir</span>() <span class="comment">//创建此抽象路径名指定的目录。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">boolean</span> renameTo(<span class="built_in">File</span> dest) <span class="comment">//重新命名此抽象路径名表示的文件。 </span></span><br><span class="line">        </span><br><span class="line">URI toURI() <span class="comment">//构造一个表示此抽象路径名的 file: URI。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> createNewFile()  <span class="comment">//创建一个新的空文件。</span></span><br></pre></td></tr></table></figure>
+<h2 id="对文件的随机访问"><a href="#对文件的随机访问" class="headerlink" title="对文件的随机访问"></a>对文件的随机访问</h2><p>前面介绍的流类实现的是对磁盘文件的顺序读写，而且读和写要分别创建不同的对象。Java语言还定义了一个功能更强大、使用更方便的随机访问文件类RandomAccessFile，它可以实现对文件的随机读写。</p>
+<p>RandomAccessFile的构造方法：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile(<span class="keyword">File</span> <span class="keyword">file</span>, <span class="keyword">String</span> mode)  <span class="comment">//创建从中读取和向其中写入（可选）的随机访问文件流，该文件由 File 参数指定。 </span></span><br><span class="line"></span><br><span class="line">RandomAccessFile(<span class="keyword">String</span> <span class="keyword">name</span>, <span class="keyword">String</span> mode) <span class="comment">//创建从中读取和向其中写入（可选）的随机访问文件流，该文件具有指定名称。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：访问模式mode表示所创建的随机读写文件的操作状态，mode的取值：<br>r–表示以只读方式打开文件<br>rw–表示以读写方式打开文件，使用该模式只用一个对象就可以同时实现读和写两种操作</p>
+</blockquote>
+<p>RandomAccessFile常用读取方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭此随机访问文件流并释放与该流关联的所有系统资源。 </span></span><br><span class="line"></span><br><span class="line">FileDescriptor getFD() <span class="comment">//返回与此流关联的不透明文件描述符对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> getFilePointer() <span class="comment">//返回此文件中的当前偏移量。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> length() <span class="comment">//返回此文件的长度。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>() <span class="comment">//从此文件中读取一个数据字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b) <span class="comment">//将最多 b.length 个数据字节从此文件读入 byte 数组。</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将最多 len 个数据字节从此文件读入 byte 数组。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> readBoolean() <span class="comment">//从此文件读取一个 boolean。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">byte</span> readByte() <span class="comment">//从此文件读取一个有符号的八位值。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">char</span> readChar() <span class="comment">//从此文件读取一个字符。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> readDouble() <span class="comment">///从此文件读取一个 double。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">float</span> readFloat() <span class="comment">//从此文件读取一个 float。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> readFully(<span class="keyword">byte</span>[] b) <span class="comment">//将 b.length 个字节从此文件读入 byte 数组，并从当前文件指针开始。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> readFully(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将正好 len 个字节从此文件读入 byte 数组，并从当前文件指针开始。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> readInt() <span class="comment">//从此文件读取一个有符号的 32 位整数。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> readLine() <span class="comment">//从此文件读取文本的下一行。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> readLong() <span class="comment">//从此文件读取一个有符号的 64 位整数。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">short</span> readShort() <span class="comment">//从此文件读取一个有符号的 16 位数。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span> readUTF() <span class="comment">//从此文件读取一个字符串。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">seek</span>(<span class="keyword">long</span> pos) <span class="comment">//设置到此文件开头测量到的文件指针偏移量，在该位置发生下一个读取或写入操作。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> setLength(<span class="keyword">long</span> newLength) <span class="comment">//设置此文件的长度。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> skipBytes(<span class="keyword">int</span> n) <span class="comment">//尝试跳过输入的 n 个字节以丢弃跳过的字节。</span></span><br></pre></td></tr></table></figure>
+<p>RandomAccessFile常用写入方法：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b) <span class="comment">//将 b.length 个字节从指定 byte 数组写入到此文件，并从当前文件指针开始。 </span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">byte</span>[] b, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将 len 个字节从指定 byte 数组写入到此文件，并从偏移量 off 处开始。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">write</span>(<span class="keyword">int</span> b) <span class="comment">//向此文件写入指定的字节。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeBoolean(<span class="keyword">boolean</span> v) <span class="comment">//按单字节值将 boolean 写入该文件。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeByte(<span class="keyword">int</span> v) <span class="comment">//按单字节值将 byte 写入该文件。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeBytes(<span class="keyword">String</span> s) <span class="comment">//按字节序列将该字符串写入该文件。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> writeChar(<span class="keyword">int</span> v) <span class="comment">//按双字节值将 char 写入该文件，先写高字节。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeChars(<span class="keyword">String</span> s) <span class="comment">//按字符序列将一个字符串写入该文件。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeDouble(<span class="keyword">double</span> v) <span class="comment">//使用 Double 类中的 doubleToLongBits 方法将双精度参数转换为一个 long，然后按八字节数量将该 long 值写入该文件，先定高字节。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeFloat(<span class="keyword">float</span> v) <span class="comment">//使用 Float 类中的 floatToIntBits 方法将浮点参数转换为一个 int，然后按四字节数量将该 int 值写入该文件，先写高字节。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeInt(<span class="keyword">int</span> v) <span class="comment">//按四个字节将 int 写入该文件，先写高字节。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeLong(<span class="keyword">long</span> v) <span class="comment">//按八个字节将 long 写入该文件，先写高字节。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeShort(<span class="keyword">int</span> v) <span class="comment">//按两个字节将 short 写入该文件，先写高字节。 </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> writeUTF(<span class="keyword">String</span> str) <span class="comment">//使用 modified UTF-8 编码以与机器无关的方式将一个字符串写入该文件。</span></span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Java-IO流（三）-文件的处理与随机访问/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-java-IO流（四）-重定向标准输入输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/java-IO流（四）-重定向标准输入输出/">java IO流（四）--重定向标准输入输出</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/java-IO流（四）-重定向标准输入输出/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:46:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是今天看到一个分类，值得看一下，我就先收藏在这了：<br><img src="http://img.blog.csdn.net/20170807214820114?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>下面我们来讲重定向标准输入输出：</p>
+<p>前面介绍过，标准输入输（System.in，System.out）出就是键盘输入和显示屏输出（也是eclipse控制台输出），在System类还提供了三个重定向标准输入输出的方法：</p>
+<blockquote>
+<p>static void setErr(PrintStream err) //重定向标准错误输出流</p>
+<p>static void setIn(InputStream in) //重定向标准输入流 </p>
+<p>static void setOut(PrintStream err) //重定向标准输出流</p>
+</blockquote>
+<p>例1：重定向标准输出流</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws IOException</span>&#123;</span><br><span class="line">		PrintStream ps=<span class="keyword">new</span> PrintStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"out.txt"</span>));</span><br><span class="line">		PrintStream <span class="keyword">out</span> = System.<span class="keyword">out</span>;<span class="comment">//如果想重定向回标准输出，必须提前保存标准输出，如果这句话放在setOut后面会无效</span></span><br><span class="line">		System.setOut(ps);<span class="comment">//将标准输出流重定向到ps输出流</span></span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"输入到文件"</span>);</span><br><span class="line">		System.setOut(<span class="keyword">out</span>);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"输入到控制台"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例2：重定向标准输入</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">		<span class="comment">//将标准输入重定向到fis输入流</span></span><br><span class="line">		FileInputStream fis=<span class="keyword">new</span> FileInputStream(<span class="string">"in.txt"</span>);</span><br><span class="line">		System.setIn(fis);</span><br><span class="line">		Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">String</span> <span class="built_in">str</span>=sc.nextLine();</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"你输入内容："</span>+<span class="built_in">str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/java-IO流（四）-重定向标准输入输出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-文本文件的读写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/文本文件的读写/">文本文件的读写</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/文本文件的读写/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:44:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单总结了几个常用的文本文件读写方法</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Deom &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">		 * 用缓存字符流读入TXT文件</span></span><br><span class="line"><span class="comment">		 */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="keyword">read</span>() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			String pathname = <span class="string">"E:\\java\\file2.txt"</span>; <span class="comment">// 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径  </span></span><br><span class="line">            <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(pathname); <span class="comment">// 要读取以上路径的input。txt文件 </span></span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">         	   <span class="keyword">file</span>.createNewFile();</span><br><span class="line">            &#125;</span><br><span class="line">            InputStreamReader reader = <span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                    <span class="keyword">new</span> FileInputStream(<span class="keyword">file</span>)); <span class="comment">// 建立一个输入流对象reader  </span></span><br><span class="line">            BufferedReader br = <span class="keyword">new</span> BufferedReader(reader); <span class="comment">// 建立一个对象，它把文件内容转成计算机能读懂的语言  </span></span><br><span class="line">            String line = <span class="keyword">null</span>;               </span><br><span class="line">            <span class="keyword">while</span> ((line=br.readLine())!= <span class="keyword">null</span>) &#123;  <span class="comment">// 一次读入一行数据                                       </span></span><br><span class="line">                System.out.<span class="keyword">println</span>(line);</span><br><span class="line">            &#125;  </span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">		 * 覆盖写入Txt文件 </span></span><br><span class="line"><span class="comment">		 */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> coverWriter() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			 <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file1.txt"</span>); </span><br><span class="line">             <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">          	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">             &#125;             </span><br><span class="line">             BufferedWriter out = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="keyword">file</span>));  <span class="comment">//每次覆盖写入</span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="string">"我会写入文件啦\r\n"</span>); <span class="comment">// \r\n即为换行                </span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="number">48</span>);<span class="comment">//写入ASCII值48，对于字符为0，注意这里输入int类型是输入ASCII值。</span></span><br><span class="line">             out.flush(); <span class="comment">// 把缓存区内容压入文件  </span></span><br><span class="line">             out.close(); <span class="comment">// 最后记得关闭文件  </span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	    <span class="comment">/* </span></span><br><span class="line"><span class="comment">	    * 用 FileWriter(file,true) 追加写入Txt文件</span></span><br><span class="line"><span class="comment">	    */</span>  </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> addToWriter() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			 <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file3.txt"</span>); </span><br><span class="line">             <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">          	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">             &#125;             </span><br><span class="line">             BufferedWriter out = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="keyword">file</span>,<span class="keyword">true</span>));  <span class="comment">//构造方法FileWriter(file,true) true为追加写入</span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="string">"我会写入文件啦\r\n"</span>); <span class="comment">// \r\n即为换行                </span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="number">48</span>);<span class="comment">//写入ASCII值48，对于字符为0，注意这里输入int类型是输入ASCII值。</span></span><br><span class="line">             out.flush(); <span class="comment">// 把缓存区内容压入文件  </span></span><br><span class="line">             out.close(); <span class="comment">// 最后记得关闭文件  </span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">	    * 用 RandomAccessFile追加写入Txt文件</span></span><br><span class="line"><span class="comment">	    */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> addToWriter2() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			<span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file4.txt"</span>); </span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">         	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">            &#125;  </span><br><span class="line">            RandomAccessFile rf=<span class="keyword">new</span> RandomAccessFile(<span class="keyword">file</span>, <span class="string">"rw"</span>);<span class="comment">//以读写的方式打开文件</span></span><br><span class="line">            <span class="comment">// 文件长度，字节数     </span></span><br><span class="line">            <span class="keyword">long</span> fileLength = rf.length();     </span><br><span class="line">            <span class="comment">// 将写文件指针移到文件尾。</span></span><br><span class="line">            <span class="comment">/* seek是指针移动n个字节、skipBytes指针移动n个字节（少量）；</span></span><br><span class="line"><span class="comment">           		有人说seek非常影响系统的开销，但skipBytes内部又调用了seek方法，</span></span><br><span class="line"><span class="comment">           		也没百度到什么，不太理解，求解！</span></span><br><span class="line"><span class="comment">           	*/</span></span><br><span class="line">            rf.seek(fileLength);     </span><br><span class="line">           </span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">               	注意：请使用RandomAccessFile.write(byte b[])方法，这样可以保证不会出现乱码。 </span></span><br><span class="line"><span class="comment">				原因是String.getBytes()会按系统默认编码获取字符串的字节码，</span></span><br><span class="line"><span class="comment">				而RandomAccessFile.write(byte b[])正好也是按照系统默认编码进行写入的，</span></span><br><span class="line"><span class="comment">				这样两处编码正好一致，使用其它方法无法保证编码一致。</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//rf.writeChars("随机访问文件！");            </span></span><br><span class="line">            rf.<span class="keyword">write</span>(<span class="string">"随机访问文件！"</span>.getBytes());</span><br><span class="line">            rf.close();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String args[]) &#123;  </span><br><span class="line">           <span class="keyword">try</span> &#123; </span><br><span class="line">                Deom deom=<span class="keyword">new</span> Deom();</span><br><span class="line">                deom.<span class="keyword">read</span>();</span><br><span class="line">                deom.addToWriter();</span><br><span class="line">                deom.addToWriter();</span><br><span class="line">                deom.addToWriter2();</span><br><span class="line">                deom.addToWriter2();</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">           &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/文本文件的读写/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-Java序列化与反序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -229,589 +633,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/02/Java序列化与反序列化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-mysql常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/mysql常用命令/">mysql常用命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/mysql常用命令/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、登录</strong></p>
-<p>1、登录使用默认3306端口的MySQL</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -<span class="selector-tag">p</span>   <span class="comment">//回车，之后按提示输入密码。</span></span><br></pre></td></tr></table></figure>
-<p>2、退出登录</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span>; <span class="regexp">//</span>或 quit;</span><br></pre></td></tr></table></figure>
-<p><strong>二、用户管理</strong><br>mysql有一个默认用户root，拥有所有权限</p>
-<p>1、创建一个用户</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //新用户创建完成，但是此刻如果以此用户登陆的话，会报错，因为我们还没有为这个用户分配相应权限</span><br></pre></td></tr></table></figure>
-<p>2、grant方式创建带权限用户</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //赋予所有权限</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">update</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //用户只能执行 <span class="keyword">select</span> 和 <span class="keyword">update</span> 命令</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //刷新权限</span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.csdn.net/sin90lzc/article/details/7648711" target="_blank" rel="noopener">各种权限说明表</a></p>
-<p>3、删除用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop<span class="built_in"> user </span>username@localhost;</span><br></pre></td></tr></table></figure>
-<p>4、进入名为mysql数据库查询所以用户（名为mysql的数据库的user表存储着所有用户信息）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql;//进入名为mysql数据库</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">User</span>,Host,<span class="keyword">Password</span>  <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
-<p>5、修改密码</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'新密码'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //立即生效</span><br></pre></td></tr></table></figure>
-<p><strong>三、数据库操作</strong></p>
-<p>1、显示所有数据库名称</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
-<p>2、新建数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p>3、删除数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p>4、选择（进入）数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>四、表格操作</strong></p>
-<p>1、显示当前数据库所有表名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
-<p>2、创建表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="string">'table_name'</span> (</span><br><span class="line">	 <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">     <span class="keyword">name</span> <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">     age <span class="built_in">int</span>(<span class="number">3</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>3、查看表结构</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decribe table_name<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>4、插入（添加）记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>),(<span class="number">2</span>,<span class="string">'bcd'</span>); //同时插入多条数据</span><br></pre></td></tr></table></figure>
-<p>5、查询记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name; //查询所有</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> table_name; //查询部分</span><br></pre></td></tr></table></figure>
-<p>6、修改记录</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name <span class="builtin-name">set</span> <span class="attribute">name</span>=<span class="string">'qwe'</span>,age=3 where <span class="attribute">id</span>=1;</span><br></pre></td></tr></table></figure>
-<p>7、删除记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>8、将字符串aaa批量替换为bbb的</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table_name <span class="keyword">set</span> 字段名 =<span class="built_in">replace</span>(字段名, aaa, bbb);</span><br></pre></td></tr></table></figure>
-<p>9、删除表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name;</span><br></pre></td></tr></table></figure>
-<p>10、更改表结构</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter <span class="keyword">table</span> table_name <span class="comment">change</span> 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
-<p><strong>五、导入导出数据库</strong></p>
-<p>1、将mysql.sql导入数据库（导入时需要先登录进mysql）</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">./mysql.sql</span>; <span class="string">//</span>当前目录下的mysql.sql</span><br><span class="line"></span><br><span class="line">source <span class="string">/home/user/mysql.sql</span>; <span class="string">//</span> <span class="string">/home/user</span>目录下的mysql.sql</span><br></pre></td></tr></table></figure>
-<p>2、导出数据库（导出数据库无需登进mysql，但导出时需输入数据库密码）</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> 数据库名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> mysql &gt; /opt/mysql.sql</span><br></pre></td></tr></table></figure>
-<p>3.导出一个表</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -p 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -p mysql<span class="built_in"> users </span>&gt; /opt/mysql_users.sql</span><br></pre></td></tr></table></figure>
-<p>4.导出一个数据库结构</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> mysql &gt; /opt/mysql.sql</span><br><span class="line"></span><br><span class="line">-d 没有数据</span><br><span class="line">--add-drop-<span class="selector-tag">table</span> 在每个create语句之前增加一个drop table</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>linux下mysql修改字符集、链接时间问题等请参考我的其它文章。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/mysql常用命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-nginx反向代理多个tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/nginx反向代理多个tomcat/">nginx反向代理多个tomcat</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/nginx反向代理多个tomcat/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:27:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>nginx即可用做web服务器也可以用反向代理（负载均衡）（自己了解反向代理和正向代理-<a href="http://www.cnblogs.com/zlslch/p/6037495.html" target="_blank" rel="noopener">详情</a>），今天介绍一下反向代理多个tomcat，先了解怎么修改端口同时运行多个tomcat服务器-<a href="http://blog.csdn.net/qq_32337109/article/details/78241860" target="_blank" rel="noopener">详情</a>，然后还要解析自己的域名，解析为*.lookk.cn，星号是匹配自己域名的子域名（例order.lookk.cn也解析到自己服务器的公网IP）,这样就可以用项目名做为子域名了，最后在nginx的配置文件/etc/nginx/nginx.conf的http里添加一下代码</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">		<span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">		<span class="attribute">server_name</span>  order.lookk.cn;    <span class="comment">#要访问的域名，我这里用的测试域名，如果有多个，用逗号分开</span></span><br><span class="line"></span><br><span class="line">		<span class="attribute">charset</span> utf8;</span><br><span class="line"></span><br><span class="line">		<span class="attribute">location</span> / &#123;</span><br><span class="line">			<span class="attribute">proxy_pass</span>       http://127.0.0.1:8080;               <span class="comment">#映射到代理服务器，可以是ip加端口,   或url </span></span><br><span class="line">			<span class="attribute">proxy_set_header</span> Host      <span class="variable">$host</span>;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">		  </span><br><span class="line">	   &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="section">server</span> &#123;</span><br><span class="line">		<span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">		<span class="attribute">server_name</span>  javatest.lookk.cn;    <span class="comment">#要访问的域名，我这里用的测试域名，如果有多个，用逗号分开</span></span><br><span class="line"></span><br><span class="line">		<span class="attribute">charset</span> utf8;</span><br><span class="line"></span><br><span class="line">		<span class="attribute">location</span> / &#123;</span><br><span class="line">			<span class="attribute">proxy_pass</span>       http://127.0.0.1:8090;               <span class="comment">#映射到代理服务器，可以是ip加端口,   或url </span></span><br><span class="line">			<span class="attribute">proxy_set_header</span> Host      <span class="variable">$host</span>;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">			<span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">		  </span><br><span class="line">	   &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>运行多个tomcat时，一般一个tomcat最多运行一个项目，这个项目要放在ROOT目录下-<a href="http://blog.csdn.net/qq_32337109/article/details/78436487" target="_blank" rel="noopener">详情</a>，这样才能使proxy_pass       <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>;   直接访问该项目</p>
-<p><strong>优点：</strong> 用nginx反向代理tomcat有一下几个优点<br>1、可以同时运行多个tomcat<br>2、访问路径可以隐藏80端口<br>3、可以用项目名做为域名，自己访问到改项目 例：order.lookk.cn自己访问到order项目<br>4、还可以负载均衡，一个项目运行在多个服务器上，这个自己去探索。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/nginx//" class="article-tag-list-link color1">nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/nginx反向代理多个tomcat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-Git教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/Git教程/">Git教程</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/Git教程/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:21:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
-</blockquote>
-<p><strong>Git 与 SVN 区别</strong></p>
-<p>GIT不仅仅是个版本控制系统，它也是个内容管理系统(CMS),工作管理系统等。<br>   如果你是一个具有使用SVN背景的人，你需要做一定的思想转换，来适应GIT提供的一些概念和特征。 Git 与 SVN 区别点：</p>
-<ul>
-<li><p>1、GIT是分布式的，SVN不是：这是GIT和其它非分布式的版本控制系统，例如SVN，CVS等，最核心的区别。   </p>
-</li>
-<li><p>2、GIT把内容按元数据方式存储，而SVN是按文件：所有的资源控制系统都是把文件的元信息隐藏在一个类似.svn,.cvs等的文件夹里。 </p>
-</li>
-<li><p>3、GIT分支和SVN的分支不同：分支在SVN中一点不特别，就是版本库中的另外的一个目录。  </p>
-</li>
-<li><p>4、GIT没有一个全局的版本号，而SVN有：目前为止这是跟SVN相比GIT缺少的最大的一个特征。 </p>
-</li>
-<li><p>5、GIT的内容完整性要优于SVN：GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。</p>
-</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>windows下安装</strong></p>
-<p>windows下安装很简单，下载安装就行了，<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">下载地址</a></p>
-<p><strong>linux下安装</strong></p>
-<p>1、Debian/Ubuntu Git 安装命令为：</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> install libcurl4-gnutls-<span class="built_in">dev</span> libexpat1-<span class="built_in">dev</span> gettext \</span><br><span class="line">  libz-<span class="built_in">dev</span> libssl-<span class="built_in">dev</span></span><br><span class="line"></span><br><span class="line">$ apt-<span class="built_in">get</span> install git-core</span><br><span class="line"></span><br><span class="line">$ git --version</span><br><span class="line">git version <span class="number">1.8</span><span class="number">.1</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
-<p>2、 Centos/RedHat 安装命令为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum install curl-devel expat-devel gettext-devel \</span></span><br><span class="line">  openssl-devel zlib-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> yum -y install git-core</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 1.7.1</span><br></pre></td></tr></table></figure>
-<h2 id="Git工作流程"><a href="#Git工作流程" class="headerlink" title="Git工作流程"></a>Git工作流程</h2><p><strong>一般工作流程如下：</strong></p>
-<ul>
-<li><p>克隆 Git 资源作为工作目录。</p>
-</li>
-<li><p>如果其他人修改了，你可以更新资源。</p>
-</li>
-<li><p>修改后，更新资源，合并后， 提交修改。</p>
-</li>
-<li><p>提交修改后，如果发现错误，可以撤回提交并再次修改并提交。</p>
-</li>
-</ul>
-<h2 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h2><p>gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。你可以去注册一个github账号，然后创建一个项目，用本地git上传你的资源。</p>
-<p>随便找个目录，点击右键，然后单击 Git Bash Here 进入git命令行工具</p>
-<p><strong>常用命令(简单了解，好多命令一般用不着)</strong><br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git <span class="builtin-name">add</span> xxx.txt 		添加该文件</span><br><span class="line">git <span class="builtin-name">add</span> . 				添加所有文件</span><br><span class="line">git commit -m <span class="string">"message"</span> 提交到本地git仓库</span><br><span class="line">git status 				查看状态</span><br><span class="line">git diff 				查看仓库提交前差异</span><br><span class="line">git log 				查看所有版本详情</span><br><span class="line">git log --graph 		查看分支图</span><br><span class="line">git log --oneline  		查看简洁版提交记录（只查看记录commitId）</span><br><span class="line">git reset --hard HEAD^ 	回到上一版本</span><br><span class="line">git reset -- 36<span class="built_in">..</span><span class="built_in">..</span> by commitId（即版本号，输入前几位即可）</span><br><span class="line">cat xxx.txt 			查看内容</span><br><span class="line">git reflog 				查看日志记录</span><br><span class="line">git checkout -- xxx.txt 清除所有修改</span><br><span class="line">rm xxx.txt 				删除</span><br><span class="line">git rm 					确认删除，并且git commit</span><br><span class="line">git clone url  			克隆资源</span><br><span class="line">git checkout -b dev 	创建并切换到dev分支</span><br><span class="line">git branch 				查看所有分支</span><br><span class="line">git merge dev 			把dev分支合并到master</span><br><span class="line">git pull 				把github最新提交抓下来</span><br><span class="line">git push 				把本地的修改推到github</span><br><span class="line">git rebase -i HEAD~2  	合并多次提交记录</span><br><span class="line">git stash changes  		隐藏本地的改变，pull完了一定不要忘记 git unstash changes，恢复你刚隐藏的改变。</span><br><span class="line"></span><br><span class="line">如果希望保留生产服务器上所做的改动,仅仅并入新配置项:</span><br><span class="line">git stash</span><br><span class="line">git pull</span><br><span class="line">git stash pop</span><br><span class="line"></span><br><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"用户名"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"邮箱"</span></span><br><span class="line">git<span class="built_in"> config </span>--global credential.helper store 保存</span><br><span class="line"></span><br><span class="line">Ctrl+c  	退出，进入下一命令行（大概就是这个意思，你试试效果就知道了）</span><br></pre></td></tr></table></figure></p>
-<p>这只是一部分git命令，如果想详细了解，可以自己去查资料</p>
-<h2 id="更新和提交"><a href="#更新和提交" class="headerlink" title="更新和提交"></a>更新和提交</h2><p><strong>1、配置全局的name和email，这里是的你github的name和email</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"你的用户名"</span></span><br><span class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"你的邮箱"</span></span><br><span class="line">$ git config --global credential<span class="selector-class">.helper</span> store <span class="comment">//保存</span></span><br></pre></td></tr></table></figure>
-<p><strong>2、从github克隆项目</strong><br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">url</span></span><br></pre></td></tr></table></figure></p>
-<p>克隆路径有两种，一种是HTTPS，git登录即可；另一种是SSH，需要git设置钥。<br>https 和 SSH 的区别：</p>
-<blockquote>
-<p>1、前者可以随意克隆github上的项目，而不管是谁的；而后者则是你必须是你要克隆的项目的拥有者或管理员，且需要先添加 SSH key，否则无法克隆。</p>
-<p>2、https url 在push的时候是需要验证用户名和密码的；而 SSH 在push的时候，是不需要输入用户名的，如果配置SSHkey的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。</p>
-</blockquote>
-<p>git设置密钥：</p>
-<p>输入指令，进入.ssh文件夹<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.ssh/</span></span><br></pre></td></tr></table></figure></p>
-<p>如果提示 “ No such file or directory”，你可以手动的创建一个 .ssh文件夹即可：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.ssh</span><br></pre></td></tr></table></figure></p>
-<p>生成key<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -<span class="built_in">t</span> rsa -C <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure></p>
-<p>连续按三次回车，这里设置的密码就为空了，并且创建了key。</p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /c/Users/Administrator/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /c/Users/Administrator/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:sEzgbZ3Lc9kslQ1LdMhkrUvQLsNiHOuZLRm8nTvzG4s 1062100557<span class="meta">@qq.com</span></span><br><span class="line">The key's randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">|<span class="string">    .      =*o.  </span>|</span><br><span class="line">|<span class="string">   . o ....o+*.  </span>|</span><br><span class="line">|<span class="string">    . =oo+ o+..  </span>|</span><br><span class="line">|<span class="string">     + +B.+=+    </span>|</span><br><span class="line">|<span class="string">      ooSX+=o.   </span>|</span><br><span class="line">|<span class="string">        Bo+..    </span>|</span><br><span class="line">|<span class="string">         . ..    </span>|</span><br><span class="line">|<span class="string">          +. o   </span>|</span><br><span class="line">|<span class="string">          E++.   </span>|</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
-<p>最后得到了两个文件：id_rsa和id_rsa.pub</p>
-<p>打开Admin目录进入.ssh文件夹，用记事本打开id_rsa.pub，复制里面的内容添加到你github 的ssh设置里即可（在你的setting的SSH and GPG keys里面添加ssh key）</p>
-<p>测试一下该SSH key<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh -T git<span class="variable">@github</span>.com</span><br></pre></td></tr></table></figure></p>
-<p>当你输入以上代码时，会有一段警告代码，如：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity <span class="keyword">of</span> host 'github.com (<span class="number">207.97</span><span class="number">.227</span><span class="number">.239</span>)' can't be established.</span><br><span class="line"><span class="comment"># RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="comment"># Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
-<p>这是正常的，你输入 yes 回车即可。如果你创建 SSH key 的时候设置了密码，接下来就会提示你输入密码，如：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase <span class="keyword">for</span> <span class="built_in">key</span> <span class="string">'/c/Users/Administrator/.ssh/id_rsa'</span>:</span><br></pre></td></tr></table></figure></p>
-<p>当然如果你密码输错了，会再要求你输入，直到对了为止。</p>
-<p>密码正确后你会看到下面这段话，如：</p>
-<figure class="highlight irpf90"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username<span class="comment">! You've successfully authenticated, but GitHub does not</span></span><br><span class="line"><span class="keyword">provide</span> shell <span class="keyword">access</span>.</span><br></pre></td></tr></table></figure>
-<p><strong>3、更新和提交</strong></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> xxx.txt   添加xxx文件</span></span><br><span class="line"><span class="bash">git add .   提交所有文件（不包括忽略文件）</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"提交的描述信息(必写)"</span>     提交到本地git仓库</span></span><br><span class="line"><span class="bash">git push   把本地提交推到github上</span></span><br><span class="line"><span class="bash">git pull   更新本地资源（即把github资源拉下来）</span></span><br></pre></td></tr></table></figure>
-<p>更新和提交有两种方法</p>
-<p>方法1：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> stash  隐藏本地的修改</span><br><span class="line"><span class="symbol">git</span> pull   下拉资源</span><br><span class="line"><span class="symbol">git</span> stash <span class="keyword">pop </span>恢复本地隐藏和下拉资源合并</span><br><span class="line">如果合并后有冲突，修改冲突，然后提交</span><br><span class="line"><span class="symbol">git</span> <span class="keyword">add </span>.  添加所有文件</span><br><span class="line"><span class="symbol">git</span> commit -m <span class="string">"message"</span> 提交到本地</span><br><span class="line"><span class="symbol">git</span> <span class="keyword">push </span>  推到github</span><br></pre></td></tr></table></figure>
-<p>方法2：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .  添加所有文件</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"message"</span> 提交到本地</span></span><br><span class="line"><span class="bash">git pull   下拉资源</span></span><br><span class="line"><span class="bash">如果合并后有冲突，修改冲突，然后提交</span></span><br><span class="line"><span class="bash">git add .  添加所有文件</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"message"</span> 提交到本地</span></span><br><span class="line"><span class="bash">git push   推到github</span></span><br></pre></td></tr></table></figure>
-<p>这种方法会出现两次提交记录（输入命令 git status 会看到两次本地有两次提交），如果不嫌麻烦可以把这两次提交记录合并为一条：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> HEAD~<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>进入文本编辑页面，将第二个pick改成squash或者s，然后保存退出。如下：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pick c6e4557 <span class="built_in">create</span> <span class="keyword">second</span>.txt</span><br><span class="line">s e1a7dfa <span class="built_in">add</span> <span class="keyword">text</span> <span class="keyword">in</span> <span class="keyword">second</span>.txt</span><br></pre></td></tr></table></figure>
-<p>这样这两次提交就合并为一次提交记录了<br>提示：个人感觉方法二有点麻烦或提交记录不简洁，建议用方法一。</p>
-<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>有时修改的内容不想要了，修改的东西有点多，不好改回去，怎么办？回退上一版本即可</p>
-<p>先查看本地提交记录：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>commit 7f0adef13054ab36a6013944c185e2a62b2ca462 Author: username<br>&lt; email&gt; Date:   Thu Aug 3 10:22:25 2017 +0800</p>
-<pre><code>second
-</code></pre><p>commit cefb64b5eb3903c497b63c29424d6968b8838447 Author: username<br>&lt; email&gt; Date:   Thu Aug 3 10:09:30 2017 +0800</p>
-<pre><code>second
-
-second
-</code></pre><p>commit 66fe6b87f2474fe8c325f81901bc57d92376cb5c Author:<br>username<br>&lt; email&gt; Date:   Thu Aug 3 09:17:27 2017 +0800</p>
-<pre><code>frist
-</code></pre></blockquote>
-<p>以上是你的本地git提交记录，commit后面是版本号</p>
-<p>回退到上一版本：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD^   回到上一版本</span></span><br></pre></td></tr></table></figure>
-<p>回退到指定版本：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">-- 66fe6b8   回退到指定版本，版本号输入前几位即可</span></span><br></pre></td></tr></table></figure>
-<h2 id="撤回提交"><a href="#撤回提交" class="headerlink" title="撤回提交"></a>撤回提交</h2><p>有时提交到本地git后，发现机密信息被提交；或者把冲突提交，并且github有更新，这时即不能push也不能pull，出现这些情况时，我们不要强推，强推可能把别人的push覆盖，我们可以撤回提交，恢复修改代码。</p>
-<p>仅仅撤回commit操作，代码仍然保留：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--soft HEAD^</span></span><br></pre></td></tr></table></figure></p>
-<p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
-<p>如果你进行了2次commit，想都撤回，可以使用HEAD~2</p>
-<p>撤回有这几个参数：<br>–mixed<br>不删除工作空间改动代码，撤销commit，并且撤销git add . 操作，这个为默认参数,git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
-<p>–soft<br>不删除工作空间改动代码，撤销commit，不撤销git add . </p>
-<p>–hard<br>删除工作空间改动代码，撤销commit，撤销git add . 完成这个操作后，就恢复到了上一次的commit状态。</p>
-<h2 id="设置忽略特殊文件"><a href="#设置忽略特殊文件" class="headerlink" title="设置忽略特殊文件"></a>设置忽略特殊文件</h2><p>有些特殊文件我们不需要上传到远程仓库中，这个问题解决起来也很简单，在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。</p>
-<p>.gitignore文件对其所在的目录及所在目录的全部子目录均有效。通过将.gitignore文件添加到仓库，其他开发者更新该文件到本地仓库，以共享同一套忽略规则。</p>
-<p><strong>仓库目录下新建一个名为.gitignore的文件</strong></p>
-<p>因为是点开头，没有文件名，没办法直接在windows目录下直接创建，必须通过右键Git Bash，按照Linux的方式来新建.gitignore文件。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vim</span> <span class="selector-class">.gitignore</span></span><br></pre></td></tr></table></figure>
-<p>这样就可以在仓库目录下新建一个名为.gitignore的文件，并且进入编辑。不会用linux的vim，可以查看<a href="http://blog.csdn.net/qq_32337109/article/details/75675338" target="_blank" rel="noopener">我的一篇博客</a>这里面介绍了vi的简单用法（vim是vi的升级版）</p>
-<p><strong>.gitignore忽略规则</strong></p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*.a       <span class="comment"># 忽略所有 .a 结尾的文件</span></span><br><span class="line">!<span class="class"><span class="keyword">lib</span>.<span class="title">a</span>    <span class="comment"># 但 lib.a 除外</span></span></span><br><span class="line">/TODO     <span class="comment"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</span></span><br><span class="line">build/    <span class="comment"># 忽略 build/ 目录下的所有文件</span></span><br><span class="line">doc/*.txt <span class="comment"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span></span><br></pre></td></tr></table></figure>
-<p><strong>忽略失效</strong></p>
-<p>如果第一次提交，没有设置好忽略文件，后期再加，这时忽略会失效，解决办法是把本地的要忽略的文件删除，然后上传，就可以了。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章只是简单介绍了平时常用的几个功能，还有git的分支什么的等等，没有介绍，如果你感兴趣，自己可以去查查资料，研究一下。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/Git教程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-MarkDown语法入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/MarkDown语法入门/">MarkDown语法入门</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/MarkDown语法入门/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:17:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##Markdown语法</p>
-<p>###一：标题设置</p>
-<p>有两种方法</p>
-<p>1.在文字前面加上”#”，通过”#”数量表示几级标题。（一共有六级，一级标题字体最大）标准写法是在#后空一格再写文字 注意#前面不能有空格</p>
-<p>2.用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），例如</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">his is an H1</span><br><span class="line">========</span><br><span class="line">This is an H2</span><br><span class="line">-------------</span><br></pre></td></tr></table></figure>
-<p>任何数量的 = 和 - 都可以有效果<br>另外：标题默认上一行为空行，会自动换行</p>
-<p>###二：换行</p>
-<p>在文本中输入的换行会从最终生成的结果中删除，浏览器会根据可用空间自动换行。如果想强迫换行，可以在行尾插入至少两个空格。</p>
-<p>语法：空格+空格+回车 （也就是说行尾至少要有两个空格）或者可以连续两个回车 （一个 Markdown 段落的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）</p>
-<p>###三：空格</p>
-<p>Markdown不识别半角空格，当需要空格时，按shift+Space,然后再按空格键即可</p>
-<p>###四：强调</p>
-<p>斜体：斜体 　 语法：<em>斜体</em> 或者*斜体 对应 <em>标签</em></p>
-<p>粗体：粗体 语法：<strong>粗体</strong> 或者 <strong>粗体</strong></p>
-<p>###五：列表</p>
-<p><strong>有序列表：</strong></p>
-<ol>
-<li>列表项 </li>
-<li>列表项 </li>
-<li>列表项</li>
-</ol>
-<p>语法：数字+空格+文字 列表第一行和最后一行要空行</p>
-<p><strong>无序列表</strong></p>
-<ul>
-<li>列表项  </li>
-<li>列表现性  </li>
-<li>列表项</li>
-</ul>
-<p>语法：即 星号+空格+文字 或者 短杠+空格+文字</p>
-<p>###六 ：引用</p>
-<p>例子：</p>
-<blockquote>
-<p>第一级引用</p>
-<blockquote>
-<p>第二级引用:Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）和亚伦·斯沃茨（Aaron Swartz）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。[1]这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。<br>Markdown同时还是一个由Gruber编写的Perl脚本：Markdown.pl。它把用markdown语法编写的内容转换成有效的、结构良好的XHTML或HTML内容，并将左尖括号(‘&lt;’)和&amp;号替换成它们各自的字符实体引用。它可以用作单独的脚本，Blosxom和Movable Type的插件又或者BBEdit的文本过滤器.[1]<br>Markdown也已经被其他人用Perl和别的编程语言重新实现，其中一个Perl模块放在了CPAN(Text::Markdown)上。它基于一个BSD风格的许可证分发并可以作为几个内容管理系统的插件。</p>
-</blockquote>
-</blockquote>
-<p>语法：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;第一级引用</span><br><span class="line">&gt;&gt;第二级引用:Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（<span class="keyword">John </span>Gruber）和亚伦·斯沃茨（Aaron <span class="keyword">Swartz）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。[1]这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。</span></span><br><span class="line"><span class="keyword">Markdown同时还是一个由Gruber编写的Perl脚本：Markdown.pl。它把用markdown语法编写的内容转换成有效的、结构良好的XHTML或HTML内容，并将左尖括号('&lt;')和&amp;号替换成它们各自的字符实体引用。它可以用作单独的脚本，Blosxom和Movable </span>Type的插件又或者<span class="keyword">BBEdit的文本过滤器.[1]</span></span><br><span class="line"><span class="keyword">Markdown也已经被其他人用Perl和别的编程语言重新实现，其中一个Perl模块放在了CPAN(Text::Markdown)上。它基于一个BSD风格的许可证分发并可以作为几个内容管理系统的插件。</span></span><br><span class="line"><span class="keyword">在一段引用文字前加上&gt;符号即可 </span></span><br><span class="line">使用 &gt; 表示开始引用，后面的内容会被加上 &lt;<span class="keyword">blockquote&gt; </span>标签。可以每一行都是用，也可以只在第一行使用。用空白行相隔来标志引用结束。&gt;的个数表示引用的层级。</span><br></pre></td></tr></table></figure></p>
-<p>###七：图片与链接</p>
-<p><strong>图片</strong><br>　<img src="http://avatar.csdn.net/C/4/C/1_qq_32337109.jpg" alt="我的头像"><br>　<br>语法：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">我的头像</span>](<span class="link">http://avatar.csdn.net/C/4/C/1_qq_32337109.jpg</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>链接</strong>: <a href="http://blog.csdn.net/qq_32337109" target="_blank" rel="noopener">我的博客</a><br>语法：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">我的博客</span>](<span class="link">http://blog.csdn.net/qq_32337109</span>)</span><br></pre></td></tr></table></figure>
-<p>###八：表格</p>
-<p>比较麻烦，建议直接用HTML</p>
-<p>###九：代码</p>
-<p>作为一个程序员，在页面中插入代码是经常的事情，那么如何插入代码呢？</p>
-<p>示例：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void BubbletSort(int<span class="number">*a</span>,int len) &#123;</span><br><span class="line">    int m;</span><br><span class="line">    <span class="keyword">for</span> (bool <span class="attribute">bSwap</span>=<span class="literal">true</span>; bSwap; len++) &#123;</span><br><span class="line">        bSwap = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (int <span class="attribute">j</span>=1;j&lt;len;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j-1]&gt;a[j]) &#123;   </span><br><span class="line">                <span class="attribute">m</span>=a[j];</span><br><span class="line">                a[j]=a[j-1];</span><br><span class="line">                a[j-1]=m;</span><br><span class="line">                <span class="attribute">bSwap</span>=<span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>语法： 就是三个英文键盘上数字键1左边的那个键</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了</span><br><span class="line"></span><br><span class="line">要制约的只有一些 HTML 区块元素――比如 <span class="tag">&lt;<span class="name">div</span>&gt;</span>、<span class="tag">&lt;<span class="name">table</span>&gt;</span>、<span class="tag">&lt;<span class="name">pre</span>&gt;</span>、<span class="tag">&lt;<span class="name">p</span>&gt;</span> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进</span><br></pre></td></tr></table></figure>
-<p>###十：分割线</p>
-<p>在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<hr>
-<hr>
-<hr>
-<hr>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span><span class="bullet">* *</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">***</span></span><br><span class="line"></span><br><span class="line"><span class="strong">*****</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>- -</span><br></pre></td></tr></table></figure>
-<p>###十一：特殊字符</p>
-<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   反斜线</span><br><span class="line">`   反引号</span><br><span class="line"><span class="bullet">*   </span>星号</span><br><span class="line">_   底线</span><br><span class="line">&#123;&#125;  花括号</span><br><span class="line">[]  方括号</span><br><span class="line">()  括弧</span><br><span class="line"><span class="section">#   井字号</span></span><br><span class="line"><span class="bullet">+   </span>加号</span><br><span class="line"><span class="bullet">-   </span>减号</span><br><span class="line">.   英文句点</span><br><span class="line">!   惊叹号</span><br></pre></td></tr></table></figure>
-<p>###特殊字符转换</p>
-<p>&lt; 写为 &amp;lt<br>&amp; 写为 &amp;amp</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/MarkDown语法入门/">展开全文 >></a>
         </p>
       
 
@@ -951,6 +772,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
@@ -963,11 +788,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -979,19 +808,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1019,15 +844,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,11 +856,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
+                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1047,7 +868,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,11 +880,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
