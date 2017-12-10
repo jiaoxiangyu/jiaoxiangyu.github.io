@@ -158,6 +158,192 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hexo-绑定自己的域名" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/09/hexo-绑定自己的域名/">hexo 绑定自己的域名</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/09/hexo-绑定自己的域名/" class="archive-article-date">
+  	<time datetime="2017-12-09T08:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-09</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前提，你得有一个域名，有些域名需要备案后才能用。</p>
+<h3 id="在域名解析添加记录"><a href="#在域名解析添加记录" class="headerlink" title="在域名解析添加记录"></a>在域名解析添加记录</h3><p>如果你用你顶点域名（如：lookk.cn)，就添加一条主机记录为@的，如果你用www子域名（如：www.look.cn）,github绑定自己的域名只支持这两种，不支持其他子域名，你可以去github的help查看</p>
+<p><img src="http://img.blog.csdn.net/20171209155658980?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzIzMzcxMDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<ul>
+<li>记录类型一定要为 CNAME 这种类型，只有这样你的域名才能指向你的github </li>
+<li>记录值填 yourname.github.io </li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/12/09/hexo-绑定自己的域名/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/09/hexo-绑定自己的域名/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+    <article id="post-hexo-yilia主题添加文章访问量统计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/09/hexo-yilia主题添加文章访问量统计/">hexo yilia主题添加文章访问量统计</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/09/hexo-yilia主题添加文章访问量统计/" class="archive-article-date">
+  	<time datetime="2017-12-09T07:32:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-09</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>hexo添加访问量统计功能可以用<strong>百度的站长统计</strong>、<strong>leancloud</strong>，还有<strong>不蒜子</strong>，这里我用的不蒜子，感觉挺简单的。</p>
+<h3 id="引入不蒜子"><a href="#引入不蒜子" class="headerlink" title="引入不蒜子"></a>引入<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码可以写在footer.ejs里或者header.ejs里或者layout.ejs里，我用的yilia主题，放在/themes/yilia/layout/_partial/footer.ejs<br>
+        
+          <a class="article-more-a" href="/2017/12/09/hexo-yilia主题添加文章访问量统计/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/09/hexo-yilia主题添加文章访问量统计/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-hexo-yilia主题的所有文章功能不能用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -426,196 +612,9 @@
 
 
   
-    <article id="post-hexo-创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/hexo-创建文章、标签、分类/">hexo 创建文章、标签、分类</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/hexo-创建文章、标签、分类/" class="archive-article-date">
-  	<time datetime="2017-12-08T13:17:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、创建文章"><a href="#1、创建文章" class="headerlink" title="1、创建文章"></a>1、创建文章</h3><h4 id="a-在hexo下创建一个新的文章"><a href="#a-在hexo下创建一个新的文章" class="headerlink" title="a.在hexo下创建一个新的文章"></a>a.在hexo下创建一个新的文章</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heox <span class="keyword">new</span> <span class="string">"文章名称"</span></span><br></pre></td></tr></table></figure>
-<p>生产后会提示你文件路径，一般在hexo/source/_posts下</p>
-<h4 id="b-文章基本设置"><a href="#b-文章基本设置" class="headerlink" title="b.文章基本设置"></a>b.文章基本设置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">CentOS7下Tomcat启动慢的原因及解决方案</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2017</span><span class="bullet">-12</span><span class="bullet">-02</span> <span class="number">21</span><span class="string">:01:24</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">true</span> <span class="comment">#是否可评论</span></span><br><span class="line"><span class="attr">toc:</span> <span class="literal">true</span> <span class="comment">#是否显示文章目录</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">"云服务器"</span> <span class="comment">#分类</span></span><br><span class="line"><span class="attr">tags:</span>   <span class="comment">#标签</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">centOS</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">tomcat</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/12/08/hexo-创建文章、标签、分类/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/hexo-创建文章、标签、分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-    <article id="post-CentOS下搭建Hexo-github博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/CentOS下搭建Hexo-github博客/">CentOS下搭建Hexo+github博客</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/CentOS下搭建Hexo-github博客/" class="archive-article-date">
-  	<time datetime="2017-12-07T14:37:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：</p>
-<blockquote>
-<p>以前我一直用csdn博客，没有搭建自己的网站，感觉如果自己的服务器重装系统后，东西都没有了，而且csdn用着感觉还行，就不想麻烦了。前段时间我的写了一篇博客，怎么也提交不上去，而且经常出现无法提交现象，所以就觉得是时候搭建自己的博客网站了。好了不废话了，开始吧。。。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/12/07/CentOS下搭建Hexo-github博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/CentOS下搭建Hexo-github博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -716,10 +715,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
@@ -736,11 +731,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,11 +751,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -780,15 +787,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,11 +795,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -808,11 +807,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,14 +832,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2017-12-09T09:30:13.027Z</updated>
+  <updated>2017-12-10T07:00:09.515Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>idea 常用快捷键</title>
+    <link href="http://www.lookk.cn/2017/12/10/idea-%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://www.lookk.cn/2017/12/10/idea-常用快捷键/</id>
+    <published>2017-12-10T06:58:59.000Z</published>
+    <updated>2017-12-10T07:00:09.515Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ctrl +<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Ctrl</span> + J插入自定义动态代码模板 （必备）</span><br><span class="line"><span class="symbol">Ctrl</span> + P方法参数提示显示 （必备）</span><br><span class="line"><span class="symbol">Ctrl</span> + <span class="built_in">F1</span>在光标所在的错误代码处显示错误信息 （必备）</span><br><span class="line"><span class="symbol">Ctrl</span> + <span class="built_in">F3</span>调转到所选中的词的下一个引用位置 （必备）</span><br><span class="line"><span class="symbol">Ctrl</span> + <span class="built_in">F4</span>关闭当前编辑文件</span><br><span class="line"><span class="symbol">ctrl</span> + x删除一行/剪切</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>Ctrl + Alt +<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + Alt + L格式化代码，可以对当前文件和整个包目录使用 （必备）</span><br><span class="line">Ctrl + Alt + <span class="keyword">O</span>优化导入的类，可以对当前文件和整个包目录使用 （必备）</span><br><span class="line">Ctrl + Alt + <span class="keyword">I</span>光标所在行 或 选中部分进行自动代码缩进，有点类似格式化</span><br><span class="line">Ctrl + Alt + <span class="keyword">Space</span>类名自动完成</span><br><span class="line">Ctrl + Alt + F11切换全屏模式</span><br><span class="line">ctrl + alt + 点击鼠标，进入子类实现</span><br></pre></td></tr></table></figure></p><p>Ctrl + Shift +<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + <span class="built_in">Shift</span> + F根据输入内容查找整个项目 或 指定目录内文件 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + R根据输入内容替换对应内容，范围为整个项目 或 指定目录内文件 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + J自动将下一行合并到当前行末尾 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + I快速查看光标所在的方法 或 类的定义</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + /代码块注释 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + +展开所有代码 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + -折叠所有代码 （必备）</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + Space智能代码提示  改为ctrl+/</span><br><span class="line">Ctrl + <span class="built_in">Shift</span> + Enter自动结束代码，行末自动添加分号 （必备）</span><br><span class="line">ctrl + <span class="built_in">shift</span> + 向上/向下 　整行代码移动</span><br></pre></td></tr></table></figure></p><p>Alt +<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Alt + <span class="keyword">Insert</span>代码自动生成，如生成对象的 <span class="keyword">set</span> / get方法，构造函数，<span class="built_in">toString</span>() 等 （必备）</span><br><span class="line">alt + x 清除控制台</span><br></pre></td></tr></table></figure></p><p>Shift +<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Shift + F10等效于点击工具栏的 <span class="keyword">Run</span><span class="bash"> 按钮</span></span><br></pre></td></tr></table></figure></p><p>Alt + Shift +<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alt + Shift + F10弹出 <span class="keyword">Run</span><span class="bash"> 的可选择菜单</span></span><br></pre></td></tr></table></figure></p><blockquote><p><strong>最特殊的快捷键 Alt + Enter </strong>    　　智能辅助</p></blockquote><p><strong>debugger</strong></p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">alt</span> + 点击变量  查看变量值</span><br><span class="line"></span><br><span class="line">alt + F8  执行表达式</span><br><span class="line"></span><br><span class="line">F7 进入该方法</span><br><span class="line"></span><br><span class="line">F8 下一步</span><br><span class="line"></span><br><span class="line">F9 跑完</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ctrl +&lt;br&gt;&lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;Ctrl&lt;/span&gt; + J		插入自定义动态代码模板 （必备）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;Ctrl&lt;/span&gt; + P		方法参数提示显示 （必备）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;Ctrl&lt;/span&gt; + &lt;span class=&quot;built_in&quot;&gt;F1&lt;/span&gt;		在光标所在的错误代码处显示错误信息 （必备）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;Ctrl&lt;/span&gt; + &lt;span class=&quot;built_in&quot;&gt;F3&lt;/span&gt;		调转到所选中的词的下一个引用位置 （必备）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;Ctrl&lt;/span&gt; + &lt;span class=&quot;built_in&quot;&gt;F4&lt;/span&gt;		关闭当前编辑文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;symbol&quot;&gt;ctrl&lt;/span&gt; + x		删除一行/剪切&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="idea" scheme="http://www.lookk.cn/categories/idea/"/>
+    
+    
+      <category term="idea" scheme="http://www.lookk.cn/tags/idea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IntelliJ IDEA Ultimate 2017激活方法</title>
+    <link href="http://www.lookk.cn/2017/12/10/IntelliJ-IDEA-Ultimate-2017%E6%BF%80%E6%B4%BB%E6%96%B9%E6%B3%95/"/>
+    <id>http://www.lookk.cn/2017/12/10/IntelliJ-IDEA-Ultimate-2017激活方法/</id>
+    <published>2017-12-10T06:54:57.000Z</published>
+    <updated>2017-12-10T06:58:39.023Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>以下两种方式均可：</strong></p><blockquote><p><strong>方法1</strong>.在网站<a href="http://idea.lanyus.com/中获取注册码，填入Activation" target="_blank" rel="noopener">http://idea.lanyus.com/中获取注册码，填入Activation</a> code中；</p></blockquote><hr><blockquote><p><strong>方法2</strong>.选择License server项，填入下面任一地址：</p><p><a href="http://intellij.mandroid.cn/" target="_blank" rel="noopener">http://intellij.mandroid.cn/</a></p><p><a href="http://idea.imsxm.com/" target="_blank" rel="noopener">http://idea.imsxm.com/</a></p><p><a href="http://idea.iteblog.com/key.php" target="_blank" rel="noopener">http://idea.iteblog.com/key.php</a><br>1<br>2<br>3<br>4<br>5<br>6<br>然后点击Activate即可。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;以下两种方式均可：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;方法1&lt;/strong&gt;.在网站&lt;a href=&quot;http://idea.lanyus.com/中获取注册码，填入Activation&quot; target=&quot;_blan
+      
+    
+    </summary>
+    
+      <category term="idea" scheme="http://www.lookk.cn/categories/idea/"/>
+    
+    
+      <category term="idea" scheme="http://www.lookk.cn/tags/idea/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 设置网站小图表</title>
@@ -257,9 +306,9 @@
       <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
-    
       <category term="centOS" scheme="http://www.lookk.cn/tags/centOS/"/>
+    
+      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
     
   </entry>
   
@@ -484,58 +533,6 @@
     
     
       <category term="String" scheme="http://www.lookk.cn/tags/String/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java的System.getProperty()方法可以获取的值</title>
-    <link href="http://www.lookk.cn/2017/12/03/java%E7%9A%84System-getProperty-%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E7%9A%84%E5%80%BC/"/>
-    <id>http://www.lookk.cn/2017/12/03/java的System-getProperty-方法可以获取的值/</id>
-    <published>2017-12-03T03:34:29.000Z</published>
-    <updated>2017-12-07T08:43:29.533Z</updated>
-    
-    <content type="html"><![CDATA[<p>很多时候我们需要在项目中读取外部属性文件，用到了System.getProperty(“”)方法。这个方法需要配置JVM系统属性，用键值对存储。</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">java<span class="selector-class">.version</span>Java 运行时环境版本</span><br><span class="line">java<span class="selector-class">.vendor</span>Java 运行时环境供应商</span><br><span class="line">java<span class="selector-class">.vendor</span><span class="selector-class">.url</span>Java 供应商的 URL</span><br><span class="line">java<span class="selector-class">.home</span>Java 安装目录</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.version</span>Java 虚拟机规范版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.vendor</span>Java 虚拟机规范供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.name</span>Java 虚拟机规范名称</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.version</span>Java 虚拟机实现版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.vendor</span>Java 虚拟机实现供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.name</span>Java 虚拟机实现名称</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.version</span>Java 运行时环境规范版本</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.vendor</span>Java 运行时环境规范供应商</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.name</span>Java 运行时环境规范名称</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.version</span>Java 类格式版本号</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.path</span>Java 类路径</span><br><span class="line">java<span class="selector-class">.library</span><span class="selector-class">.path</span>加载库时搜索的路径列表</span><br><span class="line">java<span class="selector-class">.io</span><span class="selector-class">.tmpdir</span>默认的临时文件路径</span><br><span class="line">java<span class="selector-class">.compiler</span>要使用的 JIT 编译器的名称</span><br><span class="line">java<span class="selector-class">.ext</span><span class="selector-class">.dirs</span>一个或多个扩展目录的路径</span><br><span class="line">os<span class="selector-class">.name</span>操作系统的名称</span><br><span class="line">os<span class="selector-class">.arch</span>操作系统的架构</span><br><span class="line">os<span class="selector-class">.version</span>操作系统的版本</span><br><span class="line">file<span class="selector-class">.separator</span>文件分隔符（在 UNIX 系统中是“/”）</span><br><span class="line">path<span class="selector-class">.separator</span>路径分隔符（在 UNIX 系统中是“:”）</span><br><span class="line">line<span class="selector-class">.separator</span>行分隔符（在 UNIX 系统中是“/n”）</span><br><span class="line">user<span class="selector-class">.name</span>用户的账户名称</span><br><span class="line">user<span class="selector-class">.home</span>用户的主目录</span><br><span class="line">user<span class="selector-class">.dir</span>用户的当前工作目录</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;很多时候我们需要在项目中读取外部属性文件，用到了System.getProperty(“”)方法。这个方法需要配置JVM系统属性，用键值对存储。&lt;/p&gt;
-&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutte
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lookk.cn/categories/java/"/>
-    
-    
-      <category term="System" scheme="http://www.lookk.cn/tags/System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java获得文件路径</title>
-    <link href="http://www.lookk.cn/2017/12/03/java%E8%8E%B7%E5%BE%97%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/"/>
-    <id>http://www.lookk.cn/2017/12/03/java获得文件路径/</id>
-    <published>2017-12-03T03:33:26.000Z</published>
-    <updated>2017-12-07T08:43:42.873Z</updated>
-    
-    <content type="html"><![CDATA[<p>1，FileTest.class.getResource(“”)<br>得到的是当前类FileTest.class文件的URI目录。不包括自己</p><p>2，FileTest.class.getResource(“/“)<br>得到的是当前的classpath的绝对URI路径。</p><p>3，Thread.currentThread().getContextClassLoader().getResource(“”)<br>得到的也是当前ClassPath的绝对URI路径。</p><p>4，FileTest.class.getClassLoader().getResource(“”)<br>得到的也是当前ClassPath的绝对URI路径。</p><p>5，ClassLoader.getSystemResource(“”)<br>得到的也是当前ClassPath的绝对URI路径。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1，FileTest.class.getResource(“”)&lt;br&gt;得到的是当前类FileTest.class文件的URI目录。不包括自己&lt;/p&gt;
-&lt;p&gt;2，FileTest.class.getResource(“/“)&lt;br&gt;得到的是当前的classpath的绝对UR
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lookk.cn/categories/java/"/>
-    
-    
-      <category term="java" scheme="http://www.lookk.cn/tags/java/"/>
     
   </entry>
   
