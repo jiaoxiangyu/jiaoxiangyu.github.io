@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="枫之木落">
 <meta property="og:description" content="前言：  以前我一直用csdn博客，没有搭建自己的网站，感觉如果自己的服务器重装系统后，东西都没有了，而且csdn用着感觉还行，就不想麻烦了。前段时间我的写了一篇博客，怎么也提交不上去，而且经常出现无法提交现象，所以就觉得是时候搭建自己的博客网站了。好了不废话了，开始吧。。。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-08T14:13:29.953Z">
+<meta property="og:updated_time" content="2017-12-13T12:27:38.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下搭建Hexo+github博客">
 <meta name="twitter:description" content="前言：  以前我一直用csdn博客，没有搭建自己的网站，感觉如果自己的服务器重装系统后，东西都没有了，而且csdn用着感觉还行，就不想麻烦了。前段时间我的写了一篇博客，怎么也提交不上去，而且经常出现无法提交现象，所以就觉得是时候搭建自己的博客网站了。好了不废话了，开始吧。。。">
@@ -91,7 +91,7 @@
 					<a class="mail" target="_blank" href="/information" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
-			<div style="margin-top:30px;">
+			<div style="margin-top:20px;">
 				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240 height=52 src="//music.163.com/outchain/player?type=2&id=33035954&auto=0&height=32"></iframe>
 			</div>
 		</nav>
@@ -193,15 +193,15 @@
 <p>以前我一直用csdn博客，没有搭建自己的网站，感觉如果自己的服务器重装系统后，东西都没有了，而且csdn用着感觉还行，就不想麻烦了。前段时间我的写了一篇博客，怎么也提交不上去，而且经常出现无法提交现象，所以就觉得是时候搭建自己的博客网站了。好了不废话了，开始吧。。。</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="1、安装安装Node-js"><a href="#1、安装安装Node-js" class="headerlink" title="1、安装安装Node.js"></a>1、安装安装Node.js</h3><h4 id="a-下载"><a href="#a-下载" class="headerlink" title="a.下载"></a>a.下载</h4><p>找到最新的下载地址，用wget命令下载到本地<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v9.<span class="number">0.0</span>/<span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span>-linux-x64.tar.xz</span><br></pre></td></tr></table></figure></p>
+<h3 id="1、安装安装Node-js"><a href="#1、安装安装Node-js" class="headerlink" title="1、安装安装Node.js"></a>1、安装安装Node.js</h3><h4 id="a-下载"><a href="#a-下载" class="headerlink" title="a.下载"></a>a.下载</h4><p>找到最新的下载地址，用wget命令下载到本地<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v9.<span class="number">3.0</span>/<span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span>-linux-x64.tar.xz</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>注意：安装新一点的版本，自己去<a href="https://nodejs.org/dist查看，也不要安装最新的，可能有问题，但也不能太老，我开始因为版本太低好多功能不能实现" target="_blank" rel="noopener">https://nodejs.org/dist查看，也不要安装最新的，可能有问题，但也不能太老，我开始因为版本太低好多功能不能实现</a></p>
+<p>注意：安装最新版本，网址<a href="https://nodejs.org/dist" target="_blank" rel="noopener">https://nodejs.org/dist</a></p>
 </blockquote>
-<h4 id="b-解压命令"><a href="#b-解压命令" class="headerlink" title="b.解压命令"></a>b.解压命令</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xz -d <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span>-linux-x64.tar.xz  //解压为tar文件</span><br><span class="line"> tar -xvf <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span>-linux-x64.tar</span><br></pre></td></tr></table></figure>
+<h4 id="b-解压命令"><a href="#b-解压命令" class="headerlink" title="b.解压命令"></a>b.解压命令</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xz -d <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span>-linux-x64.tar.xz  //解压为tar文件</span><br><span class="line">tar -xvf <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span>-linux-x64.tar</span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvJf <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span>-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvJf <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span>-linux-x64.tar.xz</span><br></pre></td></tr></table></figure>
 <p>文件就被解压到当前文件夹下了，然后移动</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv  <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span>-linux-x64 <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span></span><br><span class="line">mv  <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">0.0</span> /usr/local/<span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv  <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span>-linux-x64 <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span></span><br><span class="line">mv  <span class="keyword">node</span><span class="title">-v9</span>.<span class="number">3.0</span> /usr/local/<span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
 <h4 id="c-配置环境变量"><a href="#c-配置环境变量" class="headerlink" title="c.配置环境变量"></a>c.配置环境变量</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑 /etc/profile (使用vim)</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="comment"># 在底部添加 PATH 变量</span></span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:/usr/local/node/bin</span><br><span class="line"><span class="comment"># 保存退出，先按exit键，再按shift+：</span></span><br><span class="line">wq</span><br><span class="line"><span class="comment"># 最后保存并使其生效即可</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 <h3 id="2、安装Hexo"><a href="#2、安装Hexo" class="headerlink" title="2、安装Hexo"></a>2、安装Hexo</h3><h4 id="a-安装hexo"><a href="#a-安装hexo" class="headerlink" title="a.安装hexo"></a>a.安装hexo</h4><p>我直接安装在root根目录了，你可以自己选择安装目录<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建目录</span></span><br><span class="line">mkdir hexo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换目录</span></span><br><span class="line">cd hexo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装Git(已安装可跳过)</span></span><br><span class="line">yum install git-core</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 Hexo</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化 Hexo</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure></p>
 <h4 id="b-安装插件"><a href="#b-安装插件" class="headerlink" title="b.安装插件"></a>b.安装插件</h4><p>我现在看别人博客才发现我没有安装这些插件，我用yilia主题没有安装这些插件也可以正常使用。建议安装吧。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">index</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">archive</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-<span class="keyword">category</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-tag <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-<span class="keyword">server</span> <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-heroku <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-rsync <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-openshift <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-renderer-marked <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-renderer-stylus <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-feed <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-sitemap <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
@@ -562,11 +562,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,19 +602,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
