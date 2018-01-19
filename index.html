@@ -158,6 +158,138 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/19/Linux常用命令/">Linux常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/19/Linux常用命令/" class="archive-article-date">
+  	<time datetime="2018-01-19T08:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###配置主机名<br>  hostname 显示当前主机名称；<br>  sudo hostname Server 把主机名改为Server；</p>
+<p>###命令行编辑的几个辅助操作<br>Tab键：自动补齐<br>反斜杠“\”：强制换行<br>快捷键 Ctrl+U：清空至行首<br>快捷键 Ctrl+K：清空至行尾<br>快捷键 Ctrl+L：清屏<br>快捷键 Ctrl+C：取消本次命令编辑<br>快捷键 Ctrl+ins 复制<br>快捷键 Shift+ins 粘贴</p>
+<p>&lt;–more–&gt;</p>
+<p>###文件操作<br><strong>查看工作目录</strong><br>pwd</p>
+<p><strong>复制 cp</strong><br>    cp -r 来源档(source) 目标档(destination) 复制文件夹<br>    cp -i  source destination 复制文件</p>
+<p><strong>移动 mv</strong><br>    mv source  destination 移动<br>    mv oldName newName 改名</p>
+<p><strong>创建文件</strong><br>touch test1    // 创建 test1 文件</p>
+<p><strong>查看默认权限</strong><br>ls -al test1    // 查看 test1 默认权限<br>-rw-r–r– 1 root root 0 Nov 15 10:32 test1</p>
+<p><strong>修改 test1 权限</strong><br>chmod u=rwx,g=rx,o=r  test1    // 修改 test1 权限</p>
+<p><strong>创建新目录</strong><br>    mkdir 目录名称<br>    mkdir -p test1/test2/test3/test4 创建多层目录</p>
+<p><strong>删除空的目录</strong><br>    rmdir 目录名称<br>    rmdir -p test1/test2/test3/test4 将 test1/test2/test3/test4 一次删除</p>
+<p><strong>删除文件或目录</strong><br>    rm -rf 文件或目录名称<br>    rm  -rf  *  删除文件夹下的所有文件</p>
+<p><strong>统计目录及文件的空间占用情况 du</strong><br>-a：统计时包括所有的文件，而不仅仅只统计目录<br>-h：以更易读的字节单位（K、M等）显示信息<br>-s：只统计每个参数所占用空间总的大小</p>
+<p>du -sh jxy<br>5.2M    jxy</p>
+<p><strong>查看文件类型</strong><br>file 文件名<br>file jxy<br>jxy: directory</p>
+<p><strong>查找Linux命令文件并显示所在的位置 —— 搜索范围由 PATH 环境变量指定</strong><br>which  命令或程序名<br> which  mkdir<br>/bin/mkdir</p>
+<p>###yum常用命令<br>选项包括-h（帮助），-y（当安装过程提示选择全部为”yes”），-q（不显示安装的过程）等等。<br>•    1.列出所有可更新的软件清单命令：yum check-update<br>•    2.更新所有软件命令：yum update<br>•    3.仅安装指定的软件命令：yum install <package_name><br>•    4.仅更新指定的软件命令：yum update <package_name><br>•    5.列出所有可安裝的软件清单命令：yum list<br>•    6.删除软件包命令：yum remove <package_name><br>•    7.查找软件包 命令：yum search <keyword><br>•    8.清除缓存命令:<br>yum clean packages: 清除缓存目录下的软件包<br>yum clean headers: 清除缓存目录下的 headers<br>yum clean oldheaders: 清除缓存目录下旧的 headers<br>yum clean, yum clean all (= yum clean packages; yum clean oldheaders) :清除缓存目录下的软件包及旧的headers</keyword></package_name></package_name></package_name></p>
+<p>###查询<br><strong>find命令</strong><br>用途：用于查找文件或目录<br>格式：find  [查找范围]  [查找条件]</p>
+<p>-name：按文件名称查找<br>-size：按文件大小查找<br>-user：按文件属主查找<br>-type：按文件类型查找</p>
+<p>find / -name file1         从 ‘/‘ 开始进入根文件系统查找文件和目录<br>find / -user user1         查找属于用户 ‘user1’ 的文件和目录<br>find /home/user1 -name *.bin 在目录 ‘/ home/user1’ 中查找以 ‘.bin’ 结尾的文件</p>
+<p>###压缩解压<br>bzip2 file1                           压缩file1<br>bunzip2 file1.bz2                      解压file1.bz2<br>gzip file1                            压缩file1<br>gunzip file1.gz                       解压file1.gz<br>tar -cvf archive.tar file1            把file1打包成 archive.tar<br>（-c: 建立压缩档案；-v: 显示所有过程；-f:     使用档案名字，是必须的，是最后一个参数）<br>tar -cvf archive.tar file1 dir1       把 file1，dir1 打包成 archive.tar<br>tar -tf archive.tar                   显示一个包中的内容<br>tar -xvf archive.tar                  释放一个包<br>tar -xvf archive.tar -C /tmp             把压缩包释放到 /tmp目录下<br>zip file1.zip file1                   创建一个zip格式的压缩包<br>unzip file1.zip                       解压一个zip格式的压缩包到当前目录<br>unzip test.zip -d /tmp/               解压一个zip格式的压缩包到 /tmp 目录</p>
+<p>###Vim<br>vi filename     打开filename文件<br>i                 进入编辑模式<br>ESE             退出编辑模式，然后按冒号，出现‘：’，继续输入以下命令<br>:w               保存文件<br>:w cszhi.com    保存至cszhi.com文件<br>:q               退出编辑器，如果文件已修改请使用下面的命令<br>:q!                退出编辑器，且不保存<br>:wq              退出编辑器，且保存文件</p>
+<p>###用户管理<br><strong>添加用户</strong><br>useradd  [选项]…  用户名</p>
+<p>-c comment 指定一段注释性描述。<br>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。<br>-g 用户组 指定用户所属的用户组。<br>-G 用户组，用户组 指定用户所属的附加组。<br>-s Shell文件 指定用户的登录Shell。<br>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</p>
+<p>useradd –d /usr/sam -m sam</p>
+<p><strong>删除帐号</strong><br>userdel 选项 用户名<br>userdel -r sam</p>
+<p><strong>修改帐号</strong><br>usermod 选项 用户名<br>此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。<br>usermod -s /bin/ksh -d /home/z –g developer sam</p>
+<p><strong>修改密码</strong><br>  passwd 用户名</p>
+<p>###磁盘管理<br><strong>列出文件系统的整体磁盘使用量</strong><br>df [-ahikHTm] [目录或文件名]</p>
+<p>-a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；<br>-k ：以 KBytes 的容量显示各文件系统；<br>-m ：以 MBytes 的容量显示各文件系统；<br>-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；<br>-H ：以 M=1000K 取代 M=1024K 的进位方式；<br>-T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；<br>-i ：不用硬盘容量，而以 inode 的数量来显示</p>
+<p>df<br>Filesystem           1K-blocks      Used Available Use% Mounted on<br>/dev/sda2             16242616   2248436  13169092  15% /<br>tmpfs                  1035848       420   1035428   1% /dev/shm<br>/dev/sda1               297485     28815    253310  11% /boot</p>
+<p><strong>检查磁盘空间使用量</strong><br>du [-ahskm] 文件或目录名称</p>
+<p>-a ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。<br>-h ：以人们较易读的容量格式 (G/M) 显示；<br>-s ：列出总量而已，而不列出每个各别的目录占用容量；<br>-S ：不包括子目录下的总计，与 -s 有点差别。<br>-k ：以 KBytes 列出容量显示；<br>-m ：以 MBytes 列出容量显示；</p>
+<p>du -a<br>12      ./install.log.syslog   &lt;==有文件的列表了<br>8       ./.bash_logout<br>8       ./test4<br>8       ./test2</p>
+<p><strong>虚拟机添加硬盘</strong><br>    虚拟机-&gt;设置-&gt;添加-&gt;硬盘-&gt;选择大小，其他默认就行<br>    添加完后fdisk –l 看看是否挂载，否则重启电脑（暂时就会这个）</p>
+<p><strong>磁盘分区</strong><br>fdisk –l<br>会看到一个新的磁盘没有分区</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/sdb: <span class="number">21.5</span> GB, <span class="number">21474836480</span> bytes</span><br><span class="line"></span><br><span class="line"> 	#fdisk /dev/sdb</span><br><span class="line">	Command (m <span class="keyword">for</span> <span class="keyword">help</span>): n   <span class="comment">//分区</span></span><br><span class="line">	Command action</span><br><span class="line">   	e   extended  <span class="comment">//逻辑分区</span></span><br><span class="line">   	p   primary <span class="keyword">partition</span> (<span class="number">1</span><span class="number">-4</span>) <span class="comment">//主分区</span></span><br><span class="line">	p  <span class="comment">//选择主分区</span></span><br><span class="line">	Partition number (<span class="number">1</span><span class="number">-4</span>): <span class="number">1</span> <span class="comment">//第几个分区</span></span><br><span class="line">	First <span class="keyword">cylinder</span> (<span class="number">1</span><span class="number">-2610</span>, <span class="keyword">default</span> <span class="number">1</span>): <span class="number">1</span>  </span><br><span class="line">	Last <span class="keyword">cylinder</span>, +cylinders or +<span class="keyword">size</span>&#123;K,M,G&#125; (<span class="number">1</span><span class="number">-2610</span>, <span class="keyword">default</span> <span class="number">2610</span>): <span class="number">1024</span></span><br><span class="line">	Command (m <span class="keyword">for</span> <span class="keyword">help</span>): w   <span class="comment">//保存退出</span></span><br></pre></td></tr></table></figure>
+<p>###进程<br><strong>查看系统服务的启动状态</strong><br>chkconfig –list<br>chkconfig –list 服务名称<br> chkconfig –list network</p>
+<p><strong>设置系统服务的启动状态</strong><br>chkconfig  –level  级别列表 服务名  on|off<br>chkconfig –level 2345 network on  </p>
+<p><strong>终止进程</strong><br>kill用于终止指定PID号的进程<br>killall用于终止指定名称的所有进程<br>-9 选项用于强制终止</p>
+<p>[root@localhost ~]# pgrep -l “portmap”<br>2869  portmap<br>[root@localhost ~]# kill  -9  2869<br>[root@localhost ~]# killall -9 vim<br>[1]-  已杀死               /usr/bin/vim file1<br>[2]-  已杀死               /usr/bin/vim file2</p>
+<p>###<strong>重点内容</strong>服务器<br>a．开启web服务<br>/etc/init.d/httpd start<br>b．清除防火墙<br>/etc/init.d/iptables stop<br>c．获得ip<br>ifconfig</p>
+<p>配置服务器访问ip<br>cd /etc/httpd/conf<br>vi  httpd.conf</p>
+<directory "="" var="" www="" html"=""><br>    Options Indexes FollowSymLinks<br><br>    AllowOverride None<br><br>Allow from 192.168.1.90/192.168.1.199<br>deny from 192.168.1.200/192.168.1.210<br><br></directory>
+
+<p>Shell</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/19/Linux常用命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-MongoDB-Java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -542,105 +674,6 @@
 
 
   
-    <article id="post-Redis学习一（简介与安装）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/10/Redis学习一（简介与安装）/">Redis学习一（简介与安装）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/10/Redis学习一（简介与安装）/" class="archive-article-date">
-  	<time datetime="2017-12-10T07:08:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h2><p>Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。<br>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
-<blockquote>
-<ul>
-<li><p>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</p>
-</li>
-<li><p>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</p>
-</li>
-<li><p>Redis支持数据的备份，即master-slave模式的数据备份。</p>
-</li>
-</ul>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/12/10/Redis学习一（简介与安装）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/redis//" class="article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/10/Redis学习一（简介与安装）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -655,7 +688,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 枫之木落
+    		&copy; 2018 枫之木落
 			
 			<span id="busuanzi_container_site_uv"> 
 				&emsp;&emsp;&emsp;本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
@@ -744,19 +777,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,11 +793,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,7 +821,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,6 +830,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -816,11 +853,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -832,11 +869,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -852,7 +889,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -864,11 +901,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
             
             <div class="clearfix"></div>

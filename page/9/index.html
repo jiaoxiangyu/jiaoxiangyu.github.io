@@ -158,6 +158,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-设计模式总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/设计模式总结/">设计模式总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/设计模式总结/" class="archive-article-date">
+  	<time datetime="2017-12-02T14:02:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单总结了一下设计模式，没有举例子，只有工厂模式举例子了，做了一个ppt简单介绍了一下25种设计模式和j2ee设计模式（<a href="https://github.com/jiaoxiangyu/pattern" target="_blank" rel="noopener">下载链接</a>）</p>
+<h2 id="六大原则"><a href="#六大原则" class="headerlink" title="六大原则"></a>六大原则</h2><p><strong>1、开闭原则（Open Close Principle）</strong></p>
+<p>开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。</p>
+<p><strong>2、里氏代换原则（Liskov Substitution Principle）</strong></p>
+<p>里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。</p>
+<p><strong>3、依赖倒转原则（Dependence Inversion Principle）</strong></p>
+<p>这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
+<p><strong>4、接口隔离原则（Interface Segregation Principle）</strong></p>
+<p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
+<p><strong>5、迪米特法则，又称最少知道原则（Demeter Principle）</strong></p>
+<p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
+<p><strong>6、合成复用原则（Composite Reuse Principle）</strong></p>
+<p>合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。<br>设计模式有六大设计原则</p>
+<h1 id="25种设计模式"><a href="#25种设计模式" class="headerlink" title="25种设计模式"></a>25种设计模式</h1><p>GOF总结的23种设计模式还有两个被遗忘的设计模式，我总结了25种，设计模式并不止这些，成百上千。这25种被分为三类</p>
+<p><strong>创建型模式</strong><br>这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。</p>
+<blockquote>
+<p>1、工厂模式（Factory Pattern）<br> 2、抽象工厂模式（Abstract Factory Pattern）<br> 4、建造者模式（Builder Pattern）<br> 5、原型模式（Prototype Pattern）</p>
+</blockquote>
+<p><strong>结构型模式</strong><br>这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。    </p>
+<blockquote>
+<p> 6、适配器模式（Adapter Pattern）<br> 7、桥接模式（Bridge Pattern）<br>8、过滤器模式（Filter、Criteria Pattern）<br>9、组合模式（Composite Pattern）<br> 10、装饰器模式（Decorator Pattern）<br> 11、外观模式（Facade Pattern）<br>12、享元模式（Flyweight Pattern）<br> 13、代理模式（Proxy Pattern）</p>
+</blockquote>
+<p><strong>行为型模式</strong><br>这些设计模式特别关注对象之间的通信。    </p>
+<blockquote>
+<p>14、责任链模式（Chain of Responsibility Pattern）<br>15、命令模式（Command Pattern）<br>16、解释器模式（Interpreter Pattern）<br>17、迭代器模式（Iterator Pattern）<br>18、中介者模式（Mediator Pattern）<br>19、备忘录模式（Memento Pattern）<br>20、观察者模式（Observer Pattern）<br>21、状态模式（State Pattern）<br>22、空对象模式（Null Object Pattern）<br>23、策略模式（Strategy Pattern）<br>24、模板模式（Template Pattern）<br>25、访问者模式（Visitor Pattern）</p>
+</blockquote>
+<h2 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h2><p>工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。创建型模式。它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。</p>
+<p><strong>意图：</strong>定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。<br><strong>主要解决：</strong>主要解决接口选择的问题。<br><strong>何时使用：</strong>我们明确地计划不同条件下创建不同实例时。<br><strong>使用场景：</strong> 1、日志记录器：记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 2、数据库访问，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 3、设计一个连接服务器的框架，需要三个协议，”POP3”、”IMAP”、”HTTP”，可以把这三个作为产品类，共同实现一个接口。<br><strong>注意事项：</strong>作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂对象适合使用工厂模式，而简单对象，特别是只需要通过 new 就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</p>
+<h2 id="2、抽象工厂模式"><a href="#2、抽象工厂模式" class="headerlink" title="2、抽象工厂模式"></a>2、抽象工厂模式</h2><p>抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。创建型模式。在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。</p>
+<p><strong>意图：</strong>提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。<br><strong>主要解决：</strong>主要解决接口选择的问题。<br><strong>何时使用：</strong>系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。<br><strong>使用场景：</strong> 1、QQ 换皮肤，一整套一起换。 2、生成不同操作系统的程序。<br><strong>注意事项：</strong>产品族难扩展，产品等级易扩展。</p>
+<h2 id="3、单例模式"><a href="#3、单例模式" class="headerlink" title="3、单例模式"></a>3、单例模式</h2><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。创建型模式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
+<p><strong>意图：</strong>保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br><strong>主要解决：</strong>一个全局使用的类频繁地创建与销毁。<br><strong>何时使用：</strong>当您想控制实例数目，节省系统资源的时候。<br><strong>使用场景：</strong> 1、要求生产唯一序列号。 2、WEB 中的计数器，不用每次刷新都在数据库里加一次，用单例先缓存起来。 3、创建的一个对象需要消耗的资源过多，比如 I/O 与数据库的连接等。<br><strong>注意事项：</strong> getInstance() 方法中需要使用同步锁 synchronized (Singleton.class) 防止多线程同时进入造成 instance 被多次实例化。</p>
+<h2 id="4、建造者模式"><a href="#4、建造者模式" class="headerlink" title="4、建造者模式"></a>4、建造者模式</h2><p>建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。创建型模式。它提供了一种创建对象的最佳方式。</p>
+<p><strong>意图：</strong>将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。<br><strong>主要解决：</strong>主要解决在软件系统中，有时候面临着”一个复杂对象”的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将它们组合在一起的算法却相对稳定。<br><strong>何时使用：</strong>一些基本部件不会变，而其组合经常变化的时候。<br><strong>使用场景：</strong> 1、需要生成的对象具有复杂的内部结构。 2、需要生成的对象内部属性本身相互依赖。<br><strong>注意事项：</strong>与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。</p>
+<h2 id="5、原型模式"><a href="#5、原型模式" class="headerlink" title="5、原型模式"></a>5、原型模式</h2><p>原型模式（Prototype Pattern）是用于创建重复的对象，同时又能保证性能。创建型模式，这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。当直接创建对象的代价比较大时，则采用这种模式。</p>
+<p><strong>意图：</strong>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。<br><strong>主要解决：</strong>在运行期建立和删除原型。<br><strong>使用场景：</strong> 1、资源优化场景。 2、类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等。 3、性能和安全要求的场景。 4、通过 new 产生一个对象需要非常繁琐的数据准备或访问权限，则可以使用原型模式。 5、一个对象多个修改者的场景。 6、一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用。 7、在实际项目中，原型模式很少单独出现，一般是和工厂方法模式一起出现，通过 clone 的方法创建一个对象，然后由工厂方法提供给调用者。原型模式已经与 Java 融为浑然一体，大家可以随手拿来使用。<br><strong>注意事项：</strong>与通过对一个类进行实例化来构造新对象不同的是，原型模式是通过拷贝一个现有对象生成新对象的。浅拷贝实现 Cloneable，重写，深拷贝是通过实现 Serializable 读取二进制流。</p>
+<h2 id="6、适配器模式"><a href="#6、适配器模式" class="headerlink" title="6、适配器模式"></a>6、适配器模式</h2><p>适配器模式（Adapter Pattern）是作为两个不兼容的接口之间的桥梁。结构型模式，它结合了两个独立接口的功能。这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内存卡。</p>
+<p><strong>意图：</strong>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br><strong>主要解决：</strong>主要解决在软件系统中，常常要将一些”现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。<br><strong>使用场景：</strong>有动机地修改一个正常运行的系统的接口，这时应该考虑使用适配器模式。<br><strong>注意事项：</strong>适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。</p>
+<h2 id="7、桥接模式"><a href="#7、桥接模式" class="headerlink" title="7、桥接模式"></a>7、桥接模式</h2><p>桥接（Bridge）是用于把抽象化与实现化解耦，使得二者可以独立变化。结构型模式，它通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。</p>
+<p><strong>意图：</strong>将抽象部分与实现部分分离，使它们都可以独立的变化。<br><strong>主要解决：</strong>在有多种可能会变化的情况下，用继承会造成类爆炸问题，扩展起来不灵活。<br><strong>何时使用：</strong>实现系统可能有多个角度分类，每一种角度都可能变化。<br><strong>使用场景：</strong> 1、如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。 2、对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。 3、一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。<br><strong>注意事项：</strong>对于两个独立变化的维度，使用桥接模式再适合不过了。</p>
+<h2 id="8、过滤器模式"><a href="#8、过滤器模式" class="headerlink" title="8、过滤器模式"></a>8、过滤器模式</h2><p>过滤器模式（Filter Pattern）或标准模式（Criteria Pattern）是一种设计模式，这种模式允许开发人员使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把它们连接起来。结构型模式，它结合多个标准来获得单一标准。</p>
+<h2 id="9、组合模式"><a href="#9、组合模式" class="headerlink" title="9、组合模式"></a>9、组合模式</h2><p>组合模式（Composite Pattern），又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。结构型模式，它创建了对象组的树形结构。</p>
+<p><strong>意图：</strong>将对象组合成树形结构以表示”部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。<br><strong>主要解决：</strong>它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以向处理简单元素一样来处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。<br><strong>何时使用：</strong> 1、您想表示对象的部分-整体层次结构（树形结构）。 2、您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。<br><strong>使用场景：</strong>部分、整体场景，如树形菜单，文件、文件夹的管理。<br><strong>注意事项：</strong>定义时为具体类。</p>
+<h2 id="10、装饰器模式"><a href="#10、装饰器模式" class="headerlink" title="10、装饰器模式"></a>10、装饰器模式</h2><p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。结构型模式，它是作为现有的类的一个包装。这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。<br>我们通过下面的实例来演示装饰器模式的用法。其中，我们将把一个形状装饰上不同的颜色，同时又不改变形状类。</p>
+<p><strong>意图：</strong>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。<br><strong>主要解决：</strong>一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。<br><strong>何时使用：</strong>在不想增加很多子类的情况下扩展类。</p>
+<h2 id="11、外观模式"><a href="#11、外观模式" class="headerlink" title="11、外观模式"></a>11、外观模式</h2><p>外观模式（Facade Pattern）隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。<br>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
+<p><strong>意图：</strong>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。<br>主要解决：降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。<br><strong>何时使用：</strong> 1、客户端不需要知道系统内部的复杂联系，整个系统只需提供一个”接待员”即可。 2、定义系统的入口。</p>
+<h2 id="12、享元模式"><a href="#12、享元模式" class="headerlink" title="12、享元模式"></a>12、享元模式</h2><p>享元模式（Flyweight Pattern）主要用于减少创建对象的数量，以减少内存占用和提高性能。结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。<br>享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。<br>意图：运用共享技术有效地支持大量细粒度的对象。</p>
+<p><strong>主要解决：</strong>在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。<br><strong>何时使用：</strong> 1、系统中有大量对象。 2、这些对象消耗大量内存。 3、这些对象的状态大部分可以外部化。 4、这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替。 5、系统不依赖于这些对象身份，这些对象是不可分辨的。</p>
+<h2 id="13、代理模式"><a href="#13、代理模式" class="headerlink" title="13、代理模式"></a>13、代理模式</h2><p>在代理模式（Proxy Pattern）中，一个类代表另一个类的功能。结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
+<p><strong>意图：</strong>为其他对象提供一种代理以控制对这个对象的访问。<br><strong>主要解决：</strong>在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。<br><strong>使用场景：</strong>按职责来划分，通常有以下使用场景： 1、远程代理。 2、虚拟代理。 3、Copy-on-Write 代理。 4、保护（Protect or Access）代理。 5、Cache代理。 6、防火墙（Firewall）代理。 7、同步化（Synchronization）代理。 8、智能引用（Smart Reference）代理。<br><strong>注意事项：</strong> 1、和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。 2、和装饰器模式的区别：装饰器模式为了增强功能，而代理模式是为了加以控制。</p>
+<h2 id="14、责任链模式"><a href="#14、责任链模式" class="headerlink" title="14、责任链模式"></a>14、责任链模式</h2><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。行为型模式。<br>在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。</p>
+<p><strong>意图：</strong>避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。<br><strong>主要解决：</strong>职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。<br><strong>何时使用：</strong>在处理消息的时候以过滤很多道。<br><strong>使用场景：</strong> 1、有多个对象可以处理同一个请求，具体哪个对象处理该请求由运行时刻自动确定。 2、在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。 3、可动态指定一组对象处理请求。<br><strong>注意事项：</strong>在 JAVA WEB 中遇到很多应用。</p>
+<h2 id="15、命令模式"><a href="#15、命令模式" class="headerlink" title="15、命令模式"></a>15、命令模式</h2><p>命令模式（Command Pattern）是一种数据驱动的设计模式，它属于行为型模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。</p>
+<p><strong>意图：</strong>将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。<br><strong>主要解决：</strong>在软件系统中，行为请求者与行为实现者通常是一种紧耦合的关系，但某些场合，比如需要对行为进行记录、撤销或重做、事务等处理时，这种无法抵御变化的紧耦合的设计就不太合适。<br><strong>何时使用：</strong>在某些场合，比如要对行为进行”记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将”行为请求者”与”行为实现者”解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。<br><strong>使用场景：</strong>认为是命令的地方都可以使用命令模式，比如： 1、GUI 中每一个按钮都是一条命令。 2、模拟 CMD。<br><strong>注意事项：</strong>系统需要支持命令的撤销(Undo)操作和恢复(Redo)操作，也可以考虑使用命令模式，见命令模式的扩展。</p>
+<h2 id="16、解释器模式"><a href="#16、解释器模式" class="headerlink" title="16、解释器模式"></a>16、解释器模式</h2><p>解释器模式（Interpreter Pattern）提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。</p>
+<p><strong>意图：</strong>给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。<br><strong>主要解决：</strong>对于一些固定文法构建一个解释句子的解释器。<br><strong>何时使用：</strong>如果一种特定类型的问题发生的频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。这样就可以构建一个解释器，该解释器通过解释这些句子来解决该问题。<br><strong>使用场景：</strong> 1、可以将一个需要解释执行的语言中的句子表示为一个抽象语法树。 2、一些重复出现的问题可以用一种简单的语言来进行表达。 3、一个简单语法需要解释的场景。<br><strong>注意事项：</strong>可利用场景比较少，JAVA 中如果碰到可以用 expression4J 代替。</p>
+<h2 id="17、迭代器模式"><a href="#17、迭代器模式" class="headerlink" title="17、迭代器模式"></a>17、迭代器模式</h2><p>迭代器模式（Iterator Pattern）是 Java 和 .Net 编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。<br>迭代器模式属于行为型模式。</p>
+<p><strong>意图：</strong>提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。<br><strong>主要解决：</strong>不同的方式来遍历整个整合对象。<br><strong>何时使用：</strong>遍历一个聚合对象。<br><strong>如何解决：</strong>把在元素之间游走的责任交给迭代器，而不是聚合对象。<br><strong>使用场景：</strong> 1、访问一个聚合对象的内容而无须暴露它的内部表示。 2、需要为聚合对象提供多种遍历方式。 3、为遍历不同的聚合结构提供一个统一的接口。<br><strong>注意事项：</strong>迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</p>
+<h2 id="18、中介者模式"><a href="#18、中介者模式" class="headerlink" title="18、中介者模式"></a>18、中介者模式</h2><p>中介者模式（Mediator Pattern）是用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护。中介者模式属于行为型模式。</p>
+<p><strong>意图：</strong>用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。<br><strong>主要解决：</strong>对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。<br><strong>何时使用：</strong>多个类相互耦合，形成了网状结构。<br><strong>如何解决：</strong>将上述网状结构分离为星型结构。<br><strong>使用场景：</strong> 1、系统中对象之间存在比较复杂的引用关系，导致它们之间的依赖关系结构混乱而且难以复用该对象。 2、想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类。<br>注意事项：不应当在职责混乱的时候使用。</p>
+<h2 id="19、备忘录模式"><a href="#19、备忘录模式" class="headerlink" title="19、备忘录模式"></a>19、备忘录模式</h2><p>备忘录模式（Memento Pattern）保存一个对象的某个状态，以便在适当的时候恢复对象。备忘录模式属于行为型模式。</p>
+<p><strong>意图：</strong>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。<br><strong>主要解决：</strong>所谓备忘录模式就是在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。<br><strong>使用场景：</strong> 1、需要保存/恢复数据的相关状态场景。 2、提供一个可回滚的操作。<br><strong>注意事项：</strong> 1、为了符合迪米特原则，还要增加一个管理备忘录的类。 2、为了节约内存，可使用原型模式+备忘录模式。</p>
+<h2 id="20、观察者模式"><a href="#20、观察者模式" class="headerlink" title="20、观察者模式"></a>20、观察者模式</h2><p>当对象间存在一对多关系时，则使用观察者模式（Observer Pattern）。比如，当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为型模式。</p>
+<p><strong>意图：</strong>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。<br><strong>主要解决：</strong>一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。<br><strong>何时使用：</strong>一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知，进行广播通知。<br><strong>使用场景：</strong> 1、有多个子类共有的方法，且逻辑相同。 2、重要的、复杂的方法，可以考虑作为模板方法。<br><strong>注意事项：</strong> 1、JAVA 中已经有了对观察者模式的支持类。 2、避免循环引用。 3、如果顺序执行，某一观察者错误会导致系统卡壳，一般采用异步方式。</p>
+<h2 id="21、状态模式"><a href="#21、状态模式" class="headerlink" title="21、状态模式"></a>21、状态模式</h2><p>在状态模式（State Pattern）中，类的行为是基于它的状态改变的。这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的 context 对象。</p>
+<p><strong>意图：</strong>允许对象在内部状态发生改变时改变它的行为，对象看起来好像修改了它的类。<br><strong>主要解决：</strong>对象的行为依赖于它的状态（属性），并且可以根据它的状态改变而改变它的相关行为。<br><strong>何时使用：</strong>代码中包含大量与对象状态有关的条件语句。<br><strong>使用场景：</strong> 1、行为随状态改变而改变的场景。 2、条件、分支语句的代替者。<br><strong>注意事项：</strong>在行为受状态约束的时候使用状态模式，而且状态不超过 5 个。</p>
+<h2 id="22、空对象模式"><a href="#22、空对象模式" class="headerlink" title="22、空对象模式"></a>22、空对象模式</h2><p>在空对象模式（Null Object Pattern）中，一个空对象取代 NULL 对象实例的检查。Null 对象不是检查空值，而是反应一个不做任何动作的关系。这样的 Null 对象也可以在数据不可用的时候提供默认的行为。<br>在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实体类，还创建一个未对该类做任何实现的空对象类，该空对象类将无缝地使用在需要检查空值的地方。</p>
+<h2 id="23、策略模式"><a href="#23、策略模式" class="headerlink" title="23、策略模式"></a>23、策略模式</h2><p>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。<br>在策略模式中，我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。</p>
+<p><strong>意图：</strong>定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。<br><strong>主要解决：</strong>在有多种算法相似的情况下，使用 if…else 所带来的复杂和难以维护。<br><strong>何时使用：</strong>一个系统有许多许多类，而区分它们的只是他们直接的行为。<br><strong>如何解决：</strong>将这些算法封装成一个一个的类，任意地替换。<br><strong>使用场景：</strong> 1、如果在一个系统里面有许多类，它们之间的区别仅在于它们的行为，那么使用策略模式可以动态地让一个对象在许多行为中选择一种行为。 2、一个系统需要动态地在几种算法中选择一种。 3、如果一个对象有很多的行为，如果不用恰当的模式，这些行为就只好使用多重的条件选择语句来实现。<br><strong>注意事项：</strong>如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
+<h2 id="24、模板模式"><a href="#24、模板模式" class="headerlink" title="24、模板模式"></a>24、模板模式</h2><p>在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。</p>
+<p><strong>意图：</strong>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。<br><strong>主要解决：</strong>一些方法通用，却在每一个子类都重新写了这一方法。<br><strong>何时使用：</strong>有一些通用的方法。<br><strong>如何解决：</strong>将这些通用算法抽象出来。<br><strong>使用场景：</strong> 1、有多个子类共有的方法，且逻辑相同。 2、重要的、复杂的方法，可以考虑作为模板方法。<br><strong>注意事项：</strong>为防止恶意操作，一般模板方法都加上 final 关键词。</p>
+<h2 id="25、访问者模式"><a href="#25、访问者模式" class="headerlink" title="25、访问者模式"></a>25、访问者模式</h2><p>在访问者模式（Visitor Pattern）中，我们使用了一个访问者类，它改变了元素类的执行算法。通过这种方式，元素的执行算法可以随着访问者改变而改变。这种类型的设计模式属于行为型模式。根据模式，元素对象已接受访问者对象，这样访问者对象就可以处理元素对象上的操作。</p>
+<p><strong>意图：</strong>主要将数据结构与数据操作分离。<br><strong>主要解决：</strong>稳定的数据结构和易变的操作耦合问题。<br><strong>何时使用：</strong>需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作”污染”这些对象的类，使用访问者模式将这些封装到类中。<br><strong>使用场景：</strong> 1、对象结构中对象对应的类很少改变，但经常需要在此对象结构上定义新的操作。 2、需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作”污染”这些对象的类，也不希望在增加新操作时修改这些类。<br><strong>注意事项：</strong>访问者可以对功能进行统一，可以做报表、UI、拦截器与过滤器。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/设计模式总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-java-IO流（一）-字节流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -614,94 +774,6 @@
 
 
   
-    <article id="post-文本文件的读写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/文本文件的读写/">文本文件的读写</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/文本文件的读写/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:44:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简单总结了几个常用的文本文件读写方法</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.<span class="keyword">File</span>;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Deom &#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">		 * 用缓存字符流读入TXT文件</span></span><br><span class="line"><span class="comment">		 */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> <span class="keyword">read</span>() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			String pathname = <span class="string">"E:\\java\\file2.txt"</span>; <span class="comment">// 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径  </span></span><br><span class="line">            <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(pathname); <span class="comment">// 要读取以上路径的input。txt文件 </span></span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">         	   <span class="keyword">file</span>.createNewFile();</span><br><span class="line">            &#125;</span><br><span class="line">            InputStreamReader reader = <span class="keyword">new</span> InputStreamReader(  </span><br><span class="line">                    <span class="keyword">new</span> FileInputStream(<span class="keyword">file</span>)); <span class="comment">// 建立一个输入流对象reader  </span></span><br><span class="line">            BufferedReader br = <span class="keyword">new</span> BufferedReader(reader); <span class="comment">// 建立一个对象，它把文件内容转成计算机能读懂的语言  </span></span><br><span class="line">            String line = <span class="keyword">null</span>;               </span><br><span class="line">            <span class="keyword">while</span> ((line=br.readLine())!= <span class="keyword">null</span>) &#123;  <span class="comment">// 一次读入一行数据                                       </span></span><br><span class="line">                System.out.<span class="keyword">println</span>(line);</span><br><span class="line">            &#125;  </span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">		 * 覆盖写入Txt文件 </span></span><br><span class="line"><span class="comment">		 */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> coverWriter() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			 <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file1.txt"</span>); </span><br><span class="line">             <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">          	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">             &#125;             </span><br><span class="line">             BufferedWriter out = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="keyword">file</span>));  <span class="comment">//每次覆盖写入</span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="string">"我会写入文件啦\r\n"</span>); <span class="comment">// \r\n即为换行                </span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="number">48</span>);<span class="comment">//写入ASCII值48，对于字符为0，注意这里输入int类型是输入ASCII值。</span></span><br><span class="line">             out.flush(); <span class="comment">// 把缓存区内容压入文件  </span></span><br><span class="line">             out.close(); <span class="comment">// 最后记得关闭文件  </span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	    <span class="comment">/* </span></span><br><span class="line"><span class="comment">	    * 用 FileWriter(file,true) 追加写入Txt文件</span></span><br><span class="line"><span class="comment">	    */</span>  </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> addToWriter() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			 <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file3.txt"</span>); </span><br><span class="line">             <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">          	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">             &#125;             </span><br><span class="line">             BufferedWriter out = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="keyword">file</span>,<span class="keyword">true</span>));  <span class="comment">//构造方法FileWriter(file,true) true为追加写入</span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="string">"我会写入文件啦\r\n"</span>); <span class="comment">// \r\n即为换行                </span></span><br><span class="line">             out.<span class="keyword">write</span>(<span class="number">48</span>);<span class="comment">//写入ASCII值48，对于字符为0，注意这里输入int类型是输入ASCII值。</span></span><br><span class="line">             out.flush(); <span class="comment">// 把缓存区内容压入文件  </span></span><br><span class="line">             out.close(); <span class="comment">// 最后记得关闭文件  </span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/* </span></span><br><span class="line"><span class="comment">	    * 用 RandomAccessFile追加写入Txt文件</span></span><br><span class="line"><span class="comment">	    */</span> </span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">void</span> addToWriter2() <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">			<span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"E:\\java\\file4.txt"</span>); </span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">file</span>.exists()) &#123;</span><br><span class="line">         	   <span class="keyword">file</span>.createNewFile(); <span class="comment">// 创建新文件  </span></span><br><span class="line">            &#125;  </span><br><span class="line">            RandomAccessFile rf=<span class="keyword">new</span> RandomAccessFile(<span class="keyword">file</span>, <span class="string">"rw"</span>);<span class="comment">//以读写的方式打开文件</span></span><br><span class="line">            <span class="comment">// 文件长度，字节数     </span></span><br><span class="line">            <span class="keyword">long</span> fileLength = rf.length();     </span><br><span class="line">            <span class="comment">// 将写文件指针移到文件尾。</span></span><br><span class="line">            <span class="comment">/* seek是指针移动n个字节、skipBytes指针移动n个字节（少量）；</span></span><br><span class="line"><span class="comment">           		有人说seek非常影响系统的开销，但skipBytes内部又调用了seek方法，</span></span><br><span class="line"><span class="comment">           		也没百度到什么，不太理解，求解！</span></span><br><span class="line"><span class="comment">           	*/</span></span><br><span class="line">            rf.seek(fileLength);     </span><br><span class="line">           </span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">               	注意：请使用RandomAccessFile.write(byte b[])方法，这样可以保证不会出现乱码。 </span></span><br><span class="line"><span class="comment">				原因是String.getBytes()会按系统默认编码获取字符串的字节码，</span></span><br><span class="line"><span class="comment">				而RandomAccessFile.write(byte b[])正好也是按照系统默认编码进行写入的，</span></span><br><span class="line"><span class="comment">				这样两处编码正好一致，使用其它方法无法保证编码一致。</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//rf.writeChars("随机访问文件！");            </span></span><br><span class="line">            rf.<span class="keyword">write</span>(<span class="string">"随机访问文件！"</span>.getBytes());</span><br><span class="line">            rf.close();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String args[]) &#123;  </span><br><span class="line">           <span class="keyword">try</span> &#123; </span><br><span class="line">                Deom deom=<span class="keyword">new</span> Deom();</span><br><span class="line">                deom.<span class="keyword">read</span>();</span><br><span class="line">                deom.addToWriter();</span><br><span class="line">                deom.addToWriter();</span><br><span class="line">                deom.addToWriter2();</span><br><span class="line">                deom.addToWriter2();</span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">               e.printStackTrace();  </span><br><span class="line">           &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/文本文件的读写/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -716,7 +788,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 枫之木落
+    		&copy; 2018 枫之木落
 			
 			<span id="busuanzi_container_site_uv"> 
 				&emsp;&emsp;&emsp;本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
@@ -805,19 +877,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,11 +893,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -849,7 +921,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,6 +930,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,11 +953,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">comparable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -893,11 +969,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -913,7 +989,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -925,11 +1001,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
               </li>
             
             <div class="clearfix"></div>
