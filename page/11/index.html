@@ -158,6 +158,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java序列化与反序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Java序列化与反序列化/">Java序列化与反序列化</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Java序列化与反序列化/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java序列化与反序列化是什么？为什么需要序列化与反序列化？如何实现Java序列化与反序列化？本文围绕这些问题进行了探讨。</p>
+<h2 id="1-Java序列化与反序列化"><a href="#1-Java序列化与反序列化" class="headerlink" title="1.Java序列化与反序列化"></a>1.Java序列化与反序列化</h2><p> Java序列化是指把Java对象转换为字节序列的过程；而Java反序列化是指把字节序列恢复为Java对象的过程。</p>
+<h2 id="2-为什么需要序列化与反序列化"><a href="#2-为什么需要序列化与反序列化" class="headerlink" title="2.为什么需要序列化与反序列化"></a>2.为什么需要序列化与反序列化</h2><p> 我们知道，当两个进程进行远程通信时，可以相互发送各种类型的数据，包括文本、图片、音频、视频等， 而这些数据都会以二进制序列的形式在网络上传送。那么当两个Java进程进行通信时，能否实现进程间的对象传送呢？答案是可以的。如何做到呢？这就需要Java序列化与反序列化了。换句话说，一方面，发送方需要把这个Java对象转换为字节序列，然后在网络上传送；另一方面，接收方需要从字节序列中恢复出Java对象。</p>
+<p> 当我们明晰了为什么需要Java序列化和反序列化后，我们很自然地会想Java序列化的好处。其<strong>好处一</strong>是实现了数据的持久化，通过序列化可以把数据永久地保存到硬盘上（通常存放在文件里），<strong>二</strong>是，利用序列化实现远程通信，即在网络上传送对象的字节序列。</p>
+<h2 id="3-如何实现Java序列化与反序列化"><a href="#3-如何实现Java序列化与反序列化" class="headerlink" title="3.如何实现Java序列化与反序列化"></a>3.如何实现Java序列化与反序列化</h2><p><strong>1）JDK类库中序列化API</strong><br> java.io.ObjectOutputStream：表示对象输出流<br>它的writeObject(Object obj)方法可以对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。<br>java.io.ObjectInputStream：表示对象输入流<br>它的readObject()方法源输入流中读取字节序列，再把它们反序列化成为一个对象，并将其返回。</p>
+<p><strong>2）实现序列化的要求</strong><br>只有实现了Serializable或Externalizable接口的类的对象才能被序列化，否则抛出异常。</p>
+<p><strong>3）实现Java对象序列化与反序列化的方法</strong><br>假定一个Student类，它的对象需要序列化，可以有如下三种方法：<br><strong>方法一：</strong>若Student类仅仅实现了Serializable接口，则可以按照以下方式进行序列化和反序列化<br>ObjectOutputStream采用默认的序列化方式，对Student对象的非transient的实例变量进行序列化。<br>ObjcetInputStream采用默认的反序列化方式，对对Student对象的非transient的实例变量进行反序列化。</p>
+<p><strong>方法二：</strong>若Student类仅仅实现了Serializable接口，并且还定义了readObject(ObjectInputStream in)和writeObject(ObjectOutputSteam out)，则采用以下方式进行序列化与反序列化。<br>ObjectOutputStream调用Student对象的writeObject(ObjectOutputStream out)的方法进行序列化。<br>ObjectInputStream会调用Student对象的readObject(ObjectInputStream in)的方法进行反序列化。</p>
+<p><strong>方法三：</strong>若Student类实现了Externalnalizable接口，且Student类必须实现readExternal(ObjectInput in)和writeExternal(ObjectOutput out)方法，则按照以下方式进行序列化与反序列化。<br>ObjectOutputStream调用Student对象的writeExternal(ObjectOutput out))的方法进行序列化。<br>ObjectInputStream会调用Student对象的readExternal(ObjectInput in)的方法进行反序列化。</p>
+<p><strong>4）JDK类库中序列化的步骤</strong><br>步骤一：创建一个对象输出流，它可以包装一个其它类型的目标输出流，如文件输出流：<br>ObjectOutputStream out = new ObjectOutputStream(new fileOutputStream(“D:\objectfile.obj”));<br>步骤二：通过对象输出流的writeObject()方法写对象：<br>out.writeObject(“Hello”);<br>out.writeObject(new Date());</p>
+<p><strong>5）JDK类库中反序列化的步骤</strong><br>步骤一：创建一个对象输入流，它可以包装一个其它类型输入流，如文件输入流：<br>ObjectInputStream in = new ObjectInputStream(new fileInputStream(“D:\objectfile.obj”));<br>步骤二：通过对象输出流的readObject()方法读取对象：<br>String obj1 = (String)in.readObject();<br>Date obj2 = (Date)in.readObject();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> String sex;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age, String sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [name="</span> + name + <span class="string">", age="</span> + age + <span class="string">", sex="</span> + sex + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializableTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		File file =<span class="keyword">new</span> File(<span class="string">"E:\\java\\file.txt"</span>);</span><br><span class="line">		<span class="keyword">if</span>(!file.exists()) &#123;</span><br><span class="line">			file.createNewFile();</span><br><span class="line">		&#125;</span><br><span class="line">		FileOutputStream fileOut=<span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">		ObjectOutputStream objOut=<span class="keyword">new</span> ObjectOutputStream(fileOut);</span><br><span class="line">		objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇"</span>, <span class="number">22</span>, <span class="string">"男"</span>));</span><br><span class="line">		objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇2"</span>, <span class="number">22</span>, <span class="string">"男2"</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++) &#123;</span><br><span class="line">			objOut.writeObject(<span class="keyword">new</span> Student(<span class="string">"叫相遇"</span>+i, <span class="number">22</span>, <span class="string">"男"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		FileInputStream fileIn=<span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">		ObjectInputStream objIn=<span class="keyword">new</span> ObjectInputStream(fileIn);</span><br><span class="line">		</span><br><span class="line">		System.out.println(objIn.readObject());</span><br><span class="line">		System.out.println(objIn.readObject());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：writeObject(Object obj)用把对象序列化以二进制形式存到文本文件会是乱码，但并不影响用readObject()反序化读写；还有一点是，用writeObject(Object obj)写入文本数据不会换行，这点不太好，序列化和反序列化是为了进程自己通信、网络上传送、存到磁盘持久化，但这个存到文本文件不是给用户用肉眼看的，这些数据只有计算机可读懂。如果想要用肉眼看懂文本文件内容就不建议用这种方式了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Java序列化与反序列化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-mysql常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -741,233 +840,9 @@ second
 
 
   
-    <article id="post-腾讯云服务器centOS安装JDK-Tomcat-Mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/腾讯云服务器centOS安装JDK-Tomcat-Mysql/">腾讯云服务器centOS安装JDK+Tomcat+Mysql</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/腾讯云服务器centOS安装JDK-Tomcat-Mysql/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:09:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>个人腾讯云服务器内存比较小，用Windows操作系统比较卡，所以还是用Linux，这里选择centOS操作系统，使用云服务器centOS之前先在本地安装两个软件Xshell、FileZilla、了解Yum库、简单介绍一些linux常用命令和vi命令</p>
-<p><strong>1、Xshell</strong></p>
-<blockquote>
-<p>Xshell 是一个强大的安全终端模拟软件，它支持SSH1, SSH2, 以及Microsoft Windows 平台的TELNET 协议。Xshell 通过互联网到远程主机的安全连接以及它创新性的设计和特色帮助用户在复杂的网络环境中享受他们的工作。<br>用Xshell连接云服务器，对centOS系统进行命令操作。</p>
-</blockquote>
-<p><strong>2、FileZilla</strong></p>
-<blockquote>
-<p>FileZilla是一个免费开源的FTP软件，分为客户端版本和服务器版本，具备所有的FTP软件功能。可控性、有条理的界面和管理多站点的简化方式使得Filezilla客户端版成为一个方便高效的FTP客户端工具，而FileZilla<br>Server则是一个小巧并且可靠的支持FTP&amp;SFTP的FTP服务器软件。 用FileZilla连接云服务器，进行文件的上传和下载操作。</p>
-</blockquote>
-<p><strong>3、Yum库</strong></p>
-<blockquote>
-<p>Yum（全称为 Yellow dog Updater,<br>Modified）是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器。基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包，无须繁琐地一次次下载、安装。</p>
-</blockquote>
-<p><strong>4、linux常用命令(简单了解，用时查看)</strong></p>
-<p>文件和目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /home                       进入 <span class="string">'/home'</span> 目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> ..                          返回上一级目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cp -a /tmp/dir1 .              复制一个目录到当前工作目录（.代表当前目录）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls                             查看目录中的文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rm -f file1                    删除 <span class="string">'file1'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rm -rf dir1                    删除 <span class="string">'dir1'</span> 目录及其子目录内容</span></span><br></pre></td></tr></table></figure>
-<p>查看文件内容:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cat file1                      从第一个字节开始正向`查看文件的内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tac file1                      从最后一行开始反向查看一个文件的内容</span></span><br></pre></td></tr></table></figure>
-<p>文本处理:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> grep str /tmp/<span class="built_in">test</span>           	在文件 <span class="string">'/tmp/test'</span> 中查找 <span class="string">"str"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> grep ^str /tmp/<span class="built_in">test</span>         	在文件 <span class="string">'/tmp/test'</span> 中查找以 <span class="string">"str"</span> 开始的行</span></span><br></pre></td></tr></table></figure>
-<p>查找:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> find / -name file1         从 <span class="string">'/'</span> 开始进入根文件系统查找文件和目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> find / -user user1         查找属于用户 <span class="string">'user1'</span> 的文件和目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> find /home/user1 -name \*.bin 在目录 <span class="string">'/ home/user1'</span> 中查找以 <span class="string">'.bin'</span> 结尾的文件</span></span><br></pre></td></tr></table></figure>
-<p>压缩和解压:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bzip2 file1                           压缩file1</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> bunzip2 file1.bz2              		解压file1.bz2</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> gzip file1                            压缩file1</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> gunzip file1.gz                       解压file1.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -cvf archive.tar file1            把file1打包成 archive.tar</span></span><br><span class="line">（-c: 建立压缩档案；-v: 显示所有过程；-f: 	使用档案名字，是必须的，是最后一个参数）</span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -cvf archive.tar file1 dir1       把 file1，dir1 打包成 archive.tar</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -tf archive.tar                   显示一个包中的内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -xvf archive.tar                  释放一个包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> tar -xvf archive.tar -C /tmp         	把压缩包释放到 /tmp目录下</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> zip file1.zip file1                   创建一个zip格式的压缩包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> unzip file1.zip                       解压一个zip格式的压缩包到当前目录</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> unzip test.zip -d /tmp/               解压一个zip格式的压缩包到 /tmp 目录</span></span><br></pre></td></tr></table></figure>
-<p>网络：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ifconfig eth0             显示一个以太网卡的配置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> iwlist scan               显示无线网络</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ip addr show              显示网卡的IP地址</span></span><br></pre></td></tr></table></figure>
-<p>其他:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> su root                   切换到root权限</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown -h now           关机</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown -r now           重启(reboot)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> top                       罗列使用CPU资源最多的linux任务 （输入q退出）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> passwd                    修改密码</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> df -h                     显示磁盘的使用情况</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> wget  网址		    根据网址下载</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ctrl + l            			   清屏，相当于执行clear命令</span></span><br></pre></td></tr></table></figure></p>
-<p>快捷键：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ctrl + l            	清屏，相当于执行clear命令</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Tab       			自动补全命令</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ctrl+C   			 	取消当前行输入的命令</span></span><br></pre></td></tr></table></figure></p>
-<p>yum工具:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum -y install [package]              下载并安装一个rpm包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum localinstall [package.rpm]    	安装一个rpm包，使用你自己的软件仓库解决所有依赖关系</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum -y update                         更新当前系统中安装的所有rpm包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum update [package]                  更新一个rpm包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum remove [package]                  删除一个rpm包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum list                              列出当前系统中安装的所有包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum search [package]                  在rpm仓库中搜寻软件包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum list | grep xxx      				查询xxx软件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum clean [package]                   清除缓存目录（/var/cache/yum）下的软件包</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum clean headers                     删除所有头文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum clean all                         删除所有缓存的包和头文件</span></span><br></pre></td></tr></table></figure>
-<p><strong>4、简单了解几个vi命令（vi是文本编辑器）</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">vi</span> <span class="selector-tag">filename</span>     打开<span class="selector-tag">filename</span>文件</span><br><span class="line"><span class="selector-tag">i</span> 				进入编辑模式</span><br><span class="line"><span class="selector-tag">ESE</span> 			退出编辑模式，然后按冒号，出现‘：’，继续输入以下命令</span><br><span class="line"><span class="selector-pseudo">:w</span>           	保存文件</span><br><span class="line"><span class="selector-pseudo">:w</span> <span class="selector-tag">cszhi</span><span class="selector-class">.com</span>    保存至<span class="selector-tag">cszhi</span><span class="selector-class">.com</span>文件</span><br><span class="line"><span class="selector-pseudo">:q</span>           	退出编辑器，如果文件已修改请使用下面的命令</span><br><span class="line"><span class="selector-pseudo">:q</span>!				退出编辑器，且不保存</span><br><span class="line"><span class="selector-pseudo">:wq</span>          	退出编辑器，且保存文件</span><br></pre></td></tr></table></figure>
-<h2 id="一、安装JDK"><a href="#一、安装JDK" class="headerlink" title="一、安装JDK"></a>一、安装JDK</h2><p>1、查看yum库中的Java安装包</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="built_in">list</span> java*</span><br></pre></td></tr></table></figure>
-<p>会看到不同版本的java安装包</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Available Packages</span><br><span class="line">java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk<span class="selector-class">.x86_64</span>                                   <span class="number">1</span>:<span class="number">1.6</span>.<span class="number">0.41</span>-<span class="number">1.13</span>.<span class="number">13.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk-demo<span class="selector-class">.x86_64</span>                          <span class="number">1</span>:<span class="number">1.6</span>.<span class="number">0.41</span>-<span class="number">1.13</span>.<span class="number">13.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk-devel<span class="selector-class">.x86_64</span>                           <span class="number">1</span>:<span class="number">1.6</span>.<span class="number">0.41</span>-<span class="number">1.13</span>.<span class="number">13.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk-javadoc<span class="selector-class">.x86_64</span>                       <span class="number">1</span>:<span class="number">1.6</span>.<span class="number">0.41</span>-<span class="number">1.13</span>.<span class="number">13.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk-src<span class="selector-class">.x86_64</span>                              <span class="number">1</span>:<span class="number">1.6</span>.<span class="number">0.41</span>-<span class="number">1.13</span>.<span class="number">13.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk<span class="selector-class">.x86_64</span>                                   <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-accessibility<span class="selector-class">.x86_64</span>                 <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-demo<span class="selector-class">.x86_64</span>                          <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-devel<span class="selector-class">.x86_64</span>                           <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-headless<span class="selector-class">.x86_64</span>                     <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-javadoc<span class="selector-class">.noarch</span>                        <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.7</span>.<span class="number">0</span>-openjdk-src<span class="selector-class">.x86_64</span>                              <span class="number">1</span>:<span class="number">1.7</span>.<span class="number">0.141</span>-<span class="number">2.6</span>.<span class="number">10.1</span><span class="selector-class">.el7_3</span>                                                                  updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk<span class="selector-class">.i686</span>                                        <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk-debug<span class="selector-class">.i686</span>                              <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk-devel<span class="selector-class">.i686</span>                               <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk-devel-debug<span class="selector-class">.i686</span>                     <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk-headless<span class="selector-class">.i686</span>                          <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates  </span><br><span class="line">java-<span class="number">1.8</span>.<span class="number">0</span>-openjdk-headless-debug<span class="selector-class">.i686</span>                <span class="number">1</span>:<span class="number">1.8</span>.<span class="number">0.131</span>-<span class="number">3</span><span class="selector-class">.b12</span><span class="selector-class">.el7_3</span>                                                                     updates</span><br></pre></td></tr></table></figure>
-<p>2、使用yum安装Java环境<br>安装java-1.8.0版本的所有相关程序</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yum</span> <span class="selector-tag">-y</span> <span class="selector-tag">install</span> <span class="selector-tag">java-1</span><span class="selector-class">.8</span><span class="selector-class">.0-openjdk</span>*</span><br></pre></td></tr></table></figure>
-<p>3、 查看刚安装的Java版本信息 </p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -<span class="built_in">version</span></span><br></pre></td></tr></table></figure>
-<p>出现以下信息，说明安装成功 </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost jxy]# java -version</span><br><span class="line">openjdk version <span class="string">"1.8.0_131"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_131-b12)</span><br><span class="line">OpenJDK 64-Bit<span class="built_in"> Server </span>VM (build 25.131-b12, mixed mode)</span><br></pre></td></tr></table></figure>
-<h2 id="二、安装tomcat"><a href="#二、安装tomcat" class="headerlink" title="二、安装tomcat"></a>二、安装tomcat</h2><p><strong>控制tomcat的一些命令</strong></p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service tomcat start <span class="comment">//启动</span></span><br><span class="line">service tomcat <span class="keyword">stop</span> <span class="comment">//停止</span></span><br><span class="line">service tomcat restart <span class="comment">//重启</span></span><br><span class="line">rm -rf /var/<span class="keyword">lib</span>/tomcat  <span class="comment">//卸载tomcat （就是删除tomcat文件，其它配置文件也应该删除）</span></span><br></pre></td></tr></table></figure>
-<p><strong>方法1：使用yum命令安装</strong></p>
-<p>1.1 安装命令</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> tomcat tomcat7-webapps tomcat7-<span class="keyword">admin</span>-webapps</span><br></pre></td></tr></table></figure>
-<p>出现 <code>Is this ok [y/d/N]:</code>  输入y就行了</p>
-<p>1.2 查询tomcat安装后的目录</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">find</span> -name tomcat</span><br></pre></td></tr></table></figure>
-<p>目录信息如下</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">find:</span> ‘.<span class="regexp">/run/</span>user<span class="regexp">/1000/</span>gvfs’: Permission denied</span><br><span class="line">.<span class="regexp">/etc/</span>logrotate.d/tomcat</span><br><span class="line">.<span class="regexp">/etc/</span>sysconfig/tomcat</span><br><span class="line">.<span class="regexp">/etc/</span>selinux<span class="regexp">/targeted/</span>active<span class="regexp">/modules/</span><span class="number">100</span>/tomcat</span><br><span class="line">.<span class="regexp">/etc/</span>tomcat</span><br><span class="line">.<span class="regexp">/var/</span>lib/tomcat</span><br><span class="line">.<span class="regexp">/var/</span>log/tomcat</span><br><span class="line">.<span class="regexp">/var/</span>cache/tomcat</span><br><span class="line">.<span class="regexp">/usr/</span>sbin/tomcat</span><br><span class="line">.<span class="regexp">/usr/</span>share<span class="regexp">/java/</span>tomcat</span><br><span class="line">.<span class="regexp">/usr/</span>share<span class="regexp">/maven-fragments/</span>tomcat</span><br><span class="line">.<span class="regexp">/usr/</span>share/tomcat</span><br><span class="line">.<span class="regexp">/usr/</span>libexec/tomcat</span><br></pre></td></tr></table></figure>
-<p>配置信息在目录：/etc/tomcat下 </p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/etc/tomcat</span></span><br></pre></td></tr></table></figure>
-<p>webapps在目录：/var/lib/tomcat下 </p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /var/<span class="class"><span class="keyword">lib</span>/<span class="title">tomcat</span></span></span><br></pre></td></tr></table></figure>
-<p>1.3控制tomcat的一些命令</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service tomcat start <span class="comment">//启动</span></span><br><span class="line">service tomcat <span class="keyword">stop</span> <span class="comment">//停止</span></span><br><span class="line">service tomcat restart <span class="comment">//重启</span></span><br><span class="line">rm -rf /var/<span class="keyword">lib</span>/tomcat  <span class="comment">//卸载tomcat （就是删除tomcat文件，其它配置文件也应该删除）</span></span><br></pre></td></tr></table></figure>
-<p><strong>方法2：下载安装包安装（建议用该方法）</strong>    </p>
-<p>2.1 下载解压tomcat</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /opt    <span class="comment">//  /opt 主机额外安装软件所摆放的目录</span></span><br><span class="line">wget http:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz  //下载安装包</span></span><br><span class="line">tar -zxv -f apache-tomcat-<span class="number">8.5</span>.<span class="number">16</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> <span class="comment">//解压压缩包  </span></span><br><span class="line">rm -rf apache-tomcat-<span class="number">8.5</span>.<span class="number">16</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span> <span class="comment">//删除压缩包</span></span><br></pre></td></tr></table></figure>
-<p>tomcat下载网址可能失效，可以去tomcat官网复制最新的下载网址<br>2.2 运行tomcat</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt/apapache-tomcat-8.5.16/bin</span> <span class="string">//</span>进入Tomcat的bin目录</span><br><span class="line"><span class="keyword">ls</span>  <span class="string">//</span>显示目录中文件</span><br><span class="line"><span class="string">./startup.sh</span> <span class="string">//</span>执行该文件</span><br></pre></td></tr></table></figure>
-<p>显示以下信息说明Tomcat成功启动</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Using <span class="string">CATALINA_HOME:</span>   <span class="regexp">/opt/</span>apache-tomcat<span class="number">-8.5</span><span class="number">.16</span></span><br><span class="line">Using <span class="string">CATALINA_TMPDIR:</span> <span class="regexp">/opt/</span>apache-tomcat<span class="number">-8.5</span><span class="number">.16</span>/temp</span><br><span class="line">Using <span class="string">JRE_HOME:</span>        /usr</span><br><span class="line">Using <span class="string">CLASSPATH:</span>       <span class="regexp">/opt/</span>apache-tomcat<span class="number">-8.5</span><span class="number">.16</span><span class="regexp">/bin/</span>bootstrap.<span class="string">jar:</span><span class="regexp">/opt/</span>apache-tomcat<span class="number">-8.5</span><span class="number">.16</span><span class="regexp">/bin/</span>tomcat-juli.jar</span><br><span class="line">Tomcat started.</span><br></pre></td></tr></table></figure>
-<h2 id="三、安装mysql"><a href="#三、安装mysql" class="headerlink" title="三、安装mysql"></a>三、安装mysql</h2><p>在安装MySQL的时候，使用<code>yum list | grep mysql</code> 来查找yum源中是否有mysql，结果如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">akonadi-mysql<span class="selector-class">.x86_64</span>                       <span class="number">1.9</span>.<span class="number">2</span>-<span class="number">4</span><span class="selector-class">.el7</span>                 base     </span><br><span class="line">apr-util-mysql<span class="selector-class">.x86_64</span>                      <span class="number">1.5</span>.<span class="number">2</span>-<span class="number">6</span><span class="selector-class">.el7</span>                 base     </span><br><span class="line">dovecot-mysql<span class="selector-class">.x86_64</span>                       <span class="number">1</span>:<span class="number">2.2</span>.<span class="number">10</span>-<span class="number">7</span><span class="selector-class">.el7</span>              base     </span><br><span class="line">freeradius-mysql<span class="selector-class">.x86_64</span>                    <span class="number">3.0</span>.<span class="number">4</span>-<span class="number">8</span><span class="selector-class">.el7_3</span>               updates  </span><br><span class="line">libdbi-dbd-mysql<span class="selector-class">.x86_64</span>                    <span class="number">0.8</span>.<span class="number">3</span>-<span class="number">16</span><span class="selector-class">.el7</span>                base     </span><br><span class="line">mysql-connector-java<span class="selector-class">.noarch</span>                <span class="number">1</span>:<span class="number">5.1</span>.<span class="number">25</span>-<span class="number">3</span><span class="selector-class">.el7</span>              base     </span><br><span class="line">mysql-connector-odbc<span class="selector-class">.x86_64</span>                <span class="number">5.2</span>.<span class="number">5</span>-<span class="number">6</span><span class="selector-class">.el7</span>                 base     </span><br><span class="line">pcp-pmda-mysql<span class="selector-class">.x86_64</span>                      <span class="number">3.11</span>.<span class="number">3</span>-<span class="number">4</span><span class="selector-class">.el7</span>                base     </span><br><span class="line">php-mysql<span class="selector-class">.x86_64</span>                           <span class="number">5.4</span>.<span class="number">16</span>-<span class="number">42</span><span class="selector-class">.el7</span>               base     </span><br><span class="line">php-mysqlnd<span class="selector-class">.x86_64</span>                         <span class="number">5.4</span>.<span class="number">16</span>-<span class="number">42</span><span class="selector-class">.el7</span>               base     </span><br><span class="line">qt-mysql<span class="selector-class">.i686</span>                              <span class="number">1</span>:<span class="number">4.8</span>.<span class="number">5</span>-<span class="number">13</span><span class="selector-class">.el7</span>              base     </span><br><span class="line">qt-mysql<span class="selector-class">.x86_64</span>                            <span class="number">1</span>:<span class="number">4.8</span>.<span class="number">5</span>-<span class="number">13</span><span class="selector-class">.el7</span>              base     </span><br><span class="line">qt5-qtbase-mysql<span class="selector-class">.i686</span>                      <span class="number">5.6</span>.<span class="number">1</span>-<span class="number">10</span><span class="selector-class">.el7</span>                base     </span><br><span class="line">qt5-qtbase-mysql<span class="selector-class">.x86_64</span>                    <span class="number">5.6</span>.<span class="number">1</span>-<span class="number">10</span><span class="selector-class">.el7</span>                base     </span><br><span class="line">redland-mysql<span class="selector-class">.x86_64</span>                       <span class="number">1.0</span>.<span class="number">16</span>-<span class="number">6</span><span class="selector-class">.el7</span>                base     </span><br><span class="line">rsyslog-mysql<span class="selector-class">.x86_64</span>                       <span class="number">7.4</span>.<span class="number">7</span>-<span class="number">16</span><span class="selector-class">.el7</span>                base</span><br></pre></td></tr></table></figure>
-<p>总之是看不到mysql-server的影子，（据说Centos7.0的源中暂时还没有mysql，但是相同版本的Centos在阿里云是可以直接使用<code>yum install mysql-server</code> 来直接安装mysql的）</p>
-<p>于是找了一些mysql的安装源，安装过程如下：</p>
-<p><strong>1、下载mysql的repo源</strong></p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">http:</span><span class="comment">//repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</span></span><br></pre></td></tr></table></figure>
-<p><strong>2、安装mysql-community-release-el7-5.noarch.rpm包</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -ivh mysql-community-release-el7-<span class="number">5</span><span class="selector-class">.noarch</span><span class="selector-class">.rpm</span></span><br></pre></td></tr></table></figure>
-<p>安装这个包后，会获得两个mysql的yum repo源：</p>
-<p>/etc/yum.repos.d/mysql-community.repo和<br>/etc/yum.repos.d/mysql-community-source.repo。</p>
-<p><strong>3、安装mysql</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> mysql-<span class="keyword">server</span></span><br></pre></td></tr></table></figure>
-<p>这个过程中会出现两次<code>Is this ok [y/d/N]:</code> ，输入<code>y</code>，根据步骤安装就可以了，不过安装完成后，没有密码，需要重置密码。</p>
-<p><strong>4、重置密码</strong></p>
-<p>重置密码前，首先要登录<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql -u root</span></span><br></pre></td></tr></table></figure></p>
-<p>登录时有可能报这样的错：<br><code>RROR 2002 (HY000): Can‘t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock‘ (2)</code><br>原因是/var/lib/mysql的访问权限问题。下面的命令把/var/lib/mysql的拥有者改为当前用户：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="symbol">mysql:</span>mysql /var/<span class="class"><span class="keyword">lib</span>/<span class="title">mysql</span> <span class="comment">#这里的mysql是用户名（需要设置用户组合用户）</span></span></span><br></pre></td></tr></table></figure>
-<p>然后，重启</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service mysqld restart</span></span><br></pre></td></tr></table></figure>
-<p> 重置密码：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">mysql &gt; use mysql;</span><br><span class="line">mysql &gt; update user set password=password(<span class="string">'your password'</span>) where user=<span class="string">'root'</span>;</span><br><span class="line">mysql &gt; <span class="keyword">exit</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>5、开放3306端口(可以不用设置)</strong></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim <span class="regexp">/etc/</span>sysconfig<span class="regexp">/iptables</span></span><br></pre></td></tr></table></figure>
-<p>添加以下内容：</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m <span class="keyword">state</span> --state NEW -m tcp --dport <span class="number">3306</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
-<p>保存后重启防火墙：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>iptables restart</span><br></pre></td></tr></table></figure>
-<p>这样从其它客户机也可以连接上mysql服务了。</p>
-<p><strong>6、修改权限可以使其他机器登录：</strong></p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">﻿mysql&gt;mysql <span class="params">-h</span> localhost <span class="params">-u</span> root  <span class="comment">//这样应该可以进入MySQL服务器 </span></span><br><span class="line">mysql&gt;GRANT <span class="literal">ALL</span> PRIVILEGES <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'root'</span>@<span class="string">'%'</span>  IDENTIFIED <span class="keyword">BY</span> <span class="string">'your password'</span>  <span class="keyword">WITH</span> GRANT OPTION  <span class="comment">//赋予任何主机访问数据的权限 </span></span><br><span class="line">mysql&gt;FLUSH PRIVILEGES <span class="comment">//修改生效 </span></span><br><span class="line">mysql&gt;EXIT <span class="comment">//退出MySQL服务器</span></span><br></pre></td></tr></table></figure>
-<p>这相当于是给IP-xxx.xxx.xxx.xxx赋予了所有的权限，包括远程访问权限，然后就可以使用密码进行登录。</p>
-<p><strong>7、字符集设置</strong></p>
-<p>查看mysql字符集</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'%char%'</span>;</span><br></pre></td></tr></table></figure>
-<p>出现以下信息<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------------------------+</span><br><span class="line">|<span class="string"> Variable_name            </span>|<span class="string"> Value                      </span>|</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">|<span class="string"> character_set_client     </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_connection </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_database   </span>|<span class="string"> latin1                     </span>|</span><br><span class="line">|<span class="string"> character_set_filesystem </span>|<span class="string"> binary                     </span>|</span><br><span class="line">|<span class="string"> character_set_results    </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_server     </span>|<span class="string"> latin1                     </span>|</span><br><span class="line">|<span class="string"> character_set_system     </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_sets_dir       </span>|<span class="string"> /usr/share/mysql/charsets/ </span>|</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">8 rows in set (0,00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>如果现实字符集都是utf8，则不用改了<br>如果只有<code>character_set_system</code>  是utf8，其他都是latin1，执行</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> names <span class="comment">utf8</span>;</span><br></pre></td></tr></table></figure>
-<p>会把 <code>character_set_client 、character_set_client、character_set_results</code>   字符集都改成utf8</p>
-<p>修改剩下的字符集</p>
-<p>1.首先查看etc安装目录下有没有my.cnf文件</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /etc  </span><br><span class="line"><span class="keyword">ls</span> -<span class="keyword">l</span> | <span class="keyword">grep</span> my.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
-<p> 如果存在可以跳过第二步</p>
-<p> 2.my.cnf不存在需要到Mysql配置文件路径下复制一个文件过来，配置文件路径在/usr/share/mysql下</p>
-<p>我复制的是my-default.cnf文件，在/etc中复制文件过来，将文件改名为my.cnf ，执行以下命令</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /etc  </span><br><span class="line"><span class="keyword">cp</span> /usr/share/mysql/my-default.<span class="keyword">cnf</span> my.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
-<p> 3.使用vi编辑器打开my.cnf加入下面几段话</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vi</span> my.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
-<p>在<code>[mysqld]</code>上面加入下面两句话</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">client</span>]    </span><br><span class="line"><span class="keyword">default</span>-character-<span class="keyword">set</span>=utf8</span><br></pre></td></tr></table></figure>
-<p>在<code>[mysqld]</code>最下面（或<code>[mysqld_safe]</code>  之前）加入下面几句话</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default-storage-engine</span>=INNODB    </span><br><span class="line"><span class="attr">character-set-server</span>=utf8   </span><br><span class="line"><span class="attr">collation-server</span>=utf8_general_ci</span><br></pre></td></tr></table></figure>
-<p>然后保存退出</p>
-<p><strong>4.重启Mysql，再查看字符集</strong></p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">service mysqld restart</span></span><br></pre></td></tr></table></figure>
-<p>发现字符集都设为utf8<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------------------------+</span><br><span class="line">|<span class="string"> Variable_name            </span>|<span class="string"> Value                      </span>|</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">|<span class="string"> character_set_client     </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_connection </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_database   </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_filesystem </span>|<span class="string"> binary                     </span>|</span><br><span class="line">|<span class="string"> character_set_results    </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_server     </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_set_system     </span>|<span class="string"> utf8                       </span>|</span><br><span class="line">|<span class="string"> character_sets_dir       </span>|<span class="string"> /usr/share/mysql/charsets/ </span>|</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">8 rows in set (0,00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>如果设置到这里还不行，再进入一下/etc/mysql/mysql.conf.d找到mysqld.cnf文件</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /etc/mysql/mysql.<span class="keyword">conf</span>.d  </span><br><span class="line"><span class="keyword">vi</span> mysqld.<span class="keyword">cnf</span></span><br></pre></td></tr></table></figure>
-<p>然后在mysqld.cnf中<code>[mysqld]</code>下面加入这句话</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">character</span>-<span class="keyword">set</span>-server=utf8</span><br></pre></td></tr></table></figure>
-<p>然后再重启下Mysql</p>
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>软件安装完，就可以把项目源码打成war包（eclipse可生成war包），然后用FailZilla把war包传到tomcat的webapps目录下，tomcat自动解压，就行了</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/云服务器//" class="article-tag-list-link color5">云服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/腾讯云服务器centOS安装JDK-Tomcat-Mysql/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
     </nav>
   
 
@@ -1068,6 +943,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
@@ -1084,7 +963,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,11 +975,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,7 +983,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">java IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,15 +1003,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1140,15 +1019,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">integer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">excel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1156,11 +1027,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1168,7 +1047,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1180,15 +1059,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1196,7 +1075,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">

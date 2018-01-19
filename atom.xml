@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lookk.cn/"/>
-  <updated>2018-01-19T12:55:39.004Z</updated>
+  <updated>2018-01-19T13:11:47.557Z</updated>
   <id>http://www.lookk.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js ajax</title>
+    <link href="http://www.lookk.cn/2018/01/19/js-ajax/"/>
+    <id>http://www.lookk.cn/2018/01/19/js-ajax/</id>
+    <published>2018-01-19T13:10:41.000Z</published>
+    <updated>2018-01-19T13:11:47.557Z</updated>
+    
+    <content type="html"><![CDATA[<p>ajax psot提交，把获得json数据转换为数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;  </span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line"><span class="comment">// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">xmlhttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">xmlhttp = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (xmlhttp.readyState == <span class="number">4</span> &amp;&amp; xmlhttp.status == <span class="number">200</span>) &#123; </span><br><span class="line"><span class="keyword">var</span> result =xmlhttp.responseText;<span class="comment">//获得服务器返回的json数据</span></span><br><span class="line"><span class="keyword">if</span>(result!=<span class="literal">null</span> &amp;&amp; result!=<span class="string">""</span>)&#123;</span><br><span class="line"><span class="keyword">var</span> json = <span class="built_in">eval</span>(<span class="string">"("</span> + result + <span class="string">")"</span>);<span class="comment">//把json转换为数组</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(<span class="string">"POST"</span>, <span class="string">"nextRoutes"</span>, <span class="literal">true</span>); <span class="comment">//POST或GET，url，true（异步）或 false（同步）</span></span><br><span class="line">xmlhttp.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">xmlhttp.send(<span class="string">"name=name"</span>);<span class="comment">//传参</span></span><br></pre></td></tr></table></figure></p><p>get提交改成GET提交，去掉参数就行了，如果想详细了解请去菜鸟教程学习</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;ajax psot提交，把获得json数据转换为数组&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;spa
+      
+    
+    </summary>
+    
+      <category term="js" scheme="http://www.lookk.cn/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://www.lookk.cn/tags/js/"/>
+    
+      <category term="ajax" scheme="http://www.lookk.cn/tags/ajax/"/>
+    
+  </entry>
   
   <entry>
     <title>js form表单提交</title>
@@ -498,30 +525,6 @@
       
         &lt;p&gt;这个只要在文章中加上&lt;code&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt; 标记 ，该标记以后部分就不在显示了，只有展开全部才显示，这是hexo定义的。&lt;br&gt;这样每次添加这个标记有点麻烦，也可以自定义添加，不过可能会导致排版错乱，自定义配置链接&lt;a href=&quot;ht
       
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://www.lookk.cn/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://www.lookk.cn/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo 创建文章、标签、分类</title>
-    <link href="http://www.lookk.cn/2017/12/08/hexo-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/"/>
-    <id>http://www.lookk.cn/2017/12/08/hexo-创建文章、标签、分类/</id>
-    <published>2017-12-08T13:17:14.000Z</published>
-    <updated>2017-12-08T13:19:14.475Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、创建文章"><a href="#1、创建文章" class="headerlink" title="1、创建文章"></a>1、创建文章</h3><h4 id="a-在hexo下创建一个新的文章"><a href="#a-在hexo下创建一个新的文章" class="headerlink" title="a.在hexo下创建一个新的文章"></a>a.在hexo下创建一个新的文章</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heox <span class="keyword">new</span> <span class="string">"文章名称"</span></span><br></pre></td></tr></table></figure><p>生产后会提示你文件路径，一般在hexo/source/_posts下</p><h4 id="b-文章基本设置"><a href="#b-文章基本设置" class="headerlink" title="b.文章基本设置"></a>b.文章基本设置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">CentOS7下Tomcat启动慢的原因及解决方案</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2017</span><span class="bullet">-12</span><span class="bullet">-02</span> <span class="number">21</span><span class="string">:01:24</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">true</span> <span class="comment">#是否可评论</span></span><br><span class="line"><span class="attr">toc:</span> <span class="literal">true</span> <span class="comment">#是否显示文章目录</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">"云服务器"</span> <span class="comment">#分类</span></span><br><span class="line"><span class="attr">tags:</span>   <span class="comment">#标签</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">centOS</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">tomcat</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="2、创建标签"><a href="#2、创建标签" class="headerlink" title="2、创建标签"></a>2、创建标签</h3><h4 id="a-创建标签页面"><a href="#a-创建标签页面" class="headerlink" title="a.创建标签页面"></a>a.创建标签页面</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span>tags</span><br></pre></td></tr></table></figure><h4 id="b-基本设置"><a href="#b-基本设置" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">title:</span> tags</span><br><span class="line"><span class="symbol">date:</span> <span class="number">2017</span><span class="number">-12</span><span class="number">-02</span> <span class="number">21</span>:<span class="number">01</span>:<span class="number">24</span></span><br><span class="line"><span class="symbol">type:</span> <span class="string">"tags"</span></span><br></pre></td></tr></table></figure><h3 id="3、创建分类"><a href="#3、创建分类" class="headerlink" title="3、创建分类"></a>3、创建分类</h3><h4 id="a-创建分类页面"><a href="#a-创建分类页面" class="headerlink" title="a.创建分类页面"></a>a.创建分类页面</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span>categories</span><br></pre></td></tr></table></figure><h4 id="b-基本设置-1"><a href="#b-基本设置-1" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">title:</span> categories</span><br><span class="line"><span class="symbol">date:</span> <span class="number">2017</span><span class="number">-12</span><span class="number">-02</span> <span class="number">21</span>:<span class="number">01</span>:<span class="number">24</span></span><br><span class="line"><span class="symbol">type:</span> <span class="string">"categories"</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1、创建文章&quot;&gt;&lt;a href=&quot;#1、创建文章&quot; class=&quot;headerlink&quot; title=&quot;1、创建文章&quot;&gt;&lt;/a&gt;1、创建文章&lt;/h3&gt;&lt;h4 id=&quot;a-在hexo下创建一个新的文章&quot;&gt;&lt;a href=&quot;#a-在hexo下创建一个新的文章&quot; class=&quot;headerlink&quot; title=&quot;a.在hexo下创建一个新的文章&quot;&gt;&lt;/a&gt;a.在hexo下创建一个新的文章&lt;/h4&gt;&lt;figure class=&quot;highlight actionscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;heox &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;文章名称&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;生产后会提示你文件路径，一般在hexo/source/_posts下&lt;/p&gt;
-&lt;h4 id=&quot;b-文章基本设置&quot;&gt;&lt;a href=&quot;#b-文章基本设置&quot; class=&quot;headerlink&quot; title=&quot;b.文章基本设置&quot;&gt;&lt;/a&gt;b.文章基本设置&lt;/h4&gt;&lt;figure class=&quot;highlight yaml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;---&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;title:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;CentOS7下Tomcat启动慢的原因及解决方案&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;date:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;2017&lt;/span&gt;&lt;span class=&quot;bullet&quot;&gt;-12&lt;/span&gt;&lt;span class=&quot;bullet&quot;&gt;-02&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;:01:24&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;comments:&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;#是否可评论&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;toc:&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;#是否显示文章目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;categories:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;云服务器&quot;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;#分类&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;tags:&lt;/span&gt;   &lt;span class=&quot;comment&quot;&gt;#标签&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;centOS&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;bullet&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;tomcat&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;---&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
