@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://www.lookk.cn">
   <title>Java 反射机制 | 枫之木落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
+  <meta name="description" content="Java 反射的简单介绍与运用java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 首先获得类的Class文件（.calss文件）1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Class.forName(">
 <meta name="keywords" content="java反射">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 反射机制">
 <meta property="og:url" content="http://www.lookk.cn/2018/01/20/Java-反射机制/index.html">
 <meta property="og:site_name" content="枫之木落">
-<meta property="og:description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
+<meta property="og:description" content="Java 反射的简单介绍与运用java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 首先获得类的Class文件（.calss文件）1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Class.forName(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-20T02:32:43.647Z">
+<meta property="og:updated_time" content="2018-01-20T02:40:17.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 反射机制">
-<meta name="twitter:description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
+<meta name="twitter:description" content="Java 反射的简单介绍与运用java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 首先获得类的Class文件（.calss文件）1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Class.forName(">
   
     <link rel="alternative" href="/atom.xml" title="枫之木落" type="application/atom+xml">
   
@@ -188,12 +188,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####Java 反射的简单介绍与运用</p>
-<p>java的反射机制：简单来说就是通过类名来获得类的所有信息。</p>
+        <h4 id="Java-反射的简单介绍与运用"><a href="#Java-反射的简单介绍与运用" class="headerlink" title="Java 反射的简单介绍与运用"></a>Java 反射的简单介绍与运用</h4><p>java的反射机制：简单来说就是通过类名来获得类的所有信息。</p>
 <p>优点：可以实现动态创建和编译，体现出灵活性。</p>
 <p>缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计</p>
-<p>#####首先获得类的Class文件（.calss文件）</p>
-<p>1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> clazz=<span class="keyword">Class</span>.forName(<span class="string">"className"</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="首先获得类的Class文件（-calss文件）"><a href="#首先获得类的Class文件（-calss文件）" class="headerlink" title="首先获得类的Class文件（.calss文件）"></a>首先获得类的Class文件（.calss文件）</h5><p>1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> clazz=<span class="keyword">Class</span>.forName(<span class="string">"className"</span>);</span><br></pre></td></tr></table></figure></p>
 <p>2、直接通过类名（不含包名），编译时可以直接发现该类是否存在<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> clazz=className.<span class="keyword">class</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h5 id="创建对象实例"><a href="#创建对象实例" class="headerlink" title="创建对象实例"></a>创建对象实例</h5><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Object  obj</span> =clazz.newInstance();</span><br></pre></td></tr></table></figure>
@@ -207,7 +205,7 @@
 <p>2、获得有形参的方法<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Method</span> <span class="title">m2</span>=<span class="title">clazz</span>.<span class="title">getMethod</span><span class="params">("disPlay",String.<span class="keyword">class</span>)</span>;</span><span class="comment">//String.class为形参的类型</span></span><br><span class="line">m2.invoke(obj);</span><br></pre></td></tr></table></figure></p>
 <p>3、获得所有的方法<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Method</span>[] <span class="title">m3</span>=<span class="title">clazz</span>.<span class="title">getMethod</span><span class="params">()</span>;</span></span><br></pre></td></tr></table></figure></p>
 <p>实例演示：</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class User &#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> password;</span><br><span class="line"><span class="keyword">public</span> User() &#123;</span><br><span class="line"><span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> getName() &#123;</span><br><span class="line"><span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> setName(<span class="keyword">String</span> name) &#123;</span><br><span class="line"><span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> getPassword() &#123;</span><br><span class="line"><span class="keyword">return</span> password;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> setPassword(<span class="keyword">String</span> password) &#123;</span><br><span class="line"><span class="keyword">this</span>.password = password;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> disPlay(<span class="keyword">String</span> <span class="built_in">sort</span>)&#123;</span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="string">"该用户的身份："</span>+<span class="built_in">sort</span>);</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> toString() &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", password="</span> + password + <span class="string">"]"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Test &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> test() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Class&lt;User&gt; clazz=User.class;</span><br><span class="line">		<span class="comment">/*Class&lt;User&gt; clazz=Class.forName("javabean.User.java");*/</span> </span><br><span class="line">		</span><br><span class="line">		User user=clazz.newInstance(); </span><br><span class="line">		</span><br><span class="line">		Field f1=clazz.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">		f1.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f1.<span class="built_in">set</span>(user, <span class="string">"jxy"</span>);</span><br><span class="line">		Field f2=clazz.getDeclaredField(<span class="string">"password"</span>);</span><br><span class="line">		f2.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f2.<span class="built_in">set</span>(user, <span class="string">"123"</span>); </span><br><span class="line">		</span><br><span class="line">		Method m1=clazz.getMethod(<span class="string">"disPlay"</span>, <span class="keyword">String</span>.class);</span><br><span class="line">		m1.invoke(user, <span class="string">"管理员"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Test t=<span class="keyword">new</span> Test();</span><br><span class="line">		t.test();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class User &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">String</span> password;</span><br><span class="line">	<span class="keyword">public</span> User() &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> getName() &#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> setName(<span class="keyword">String</span> name) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> getPassword() &#123;</span><br><span class="line">		<span class="keyword">return</span> password;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> setPassword(<span class="keyword">String</span> password) &#123;</span><br><span class="line">		<span class="keyword">this</span>.password = password;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> disPlay(<span class="keyword">String</span> <span class="built_in">sort</span>)&#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"该用户的身份："</span>+<span class="built_in">sort</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">String</span> toString() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", password="</span> + password + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Test &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> test() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Class&lt;User&gt; clazz=User.class;</span><br><span class="line">		<span class="comment">/*Class&lt;User&gt; clazz=Class.forName("javabean.User.java");*/</span> </span><br><span class="line">		</span><br><span class="line">		User user=clazz.newInstance(); </span><br><span class="line">		</span><br><span class="line">		Field f1=clazz.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">		f1.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f1.<span class="built_in">set</span>(user, <span class="string">"jxy"</span>);</span><br><span class="line">		Field f2=clazz.getDeclaredField(<span class="string">"password"</span>);</span><br><span class="line">		f2.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f2.<span class="built_in">set</span>(user, <span class="string">"123"</span>); </span><br><span class="line">		</span><br><span class="line">		Method m1=clazz.getMethod(<span class="string">"disPlay"</span>, <span class="keyword">String</span>.class);</span><br><span class="line">		m1.invoke(user, <span class="string">"管理员"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Test t=<span class="keyword">new</span> Test();</span><br><span class="line">		t.test();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/jiaoxiangyu/Reflect" target="_blank" rel="noopener">https://github.com/jiaoxiangyu/Reflect</a> 我Github上有更详细的ppt和代码测试，还有用反射封装的Daobase类，如果有兴趣可以看看</p>
 
       
@@ -332,7 +330,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建对象实例"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;"></a>&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得属性的方法"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得方法的方法"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java-反射的简单介绍与运用"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Java-&#x53CD;&#x5C04;&#x7684;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E0E;&#x8FD0;&#x7528;" class="headerlink" title="Java &#x53CD;&#x5C04;&#x7684;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E0E;&#x8FD0;&#x7528;"></a>Java &#x53CD;&#x5C04;&#x7684;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E0E;&#x8FD0;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#首先获得类的Class文件（-calss文件）"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x9996;&#x5148;&#x83B7;&#x5F97;&#x7C7B;&#x7684;Class&#x6587;&#x4EF6;&#xFF08;-calss&#x6587;&#x4EF6;&#xFF09;" class="headerlink" title="&#x9996;&#x5148;&#x83B7;&#x5F97;&#x7C7B;&#x7684;Class&#x6587;&#x4EF6;&#xFF08;.calss&#x6587;&#x4EF6;&#xFF09;"></a>&#x9996;&#x5148;&#x83B7;&#x5F97;&#x7C7B;&#x7684;Class&#x6587;&#x4EF6;&#xFF08;.calss&#x6587;&#x4EF6;&#xFF09;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建对象实例"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;"></a>&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得属性的方法"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得方法的方法"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -459,19 +457,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,7 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,15 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,15 +509,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,7 +517,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,7 +541,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,15 +549,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,6 +558,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">springmvc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,10 +578,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,7 +601,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,11 +613,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
             
             <div class="clearfix"></div>
