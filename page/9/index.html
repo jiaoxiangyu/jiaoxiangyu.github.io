@@ -158,6 +158,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-一个简单的静态web服务器实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/一个简单的静态web服务器实现/">一个简单的静态web服务器实现</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/一个简单的静态web服务器实现/" class="archive-article-date">
+  	<time datetime="2017-12-02T14:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看完tomcat原理后，想自己用java仿一个简单的tomcat，先实现一个静态的web服务器。需要的技术有java网络编程（tcp/ip协议、http协议、socket等基础知识）<br>源码下载链接<a href="https://github.com/jiaoxiangyu/myWeb" target="_blank" rel="noopener">https://github.com/jiaoxiangyu/myWeb</a><br>自己下载源码看，我就不用再细介绍了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tomcat//" class="article-tag-list-link color2">tomcat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/一个简单的静态web服务器实现/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-仿一个简单动态tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -522,187 +609,6 @@
 
 
   
-    <article id="post-JSP内置对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/JSP内置对象/">JSP内置对象</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/JSP内置对象/" class="archive-article-date">
-  	<time datetime="2017-12-02T14:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、request对象"><a href="#一、request对象" class="headerlink" title="一、request对象"></a>一、request对象</h2><blockquote>
-<p>request对象是javax.servlet.http.HttpServletRequest 类的实例。每当客户端请求一个JSP页面时，JSP引擎就会制造一个新的request对象来代表这个请求。</p>
-<p>request对象封装了由客户端生成的HTTP请求的所有细节，主要包括HTTP头信息、系统信息、请求方式和请求参数等。通过request对象提供的相应方法可以处理客户端浏览器提交的HTTP请求中的各项参数。</p>
-</blockquote>
-<p><strong>1、访问请求参数</strong></p>
-<p> 通过request对象的getParameter()方法获取传递的参数值。</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getParameter(<span class="string">"name"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p> 如果指定参数不存在，将返回null；如果指定了参数名，但未指定参数值，将返回空的字符串“”。</p>
-<p><strong>2、在作用域中管理属性</strong></p>
-<p>在进行请求转发时，需要把一些数据传递到转发后的页面进行处理。这时就需要使用request对象的setAttribute()方法将数据保存到request范围内的变量中。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">request</span><span class="selector-class">.setAtteribute</span>(<span class="string">"name"</span>,value);</span><br><span class="line"><span class="selector-tag">requeat</span><span class="selector-class">.getAtribute</span>(<span class="string">"nmae"</span>);得到变量值</span><br><span class="line"><span class="selector-tag">request</span><span class="selector-class">.getAttributeNames</span>();     返回<span class="selector-tag">request</span>对象的所有属性名称的集合</span><br></pre></td></tr></table></figure>
-<p>由于getAtteribute()方法的返回值是Object类型，所以需要调用toString()方法，将其转化为字符串类型</p>
-<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> name=<span class="built_in">request</span>.getAtteribute(<span class="string">"name"</span>).toString();</span><br><span class="line">或强制转换 <span class="built_in">String</span> name=（<span class="built_in">String</span>）<span class="built_in">request</span>.getAtteribute(<span class="string">"name"</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>3、获取cookie</strong></p>
-<p>cookie是小段文本信息，在网络服务器上生成，并发送给浏览器。通过使用cookie可以标记用户身份，记录用户名和密码，跟踪重复用户等。浏览器将cookie以key/value的形式保存到客户机的莫个指定目录中。</p>
-<p>通过getCookies()方法即获得所有cookie对象的集合</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie[] <span class="attribute">cookies</span>=request.getCookies();</span><br></pre></td></tr></table></figure>
-<p>cookie对象的方法：</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> <span class="built_in">getName</span>()   获得指名称的cookie；</span><br><span class="line">Cookie getValue()  获得cookie对象的值，</span><br></pre></td></tr></table></figure>
-<p>将一个cookie对象发送到客户端，使用request对象的<code>addCookie()</code>方法。</p>
-<p>在向cookie中保存的信息中，如果包括中文，需要调用java.net.URLEncoder类的<code>encode()</code>方法将要保存到cookie中的信息进行编码，和<code>decode()</code>方法进行解码。</p>
-<p> <strong>4、解决文中乱码</strong></p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new String (<span class="name">request</span>.getParame(<span class="string">"name"</span>).getBytes(<span class="string">"ISO-8859-1"</span>),<span class="string">"UTF-8"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p><strong>5、其他常用方法</strong></p>
-<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">HttpSession getSession()  返回<span class="built_in">request</span>对应的session对象，如果没有，则创建一个</span><br><span class="line"></span><br><span class="line">Locale <span class="built_in">getLocale</span>()   返回当前页的Locale对象，可以在<span class="built_in">response</span>中设置(国际化)</span><br><span class="line"></span><br><span class="line">ServletInputStream getInputStream()  返回请求的输入流</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getCharacterEncoding() 返回<span class="built_in">request</span>的字符编码集名称 </span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getContextPath() 返回<span class="built_in">request</span> URI中指明的上下文路径</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getHeader(<span class="built_in">String</span> name) 返回name指定的信息头</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getMethod() 返回此<span class="built_in">request</span>中的HTTP方法，比如 <span class="keyword">GET</span>,，POST，或PUT</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getPathInfo() 返回任何额外的与此<span class="built_in">request</span> URL相关的路径</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getProtocol() 返回此<span class="built_in">request</span>所使用的协议名和版本</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getQueryString() 返回此 <span class="built_in">request</span> URL包含的查询字符串</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getRemoteAddr() 返回客户端的IP地址</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getRemoteHost() 返回客户端的完整名称</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getRemoteUser()返回客户端通过登录认证的用户，若用户未认证则返回<span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getRequestURI()  返回<span class="built_in">request</span>的URI</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getRequestedSessionId() 返回<span class="built_in">request</span>指定的session ID</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span> getServletPath() 返回所请求的servlet路径</span><br><span class="line"></span><br><span class="line">boolean isSecure() 返回<span class="built_in">request</span>是否使用了加密通道，比如HTTPS</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> getServerPort() 返回服务器端口号</span><br></pre></td></tr></table></figure>
-<h2 id="二、response对象"><a href="#二、response对象" class="headerlink" title="二、response对象"></a>二、response对象</h2><blockquote>
-<p> response对象是javax.servlet.http.HttpServletResponse类的实例。当服务器创建request对象时会同时创建用于响应这个客户端的response对象。</p>
-<p>response对象也定义了处理HTTP头模块的接口。通过这个对象，开发者们可以添加新的cookies，时间戳，HTTP状态码等等。</p>
-<p> response对象应用于响应客户请求，向客户端输出信息。它封装了JSP产生的响应，并发送到客户端以响应客户端的请求。请求的数据可以是各种数据类型，甚至是文件。response对象在JSP页面内有效。</p>
-</blockquote>
-<p><strong>1、重定向网页</strong></p>
-<p>使用response对象提供的sendRedirect()方法将网页重定向到另一个页面。重定向操作支持将地址重定向到不同的主机上，这一点与转发不同，在客户端浏览器上将会得到跳转的地址，并重新发送请求链接，用户可以从浏览器的地址栏中看到跳转后的地址。进行重定向操作后，request中的属性全部失效，并且开始一个新的request对象。</p>
-<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">response</span>.sendRedirect(<span class="built_in">String</span> path);</span><br></pre></td></tr></table></figure>
-<p><strong>2、处理HTTP文件头</strong><br>通过response对象可以设置HTTP响应报头，其中，最常见的是禁用缓存，设置页面的自动刷新和定时跳转页面。</p>
-<p><strong>1）禁止缓存</strong><br>在默认的情况下，浏览器会对显示的网页内容进行缓存。这样，当用户再次访问相关网页时，浏览器会判断页面是否有变化，如果没有变化则直接显示缓存中的内容，这样可以提高网页的显示速度。对一些安全性要求比较高的网站，通常需要禁止用缓存。</p>
-<p>通过设置HTTP头的方法实现禁用缓存：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">"Cache-Control"</span>,<span class="string">"no-store"</span>);</span><br><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setDateHeader</span>(<span class="string">"Expires"</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>2）设置页面自动刷新</strong></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">"refresh"</span>,<span class="string">"10"</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>3）定时跳转网页</strong><br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.setHeader</span>(<span class="string">"refresh"</span>,<span class="string">"5;URL=xxx.jsp"</span>);</span><br></pre></td></tr></table></figure></p>
-<p><strong>3、设置输出缓冲</strong><br>通常情况下，服务器要输出到客户端的内容不会直接写到客户端，而是先写到一个输出区。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> flushBuffer() 		将任何缓存中的内容写入客户端</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> resetBuffer() 		清除基本的缓存数据，不包括响应头和状态码</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> reset() 			清除任何缓存中的任何数据，包括状态码和各种响应头</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> setBufferSize(<span class="keyword">int</span> <span class="built_in">size</span>) 设置响应体的缓存区大小</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> isCommitted() 	返回响应是否已经提交到客户端</span><br></pre></td></tr></table></figure>
-<p><strong>4、其他方法</strong></p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> encodeRedirectURL(<span class="built_in">String</span> <span class="built_in">url</span>) 对sendRedirect()方法使用的URL进行编码</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> addCookie(Cookie cookie)     添加指定的cookie至响应中</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> setCharacterEncoding(<span class="built_in">String</span> charset)   指定响应的编码集（MIME字符集），例如UTF<span class="number">-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> setLocale(Locale loc)    	  设置响应的语言环境，如果响应尚未被提交的话</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> setStatus(<span class="built_in">int</span> sc)        	  设置响应的状态码</span><br></pre></td></tr></table></figure>
-<h2 id="三、session对象"><a href="#三、session对象" class="headerlink" title="三、session对象"></a>三、session对象</h2><blockquote>
-<p> HTTP是无状态协议，这意味着每次客户端检索网页时，都要单独打开一个服务器连接，因此服务器不会记录下先前客户端请求的任何信息。<br>  session对象是 javax.servlet.http.HttpSession 类的实例。和Java  Servlets中的session对象有一样的行为。 session对象用来跟踪在各个客户端请求间的会话。通过session可以在应用程序的web页面间进行跳转时，保存用户的状态，使整个用户会话一直存在下去，直到关闭浏览器。</p>
-</blockquote>
-<p><strong>1、创建及获取客户的会话</strong></p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(<span class="keyword">String</span> <span class="keyword">name</span>,<span class="keyword">Object</span> obj);</span><br><span class="line">session.getAttribute(<span class="keyword">String</span> <span class="keyword">name</span>);</span><br></pre></td></tr></table></figure>
-<p>在servlet中创建session对象：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">HttpSession session</span>=request.getSession();</span><br></pre></td></tr></table></figure></p>
-<p><strong>2、移除绑定对象</strong></p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">removeAttribute(String name);</span></span><br></pre></td></tr></table></figure>
-<p><strong>3、销毁session</strong></p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.invalidate()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p><strong>4、会话超时管理</strong></p>
-<p>session的生命周期tomcat默认为30分钟，设置session的有效时间1000s<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setMaxInctiveInterval(<span class="number">1000</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>5、其他方法</strong></p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Enumeration getAttributeNames()   	返回session对象中所有的对象名称</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">long</span> getCreationTime()	返回session对象被创建的时间， 以毫秒为单位，从<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>号凌晨开始算起</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> getId()	返回session对象的ID</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">long</span> getLastAccessedTime()	返回客户端最后访问的时间，以毫秒为单位，从<span class="number">1970</span>年<span class="number">1</span>月<span class="number">1</span>号凌晨开始算起</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> getMaxInactiveInterval()	返回最大时间间隔，以秒为单位，servlet 容器将会在这段时间内保持会话打开</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> isNew()	返回是否为一个新的客户端，或者客户端是否拒绝加入session</span><br></pre></td></tr></table></figure>
-<h2 id="四、application对象"><a href="#四、application对象" class="headerlink" title="四、application对象"></a>四、application对象</h2><blockquote>
-<p>application对象用于保存所有应用程序中的公有数据，它在服务器启动时自动创建，在服务器停止时销毁。所有用户都可以共享该application对象。与session对象相比，application对象的生命周期更长，类似于系统的”全局变量“。、</p>
-</blockquote>
-<p> <strong>1、访问应用程序初始化参数</strong><br> applicaton对象提供了对应用程序初始化参数进行访问的方法。应用程序初始化参数在web.xml文件中进行设置。</p>
-<p> web.xml配置应用程序初始化url参数：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-<span class="built_in">param</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">param</span>-<span class="built_in">name</span>&gt;url&lt;/<span class="built_in">param</span>-<span class="built_in">name</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">param</span>-value&gt;jdbc:mysql:<span class="comment">///db&lt;/param-value&gt;</span></span><br><span class="line">&lt;/context-<span class="built_in">param</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>获得初始化参数</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">application</span><span class="selector-class">.getInitParameter</span>(<span class="string">"url"</span>);</span><br><span class="line">或<span class="selector-tag">application</span><span class="selector-class">.getAttributeNames</span>();<span class="comment">//获得初始化参数名枚举</span></span><br></pre></td></tr></table></figure>
-<p><strong>2、管理应用程序环境属性</strong></p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">application.getAttributeNames();	<span class="comment">//获得所有application对象属性名称</span></span><br><span class="line"></span><br><span class="line">getAttribute(<span class="keyword">String</span> <span class="keyword">name</span>);		<span class="comment">//获得指定application对象</span></span><br><span class="line"></span><br><span class="line">setAttribute(<span class="keyword">String</span> key,<span class="keyword">Object</span> obj);	<span class="comment">//设置指定名称和指定对象在application对象中进行关联</span></span><br><span class="line"></span><br><span class="line">removeSttribute(<span class="keyword">String</span> <span class="keyword">name</span>);	<span class="comment">//删除指定名称的application对象</span></span><br></pre></td></tr></table></figure>
-<h2 id="五、out对象"><a href="#五、out对象" class="headerlink" title="五、out对象"></a>五、out对象</h2><blockquote>
-<p>out对象用于在web浏览器内输出信息，并且管理应用服务器上的输出缓冲区。在使用out对象输出数据时，可以对数据缓冲区进行操作，及时清除缓存区中的残余数据，为其他的输出让出缓存空间。待数据输出完毕后，要及时关闭输出流。</p>
-</blockquote>
-<p><strong>1、向客户端输出数据</strong></p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter <span class="keyword">out</span> = response.Writer();<span class="comment">//在servlet创建out对象</span></span><br><span class="line"><span class="keyword">out</span>.<span class="keyword">print</span>(<span class="string">""</span>);<span class="comment">//不换行</span></span><br><span class="line"><span class="keyword">out</span>.println(<span class="string">""</span>);<span class="comment">//换行</span></span><br></pre></td></tr></table></figure>
-<p>注意：html默认多个空格和换行符为一个空格，要用&lt; pre &gt;标签保留原格式</p>
-<p><strong>2、管理响应缓冲</strong><br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">clear</span>();		<span class="comment">//清除缓存区中的内容</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">claerBuffer</span>();	<span class="comment">//清除当前缓存区中的内容</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">flush</span>();		<span class="comment">//刷新流</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">getBufferSize</span>() <span class="comment">//获得缓缓冲区大小</span></span><br><span class="line">```               </span><br><span class="line">六、其他内置对象</span><br><span class="line"><span class="selector-tag">--------</span> </span><br><span class="line">**<span class="selector-tag">1</span>、获得会话范围的<span class="selector-tag">pageContext</span>对象**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;获取页面上下文的<span class="selector-tag">pageContext</span>对象是<span class="selector-tag">javax</span><span class="selector-class">.servlet</span><span class="selector-class">.jsp</span><span class="selector-class">.PageContext</span>类的实例，用来代表整个<span class="selector-tag">JSP</span>页面。这个对象主要用来访问页面信息，同时过滤掉大部分实现细节。这个对象存储了<span class="selector-tag">request</span>对象和<span class="selector-tag">response</span>对象的引用。<span class="selector-tag">application</span>对象，<span class="selector-tag">config</span>对象，<span class="selector-tag">session</span>对象，<span class="selector-tag">out</span>对象可以通过访问这个对象的属性来导出。<span class="selector-tag">pageContext</span>对象也包含了传给<span class="selector-tag">JSP</span>页面的指令信息，包括缓存信息，<span class="selector-tag">Error</span>,<span class="selector-tag">PageURL</span>,页面<span class="selector-tag">scope</span>等。<span class="selector-tag">JSP</span>页面可以直接使用<span class="selector-tag">pageContext</span>对象</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">pageContext</span>常方法：</span><br></pre></td></tr></table></figure></p>
-<p>forward() //把网页转发到另一个页面</p>
-<p>getAttribute(String name)  //获取参数值</p>
-<p>getAttributeNamesINScope(int scope) //获取范围的参数名称的集合</p>
-<p>getException()  //返回exception对象</p>
-<p>getRequest()、getResponse()、getSession()、getOut()、getApplication() //获得各对象</p>
-<p>setAttribute() //为指定范围内的属性设置属性值</p>
-<p>removeAttribute() //删除指定范围内的指定属性<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">注意：pageContext是一个比较特殊的对象，在实际<span class="keyword">jsp开发过程中很少用，因为request和response等对象均为内置对象，如果通过pageContext获得比较麻烦，都是直接调用骑相关方法实现具体的功能。</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">**2、读取web.xml配置信息的config对象**</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">通过pageContext对象的getServletConfig()方法获得config对象</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">config对象常用方法：</span></span><br></pre></td></tr></table></figure></p>
-<p>getServletConText()        //获得Servlet上下文</p>
-<p>getServletName()          //获取Servlet服务器名称</p>
-<p>getInitPatameter()         //获得服务器所有初始化参数名称，返回值为java.util.Enumeration对象</p>
-<p>getInitPatameterNames() //获得服务器所有参数名称<br><figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**<span class="number">3</span>、答应或请求的<span class="built_in">page</span>对象**</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">page</span>对象代表JSP本身，只有在JSP页面内才是合法的。<span class="built_in">page</span>对象本质上是包含当前Servlet接口引用变量，可以看作是this关键字的别名。</span><br><span class="line"></span><br><span class="line">常用方法：</span><br></pre></td></tr></table></figure></p>
-<p>getClass()             //返回当前Object的类</p>
-<p>hashCode()             //返回改Objext的哈希代码</p>
-<p>toString()             //把该Object类转换乘字符串</p>
-<p>equals(Object obj)     //比较对象是否相等<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**4、获取异常信息的exception对象**</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 只有在page指令中设置为isErrorpage属性值为<span class="literal">true</span>的页面中才能使用。</span></span><br><span class="line"></span><br><span class="line">常用方法：</span><br></pre></td></tr></table></figure></p>
-<p>getMessage()             //返回异常信息字符串</p>
-<p>getLocalizedmessage()     //返回本地化的异常错误</p>
-<p>toString()                 //返回关于异常的简单信息描述</p>
-<p>fillInStackTrace         //重写异常错误的栈执行轨迹<br>```</p>
-<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>主要详细介绍了request、response、out、session、application应用对象，这些对象在进行实际项目开发时要经常使用，需要重点掌握。最后简单介绍了其他对象，读者不必深究。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jsp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/servlet//" class="article-tag-list-link color3">servlet</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/JSP内置对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -814,11 +720,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -834,6 +736,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
@@ -846,15 +760,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jsp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -862,11 +772,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -898,30 +808,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">json</a>
               </li>
              
@@ -930,11 +816,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -950,11 +860,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+                <a href="javascript:void(0)" class="js-tag color1">properties</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">properties</a>
+                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
               </li>
             
             <div class="clearfix"></div>
