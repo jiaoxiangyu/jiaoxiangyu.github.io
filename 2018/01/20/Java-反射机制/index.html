@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lookk.cn">
-  <title>Category: js | 枫之木落</title>
+  <title>Java 反射机制 | 枫之木落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="枫之木落">
-<meta property="og:url" content="http://www.lookk.cn/categories/js/index.html">
+  <meta name="description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
+<meta name="keywords" content="java反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 反射机制">
+<meta property="og:url" content="http://www.lookk.cn/2018/01/20/Java-反射机制/index.html">
 <meta property="og:site_name" content="枫之木落">
+<meta property="og:description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-20T02:32:43.647Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="枫之木落">
+<meta name="twitter:title" content="Java 反射机制">
+<meta name="twitter:description" content="####Java 反射的简单介绍与运用 java的反射机制：简单来说就是通过类名来获得类的所有信息。 优点：可以实现动态创建和编译，体现出灵活性。 缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计 #####首先获得类的Class文件（.calss文件） 1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：1Class clazz=Cla">
   
     <link rel="alternative" href="/atom.xml" title="枫之木落" type="application/atom+xml">
   
@@ -156,223 +161,207 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-反射机制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 反射机制
+    </h1>
+  
+
+        
+        <a href="/2018/01/20/Java-反射机制/" class="archive-article-date">
+  	<time datetime="2018-01-20T02:23:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+</a>
+        
+		
+		
+			<span class="archive-article-date">
+				阅读量 <span id="busuanzi_value_page_pv"></span>
+			</span>
+		 
+
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####Java 反射的简单介绍与运用</p>
+<p>java的反射机制：简单来说就是通过类名来获得类的所有信息。</p>
+<p>优点：可以实现动态创建和编译，体现出灵活性。</p>
+<p>缺点：运行效率没有直接new对象快，但现在有很大的提升，可以忽略不计</p>
+<p>#####首先获得类的Class文件（.calss文件）</p>
+<p>1、通过类的全名（含包名）,但不推荐使用，编译时，编译器并不知道该类是否存在，需要抛出异常：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> clazz=<span class="keyword">Class</span>.forName(<span class="string">"className"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>2、直接通过类名（不含包名），编译时可以直接发现该类是否存在<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> clazz=className.<span class="keyword">class</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h5 id="创建对象实例"><a href="#创建对象实例" class="headerlink" title="创建对象实例"></a>创建对象实例</h5><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Object  obj</span> =clazz.newInstance();</span><br></pre></td></tr></table></figure>
+<h5 id="获得属性的方法"><a href="#获得属性的方法" class="headerlink" title="获得属性的方法"></a>获得属性的方法</h5><p>1、获得public属性<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field <span class="attribute">f1</span>=clazz .getField(<span class="string">"name"</span>);</span><br><span class="line">f1.<span class="builtin-name">set</span>(obj,<span class="string">"liu"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>2、获得非public属性</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Field <span class="attribute">f2</span>=clazz .getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">f2.setAccessible(<span class="literal">true</span>);</span><br><span class="line">f2.<span class="builtin-name">set</span>(obj,<span class="string">"liu"</span>);</span><br></pre></td></tr></table></figure>
+<p>3、获得所有public属性</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Field[] <span class="attribute">f3</span>=clazz .getField();</span><br></pre></td></tr></table></figure>
+<p>4、获得所有public属性<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Field[] <span class="attribute">f4</span>=clazz .getDeclaredField();</span><br></pre></td></tr></table></figure></p>
+<h5 id="获得方法的方法"><a href="#获得方法的方法" class="headerlink" title="获得方法的方法"></a>获得方法的方法</h5><p>1、获得无形参的方法<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Method</span> <span class="title">m1</span>=<span class="title">clazz</span>.<span class="title">getMethod</span><span class="params">("getName")</span>;</span></span><br><span class="line">m1.invoke(obj);</span><br></pre></td></tr></table></figure></p>
+<p>2、获得有形参的方法<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Method</span> <span class="title">m2</span>=<span class="title">clazz</span>.<span class="title">getMethod</span><span class="params">("disPlay",String.<span class="keyword">class</span>)</span>;</span><span class="comment">//String.class为形参的类型</span></span><br><span class="line">m2.invoke(obj);</span><br></pre></td></tr></table></figure></p>
+<p>3、获得所有的方法<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Method</span>[] <span class="title">m3</span>=<span class="title">clazz</span>.<span class="title">getMethod</span><span class="params">()</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p>实例演示：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class User &#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> name;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> password;</span><br><span class="line"><span class="keyword">public</span> User() &#123;</span><br><span class="line"><span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> getName() &#123;</span><br><span class="line"><span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> setName(<span class="keyword">String</span> name) &#123;</span><br><span class="line"><span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> getPassword() &#123;</span><br><span class="line"><span class="keyword">return</span> password;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> setPassword(<span class="keyword">String</span> password) &#123;</span><br><span class="line"><span class="keyword">this</span>.password = password;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> disPlay(<span class="keyword">String</span> <span class="built_in">sort</span>)&#123;</span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="string">"该用户的身份："</span>+<span class="built_in">sort</span>);</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> toString() &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">"User [name="</span> + name + <span class="string">", password="</span> + password + <span class="string">"]"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> javabean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class Test &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> test() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Class&lt;User&gt; clazz=User.class;</span><br><span class="line">		<span class="comment">/*Class&lt;User&gt; clazz=Class.forName("javabean.User.java");*/</span> </span><br><span class="line">		</span><br><span class="line">		User user=clazz.newInstance(); </span><br><span class="line">		</span><br><span class="line">		Field f1=clazz.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">		f1.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f1.<span class="built_in">set</span>(user, <span class="string">"jxy"</span>);</span><br><span class="line">		Field f2=clazz.getDeclaredField(<span class="string">"password"</span>);</span><br><span class="line">		f2.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		f2.<span class="built_in">set</span>(user, <span class="string">"123"</span>); </span><br><span class="line">		</span><br><span class="line">		Method m1=clazz.getMethod(<span class="string">"disPlay"</span>, <span class="keyword">String</span>.class);</span><br><span class="line">		m1.invoke(user, <span class="string">"管理员"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		Test t=<span class="keyword">new</span> Test();</span><br><span class="line">		t.test();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/jiaoxiangyu/Reflect" target="_blank" rel="noopener">https://github.com/jiaoxiangyu/Reflect</a> 我Github上有更详细的ppt和代码测试，还有用反射封装的Daobase类，如果有兴趣可以看看</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/js-ajax/" class="archive-article-date">
-  	<time datetime="2018-01-19T13:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/js-ajax/">js ajax</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java反射</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.lookk.cn/2018/01/20/Java-反射机制/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/js-form表单提交/" class="archive-article-date">
-  	<time datetime="2018-01-19T12:54:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/20/Echarts-百度画图插件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Echarts 百度画图插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/js-form表单提交/">js form表单提交</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#创建对象实例"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;"></a>&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得属性的方法"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#获得方法的方法"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;"></a>&#x83B7;&#x5F97;&#x65B9;&#x6CD5;&#x7684;&#x65B9;&#x6CD5;</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/js-常用方法/" class="archive-article-date">
-  	<time datetime="2018-01-19T12:46:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/js-常用方法/">js 常用方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/js-动态生成和删除表格/" class="archive-article-date">
-  	<time datetime="2018-01-19T09:59:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/js-动态生成和删除表格/">js 动态生成和删除表格</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="Java-反射机制" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytls91Oe",
+        conf: "7df026164d4372a03fa55bb8077765ec"
+    });
+</script>
+</script>
+  
 
+  
+
+  
 
           </div>
         </div>
@@ -400,10 +389,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

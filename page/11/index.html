@@ -158,6 +158,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java-IO流（二）-字符流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Java-IO流（二）-字符流/">Java IO流（二）--字符流</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Java-IO流（二）-字符流/" class="archive-article-date">
+  	<time datetime="2017-12-02T13:52:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>InputStream和OutputStream类通常是用来处理“字节流”即“位流”的，也就是二进制文件，而Reader和Writer类则是用来处理“字符流”的，也就是文本文件。</p>
+<h2 id="Reader和Writer流类"><a href="#Reader和Writer流类" class="headerlink" title="Reader和Writer流类"></a>Reader和Writer流类</h2><p>Reader和Writer都是抽象类，定义的方法都是给所派生的子类使用</p>
+<p>Reader类方法：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">abstract  <span class="keyword">void</span> <span class="built_in">close</span>() <span class="comment">//关闭该流并释放与之关联的所有资源。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> mark(<span class="keyword">int</span> readAheadLimit) <span class="comment">//标记流中的当前位置。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> markSupported() <span class="comment">//判断此流是否支持 mark() 操作。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>() <span class="comment">//读取单个字符。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">char</span>[] cbuf) <span class="comment">//将字符读入数组。</span></span><br><span class="line"> </span><br><span class="line">abstract  <span class="keyword">int</span> <span class="built_in">read</span>(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//将字符读入数组的某一部分。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">read</span>(CharBuffer target) <span class="comment">//试图将字符读入指定的字符缓冲区。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> <span class="built_in">ready</span>() <span class="comment">//判断是否准备读取此流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> reset() <span class="comment">//重置该流。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> skip(<span class="keyword">long</span> n) <span class="comment">//跳过字符。</span></span><br></pre></td></tr></table></figure>
+<p>Writer类的方法：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> Writer <span class="keyword">append</span>(<span class="keyword">char</span> c) <span class="comment">//将指定字符添加到此 writer。 </span></span><br><span class="line"> </span><br><span class="line"> Writer <span class="keyword">append</span>(CharSequence csq) <span class="comment">//将指定字符序列添加到此 writer。  </span></span><br><span class="line"> </span><br><span class="line"> Writer <span class="keyword">append</span>(CharSequence csq, <span class="keyword">int</span> start, <span class="keyword">int</span> end) <span class="comment">//将指定字符序列的子序列添加到此 writer.Appendable。  </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> close() <span class="comment">//关闭此流，但要先刷新它。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> flush() <span class="comment">//刷新该流的缓冲。</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">char</span>[] cbuf) <span class="comment">//写入字符数组。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span>  <span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">char</span>[] cbuf, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//写入字符数组的某一部分。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(<span class="keyword">int</span> c) <span class="comment">//写入单个字符。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(String str) <span class="comment">//写入字符串。 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">write</span>(String str, <span class="keyword">int</span> off, <span class="keyword">int</span> len) <span class="comment">//写入字符串的某一部分。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：Java把每个汉字和英文字母均作为一个字符对待，但回车换行符“\r\n”作为两个字符。</strong></p>
+</blockquote>
+<h2 id="使用FileReader类读取文件"><a href="#使用FileReader类读取文件" class="headerlink" title="使用FileReader类读取文件"></a>使用FileReader类读取文件</h2><p>文件字符输入流类FileReader是继承自InputStreamReader类，而InputStreamReader类又继承自Reader类。</p>
+<p>FileReader构造方法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(File file)</span></span> <span class="comment">//在给定从中读取数据的 File 的情况下创建一个新 FileReader。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(FileDescriptor fd)</span></span> <span class="comment">//在给定从中读取数据的 FileDescriptor 的情况下创建一个新 FileReader。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileReader</span><span class="params">(String fileName)</span></span> <span class="comment">//在给定从中读取数据的文件名的情况下创建一个新 FileReader。</span></span><br></pre></td></tr></table></figure>
+<p>例1：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">		<span class="built_in">char</span>[] c=<span class="keyword">new</span> <span class="built_in">char</span>[<span class="number">500</span>];</span><br><span class="line">		FileReader fr=<span class="keyword">new</span> FileReader(<span class="string">"f:\\test.txt"</span>);<span class="comment">//创建字符输入流对象</span></span><br><span class="line">		<span class="built_in">int</span> num=fr.read(c);<span class="comment">//把数据读入字符数组c中，并返回读取的字符数</span></span><br><span class="line">		<span class="keyword">String</span> <span class="built_in">str</span>=<span class="keyword">new</span> <span class="keyword">String</span>(c,<span class="number">0</span>,num);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"文件大小（字符）："</span>+num);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"内容："</span>);</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="built_in">str</span>);</span><br><span class="line">		fr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用FileWriter类写入文件"><a href="#使用FileWriter类写入文件" class="headerlink" title="使用FileWriter类写入文件"></a>使用FileWriter类写入文件</h1><p>文件字符输出流类FileWriter继承自OutputStreamWriter类，而OutputStreamWriter类又继承自Writer。</p>
+<p>FileWriter构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(File file)</span></span> <span class="comment">//根据给定的 File 对象构造一个 FileWriter 对象。</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(File file, boolean append)</span></span> <span class="comment">//根据给定的 File 对象构造一个 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(FileDescriptor fd)</span></span> <span class="comment">//构造与某个文件描述符相关联的 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(String fileName)</span></span> <span class="comment">//根据给定的文件名构造一个 FileWriter 对象。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">FileWriter</span><span class="params">(String fileName, boolean append)</span></span> <span class="comment">//根据给定的文件名以及指示是否附加写入数据的 boolean 值来构造 FileWriter 对象。</span></span><br></pre></td></tr></table></figure></p>
+<p>例2：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) throws IOException&#123;</span><br><span class="line">		FileWriter fw=<span class="keyword">new</span> FileWriter(<span class="string">"f:\\test.txt"</span>);</span><br><span class="line">		<span class="keyword">char</span>[] c=&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\r'</span>,<span class="string">'\n'</span>&#125;;</span><br><span class="line">		<span class="keyword">String</span> str=<span class="string">"java语言"</span>;</span><br><span class="line">		fw.<span class="built_in">write</span>(c);</span><br><span class="line">		fw.<span class="built_in">write</span>(str);</span><br><span class="line">		fw.<span class="built_in">close</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用BufferedReader类读取文件"><a href="#使用BufferedReader类读取文件" class="headerlink" title="使用BufferedReader类读取文件"></a>使用BufferedReader类读取文件</h2><p>缓冲字符输入流类BufferedReader继承自Reader类，用来读取缓冲区中的数据。使用该类之前，必须先创建FileReader类的对象。</p>
+<p>BufferedReader构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">BufferedReader</span><span class="params">(Reader in)</span></span> <span class="comment">//创建一个使用默认大小输入缓冲区的缓冲字符输入流。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">BufferedReader</span><span class="params">(Reader in, int sz)</span></span> <span class="comment">//创建一个使用指定大小输入缓冲区的缓冲字符输入流。</span></span><br></pre></td></tr></table></figure></p>
+<p>BufferedReader方法：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> readLine() <span class="comment">//读取一个文本行。无时返回null</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用BufferedWriter"><a href="#使用BufferedWriter" class="headerlink" title="使用BufferedWriter"></a>使用BufferedWriter</h2><p>缓冲字符输出流类BufferedWriter继承自Writer类，用来将数据写入缓冲区中，调用之前要创建FileWriter类对象。缓冲区内的数据最后必须要用flush()方法将缓冲区清空，也就是将缓冲区的数据全部写到文件内。</p>
+<p>BufferedWriter的构造方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">BufferedWriter</span><span class="params">(Writer out)</span></span> <span class="comment">//创建一个使用默认大小输出缓冲区的缓冲字符输出流。 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">BufferedWriter</span><span class="params">(Writer out, int sz)</span></span> <span class="comment">//创建一个使用给定大小输出缓冲区的新缓冲字符输出流。</span></span><br></pre></td></tr></table></figure></p>
+<p>BufferedWriter的方法：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">new</span><span class="type">Line</span>() <span class="comment">//写入一个行分隔符。</span></span><br></pre></td></tr></table></figure>
+<p>例3：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws IOException</span>&#123;</span><br><span class="line">		String str;</span><br><span class="line">		BufferedReader <span class="keyword">in</span> =<span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"f:\\test.txt"</span>));</span><br><span class="line">		BufferedWriter <span class="keyword">out</span> =<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"f:\\test2.txt"</span>));</span><br><span class="line">		<span class="keyword">while</span>((str=<span class="keyword">in</span>.readLine())!=<span class="literal">null</span>)&#123;</span><br><span class="line">			System.<span class="keyword">out</span>.println(str);<span class="comment">//在控制台输出</span></span><br><span class="line">			<span class="keyword">out</span>.write(str);<span class="comment">//将读取的一行数据写入缓冲区</span></span><br><span class="line">			<span class="keyword">out</span>.newLine();<span class="comment">//写入换行符</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">out</span>.flush();<span class="comment">//将缓冲区的数据写入文件中</span></span><br><span class="line">		<span class="keyword">in</span>.close();</span><br><span class="line">		<span class="keyword">out</span>.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java IO</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Java-IO流（二）-字符流/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-Java-IO流（三）-文件的处理与随机访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -549,151 +661,6 @@
 
 
   
-    <article id="post-mysql常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/mysql常用命令/">mysql常用命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/mysql常用命令/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、登录</strong></p>
-<p>1、登录使用默认3306端口的MySQL</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -<span class="selector-tag">p</span>   <span class="comment">//回车，之后按提示输入密码。</span></span><br></pre></td></tr></table></figure>
-<p>2、退出登录</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span>; <span class="regexp">//</span>或 quit;</span><br></pre></td></tr></table></figure>
-<p><strong>二、用户管理</strong><br>mysql有一个默认用户root，拥有所有权限</p>
-<p>1、创建一个用户</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //新用户创建完成，但是此刻如果以此用户登陆的话，会报错，因为我们还没有为这个用户分配相应权限</span><br></pre></td></tr></table></figure>
-<p>2、grant方式创建带权限用户</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //赋予所有权限</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">update</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'username'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>; //用户只能执行 <span class="keyword">select</span> 和 <span class="keyword">update</span> 命令</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //刷新权限</span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.csdn.net/sin90lzc/article/details/7648711" target="_blank" rel="noopener">各种权限说明表</a></p>
-<p>3、删除用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop<span class="built_in"> user </span>username@localhost;</span><br></pre></td></tr></table></figure>
-<p>4、进入名为mysql数据库查询所以用户（名为mysql的数据库的user表存储着所有用户信息）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql;//进入名为mysql数据库</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">User</span>,Host,<span class="keyword">Password</span>  <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
-<p>5、修改密码</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'新密码'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>; //立即生效</span><br></pre></td></tr></table></figure>
-<p><strong>三、数据库操作</strong></p>
-<p>1、显示所有数据库名称</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
-<p>2、新建数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p>3、删除数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p>4、选择（进入）数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="keyword">name</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>四、表格操作</strong></p>
-<p>1、显示当前数据库所有表名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
-<p>2、创建表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="string">'table_name'</span> (</span><br><span class="line">	 <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">     <span class="keyword">name</span> <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">     age <span class="built_in">int</span>(<span class="number">3</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>3、查看表结构</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decribe table_name<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>4、插入（添加）记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (<span class="keyword">id</span>,<span class="keyword">name</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'abc'</span>),(<span class="number">2</span>,<span class="string">'bcd'</span>); //同时插入多条数据</span><br></pre></td></tr></table></figure>
-<p>5、查询记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name; //查询所有</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">name</span> <span class="keyword">from</span> table_name; //查询部分</span><br></pre></td></tr></table></figure>
-<p>6、修改记录</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name <span class="builtin-name">set</span> <span class="attribute">name</span>=<span class="string">'qwe'</span>,age=3 where <span class="attribute">id</span>=1;</span><br></pre></td></tr></table></figure>
-<p>7、删除记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>8、将字符串aaa批量替换为bbb的</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table_name <span class="keyword">set</span> 字段名 =<span class="built_in">replace</span>(字段名, aaa, bbb);</span><br></pre></td></tr></table></figure>
-<p>9、删除表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name;</span><br></pre></td></tr></table></figure>
-<p>10、更改表结构</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter <span class="keyword">table</span> table_name <span class="comment">change</span> 旧字段名 新字段名 字段类型；</span><br></pre></td></tr></table></figure>
-<p><strong>五、导入导出数据库</strong></p>
-<p>1、将mysql.sql导入数据库（导入时需要先登录进mysql）</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">./mysql.sql</span>; <span class="string">//</span>当前目录下的mysql.sql</span><br><span class="line"></span><br><span class="line">source <span class="string">/home/user/mysql.sql</span>; <span class="string">//</span> <span class="string">/home/user</span>目录下的mysql.sql</span><br></pre></td></tr></table></figure>
-<p>2、导出数据库（导出数据库无需登进mysql，但导出时需输入数据库密码）</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> 数据库名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> mysql &gt; /opt/mysql.sql</span><br></pre></td></tr></table></figure>
-<p>3.导出一个表</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -p 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -p mysql<span class="built_in"> users </span>&gt; /opt/mysql_users.sql</span><br></pre></td></tr></table></figure>
-<p>4.导出一个数据库结构</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u 用户名 -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> 数据库名 表名 &gt; 目录/导出的文件名</span><br><span class="line">mysqldump -u root -<span class="selector-tag">p</span> -d --add-drop-<span class="selector-tag">table</span> mysql &gt; /opt/mysql.sql</span><br><span class="line"></span><br><span class="line">-d 没有数据</span><br><span class="line">--add-drop-<span class="selector-tag">table</span> 在每个create语句之前增加一个drop table</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>linux下mysql修改字符集、链接时间问题等请参考我的其它文章。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/mysql常用命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
@@ -797,15 +764,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">echarts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -817,11 +788,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,6 +800,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">java IO</a>
               </li>
              
@@ -841,11 +816,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -857,15 +832,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,11 +844,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">integer</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">comparable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">integer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -901,15 +872,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -921,6 +892,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
@@ -929,19 +904,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JavaMail</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -949,7 +912,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
             
             <div class="clearfix"></div>
