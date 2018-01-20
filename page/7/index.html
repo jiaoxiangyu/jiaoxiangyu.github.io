@@ -158,6 +158,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-深入分析Java-ClassLoader原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/03/深入分析Java-ClassLoader原理/">深入分析Java ClassLoader原理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/03/深入分析Java-ClassLoader原理/" class="archive-article-date">
+  	<time datetime="2017-12-03T03:43:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+</a>
+        
+		
+		
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、什么是ClassLoader"><a href="#一、什么是ClassLoader" class="headerlink" title="一、什么是ClassLoader?"></a>一、什么是ClassLoader?</h2><p>大家都知道，当我们写好一个Java程序之后，不是管是CS还是BS应用，都是由若干个.class文件组织而成的一个完整的Java应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的class文件当中，所以经常要从这个class文件中要调用另外一个class文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中的，从而只有class文件被载入到了内存之后，才能被其它class所引用。所以ClassLoader就是用来动态加载class文件到内存当中用的。</p>
+<h2 id="二、Java默认提供的三个ClassLoader"><a href="#二、Java默认提供的三个ClassLoader" class="headerlink" title="二、Java默认提供的三个ClassLoader"></a>二、Java默认提供的三个ClassLoader</h2><p><strong>1、BootStrap ClassLoader</strong>：称为启动类加载器，是Java类加载层次中最顶层的类加载器，负责加载JDK中的核心类库，如：rt.jar、resources.jar、charsets.jar等，可通过如下程序获得该类加载器从哪些地方加载了相关的jar或class文件：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();  </span><br><span class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; urls.<span class="built_in">length</span>; <span class="built_in">i</span>++) &#123;  </span><br><span class="line">    System.out.println(urls[i].toExternalForm());  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下内容是上述程序从本机JDK环境所获得的结果：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">resources</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">rt</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">sunrsasign</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">jsse</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">jce</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">charsets</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/<span class="class"><span class="keyword">lib</span>/<span class="title">jfr</span>.<span class="title">jar</span></span></span><br><span class="line"><span class="symbol">file:</span>/<span class="symbol">C:</span>/Program%<span class="number">20</span>Files/Java/jdk1.<span class="number">8.0_73</span>/jre/classes</span><br></pre></td></tr></table></figure></p>
+<p>其实上述结果也是通过查找sun.boot.class.path这个系统属性所得知的。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">System</span><span class="selector-class">.out</span><span class="selector-class">.println</span>(<span class="selector-tag">System</span><span class="selector-class">.getProperty</span>("<span class="selector-tag">sun</span><span class="selector-class">.boot</span><span class="selector-class">.class</span><span class="selector-class">.path</span>"));</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、Extension ClassLoader</strong>：称为扩展类加载器，负责加载Java的扩展类库，默认加载JAVA_HOME/jre/lib/ext/目下的所有jar。还可以加载<code>-D java.ext.dirs</code>选项指定的目录。 </p>
+<p><strong>3、App ClassLoader</strong>：称为系统类加载器，负责加载应用程序classpath目录下的所有jar和class文件。</p>
+<p>注意： 除了Java默认提供的三个ClassLoader之外，用户还可以根据需要定义自已的ClassLoader，而这些自定义的ClassLoader都必须继承自java.lang.ClassLoader类，也包括Java提供的另外二个ClassLoader（Extension ClassLoader和App ClassLoader）在内，但是Bootstrap ClassLoader不继承自ClassLoader，因为它不是一个普通的Java类，底层由C++编写，已嵌入到了JVM内核当中，当JVM启动后，Bootstrap ClassLoader也随着启动，负责加载完核心类库后，并构造Extension ClassLoader和App ClassLoader类加载器。</p>
+        
+          <a class="article-more-a" href="/2017/12/03/深入分析Java-ClassLoader原理/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ClassLoader原理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/03/深入分析Java-ClassLoader原理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-Java垃圾回收机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -543,96 +643,9 @@
 
 
   
-    <article id="post-java的System-getProperty-方法可以获取的值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/java的System-getProperty-方法可以获取的值/">java的System.getProperty()方法可以获取的值</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/java的System-getProperty-方法可以获取的值/" class="archive-article-date">
-  	<time datetime="2017-12-03T03:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-		
-		
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很多时候我们需要在项目中读取外部属性文件，用到了System.getProperty(“”)方法。这个方法需要配置JVM系统属性，用键值对存储。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">java<span class="selector-class">.version</span>					Java 运行时环境版本</span><br><span class="line">java<span class="selector-class">.vendor</span>						Java 运行时环境供应商</span><br><span class="line">java<span class="selector-class">.vendor</span><span class="selector-class">.url</span>					Java 供应商的 URL</span><br><span class="line">java<span class="selector-class">.home</span>						Java 安装目录</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.version</span>	Java 虚拟机规范版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.vendor</span>	Java 虚拟机规范供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.specification</span><span class="selector-class">.name</span>		Java 虚拟机规范名称</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.version</span>					Java 虚拟机实现版本</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.vendor</span>					Java 虚拟机实现供应商</span><br><span class="line">java<span class="selector-class">.vm</span><span class="selector-class">.name</span>					Java 虚拟机实现名称</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.version</span>		Java 运行时环境规范版本</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.vendor</span>		Java 运行时环境规范供应商</span><br><span class="line">java<span class="selector-class">.specification</span><span class="selector-class">.name</span>			Java 运行时环境规范名称</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.version</span>				Java 类格式版本号</span><br><span class="line">java<span class="selector-class">.class</span><span class="selector-class">.path</span>					Java 类路径</span><br><span class="line">java<span class="selector-class">.library</span><span class="selector-class">.path</span>				加载库时搜索的路径列表</span><br><span class="line">java<span class="selector-class">.io</span><span class="selector-class">.tmpdir</span>					默认的临时文件路径</span><br><span class="line">java<span class="selector-class">.compiler</span>					要使用的 JIT 编译器的名称</span><br><span class="line">java<span class="selector-class">.ext</span><span class="selector-class">.dirs</span>					一个或多个扩展目录的路径</span><br><span class="line">os<span class="selector-class">.name</span>							操作系统的名称</span><br><span class="line">os<span class="selector-class">.arch</span>							操作系统的架构</span><br><span class="line">os<span class="selector-class">.version</span>						操作系统的版本</span><br><span class="line">file<span class="selector-class">.separator</span>					文件分隔符（在 UNIX 系统中是“/”）</span><br><span class="line">path<span class="selector-class">.separator</span>					路径分隔符（在 UNIX 系统中是“:”）</span><br><span class="line">line<span class="selector-class">.separator</span>					行分隔符（在 UNIX 系统中是“/n”）</span><br><span class="line">user<span class="selector-class">.name</span>						用户的账户名称</span><br><span class="line">user<span class="selector-class">.home</span>						用户的主目录</span><br><span class="line">user<span class="selector-class">.dir</span>						用户的当前工作目录</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">System</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/java的System-getProperty-方法可以获取的值/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 
@@ -741,10 +754,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
@@ -753,11 +762,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,7 +774,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jsp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -777,7 +790,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java反射</a>
+                <a href="javascript:void(0)" class="js-tag color3">echarts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -797,11 +810,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,19 +842,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">json</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">springmvc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,15 +862,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,10 +886,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
@@ -890,6 +895,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">properties</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ClassLoader原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
               </li>
             
             <div class="clearfix"></div>
